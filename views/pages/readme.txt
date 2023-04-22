@@ -1,1 +1,0 @@
-chỗ này chứa các page.ejs

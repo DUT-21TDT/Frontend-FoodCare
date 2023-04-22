@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get("/", (req, res, next) => {
-    res.render("pages/dashboard", {
+router.get("/Home", (req, res, next) => {
+    res.render("pages/homepage.ejs", {
         title: "Dashboard"});
 });
+router.get("/Home/MyProfile",(req,res,next)=>{
+    res.render("pages/MyProfile.ejs");
+})
 
 router.get("/dashboard", (req, res, next) => {
     res.render("pages/dashboard", {

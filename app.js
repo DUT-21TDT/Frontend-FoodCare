@@ -10,6 +10,7 @@ var app = express()
 var http = require('http').Server(app);
 app.use(express.json());
 
+
 global.__base               = __dirname + '/';
 global.__path_app           = __base + pathConfig.folder_app + '/';
 global.__path_models        = __path_app + pathConfig.folder_models + '/';
@@ -30,25 +31,25 @@ app.use(bodyParser.urlencoded({
 // set Routers
 app.set('views', __path_views);
 app.use(ejsLayout);
-app.set('layout', './layouts/full_layout');
+app.set('layout', './layouts/fulllayout');
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__path_views, "assets")));
 app.use('/', require(__path_routes));
 
 // catch 404 and forward to error handler
-app.use((req, res, next)=> {
-    res.sendFile(__path_views + "/statics/404.html");
-});
+// app.use((req, res, next)=> {
+//     res.sendFile(__path_views + "/statics/404.html");
+// });
 
-// error handler
-app.use((err, req, res, next)=> {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// // error handler
+// app.use((err, req, res, next)=> {
+//     res.locals.message = err.message;
+//     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.sendFile(__path_views + "/statics/500.html");
-});
+//     // render the error page
+//     res.status(err.status || 500);
+//     res.sendFile(__path_views + "/statics/500.html");
+// });
 
 // start the Express server
 http.listen( port, () => {
