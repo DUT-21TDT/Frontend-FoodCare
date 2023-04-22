@@ -1,0 +1,1 @@
+chỗ này chứa các tệp tin như css/js/img/scss

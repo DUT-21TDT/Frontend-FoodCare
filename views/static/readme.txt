@@ -1,0 +1,1 @@
+chỗ này chứa các web tĩnh như lỗi 404, 403, 500 hoặc những thứ không có sự thay đổi
