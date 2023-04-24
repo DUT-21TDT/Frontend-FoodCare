@@ -31,25 +31,29 @@ app.use(bodyParser.urlencoded({
 // set Routers
 app.set('views', __path_views);
 app.use(ejsLayout);
-app.set('layout', './layouts/fulllayout');
+app.set('layout', './layouts/fulllayout','./layouts/layoutNotFooter','./layouts/layoutLogin');
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__path_views, "assets")));
 app.use('/', require(__path_routes));
 
-// catch 404 and forward to error handler
-// app.use((req, res, next)=> {
-//     res.sendFile(__path_views + "/statics/404.html");
-// });
 
-// // error handler
-// app.use((err, req, res, next)=> {
-//     res.locals.message = err.message;
-//     res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((req, res, next)=> {
+    res.sendFile(__path_views + "/statics/404.html");
+});
 
-//     // render the error page
-//     res.status(err.status || 500);
-//     res.sendFile(__path_views + "/statics/500.html");
-// });
+
+// error handler
+app.use((err, req, res, next)=> {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.sendFile(__path_views + "/static/500.html");
+});
+
+
+
 
 // start the Express server
 http.listen( port, () => {
