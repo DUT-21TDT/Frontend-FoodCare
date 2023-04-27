@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var axios = require('axios');
 
 
 router.get("/Home", (req, res, next) => {
@@ -19,6 +20,24 @@ router.get("/Home/MyMenu",(req,res,next)=>{
 router.get("/Home/CreateYourMenu",(req,res,next) => {
     res.render("pages/CreateYourMenu.ejs",{
         layout : './layouts/layoutNotFooter.ejs'});
+})
+router.put("/Home/putEditProfile/:id", async (req,res,next)=>{
+    let [fullname,email,height,weight,age,password] = req.body;
+    let id = req.body.params;
+    try{
+        await axios.put("URL",{
+            UserID : id,
+            Fullname : fullname,
+            email : email,
+            Height: height,
+            Weight: weight,
+            Age : age,
+        })
+    }
+    catch(error){
+        console.log(error);
+        res.status(500);
+    }
 })
 router.get("/dashboard", (req, res, next) => {
     res.render("pages/dashboard", {

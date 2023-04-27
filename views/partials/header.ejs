@@ -235,7 +235,7 @@
                     </div>
                 
                 <!-- EditProFile-form -->
-        <form action="" id = "form-EditProfile">
+        <form action="http://localhost:8080/Home/putEditProfile/:id" id = "form-EditProfile" method = "PUT">
           <div class="EditProfile">
               <div class="EditProfile__header">
                   <ul class="EditProfile__header-list">
@@ -264,7 +264,7 @@
                       <div class="EditProfile__form name">
                           <div class = "EditProfile__form-name">
                                   <span class="EditProfile__form-name label">Full Name</span>
-                                  <input type="" class="EditProfile__form--input firstname" placeholder="Họ và tên">
+                                  <input type="" class="EditProfile__form--input firstname" placeholder="Họ và tên" name = "fullname">
                           </div>
                           <!-- <div class = "EditProfile__form-name lastname">
                               <span class="EditProfile__form-name label">Last Name</span>
@@ -274,27 +274,27 @@
                       <div class="EditProfile__form">
                           <span class="EditProfile__form-email label">Email</span>
                           <br>
-                              <input type="" class="EditProfile__form--input email" placeholder="Nhập email">
+                              <input type="" class="EditProfile__form--input email" placeholder="Nhập email" name = "email">
                       </div>
                       <div class="EditProfile__form">
                           <span class="EditProfile__form-height label">Height</span>
                           <br>
-                          <input type="" class="EditProfile__form--input height" placeholder="Nhập cân nặng mới">
+                          <input type="" class="EditProfile__form--input height" placeholder="Nhập cân nặng mới" name = "height">
                       </div>
                       <div class="EditProfile__form">
                           <span class="EditProfile__form-weight label">Weight</span>
                           <br>
-                          <input type="" class="EditProfile__form--input weight" placeholder="Nhập chiều cao mới">
+                          <input type="" class="EditProfile__form--input weight" placeholder="Nhập chiều cao mới" name = "weight">
                       </div>
                       <div class="EditProfile__form">
                           <span class="EditProfile__form-age label">Age</span>
                           <br>
-                          <input type="" class="EditProfile__form--input age" placeholder="Nhập tuổi mới">
+                          <input type="" class="EditProfile__form--input age" placeholder="Nhập tuổi mới" name ="age">
                       </div>
                       <div class="EditProfile__form">
                           <span class="EditProfile__form-password label">Password</span>
                           <br>
-                          <div class = "EditProfile__form-password input">
+                          <div class = "EditProfile__form-password input" name = "password">
                               <input type="" class="EditProfile__form--input password" placeholder="Mật khẩu">
                               <input type="checkbox" class = "EditProfile__form-password--checkbox">
                           </div>
@@ -306,7 +306,7 @@
               </div>
               <div class="EditProfile__Footer">
                       <button class = "btn btn-cancel" >Cancel</button>
-                      <button class = "btn btn-save" >Save</button>
+                      <button class = "btn btn-save" type = "submit">Save</button>
               </div>
           </div>
       </form>
