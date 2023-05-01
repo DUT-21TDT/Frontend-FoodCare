@@ -34,6 +34,7 @@
       <link rel="stylesheet" href="../assets/css/Homepage.css">
       <link rel="stylesheet" href="../assets/css/Notification-form.css">
       <link rel="stylesheet" href="../assets/css/ResetPassword.css">
+     
       <script src = "../assets/js/avatar.js"></script>
   
       <script src = "../assets/js/CommentView.js"></script>
@@ -151,6 +152,24 @@
             //     let text = 'You can insert a description for the message here. The text relates to the action that has been performed';
             //     createToast(type, icon, title, text);
             // });
+            $(".EditProfile__Footer .btn-cancel").click(function(){
+              $(".EditProfile").fadeOut();
+              $("#container_w100").css("opacity","1");
+              $("#content").css("opacity","1");
+            })
+            $(".ChangePassword_header > div > a").click(function(event){
+                event.preventDefault();
+                $(".ChangePassword").fadeOut();
+                $("#container_w100").css("opacity","1");
+                $("#content").css("opacity","1");
+            })
+            $(".ForgetPassword__xmark").click(function(event){
+                event.preventDefault();
+                $(".ForgetPassword").fadeOut();
+                $("#container_w100").css("opacity","1");
+                $("#content").css("opacity","1");
+            })
+            
         });
       </script>
 
@@ -305,7 +324,7 @@
                       </div>
               </div>
               <div class="EditProfile__Footer">
-                      <button class = "btn btn-cancel" >Cancel</button>
+                      <button class = "btn btn-cancel" type = "button">Cancel</button>
                       <button class = "btn btn-save" type = "submit">Save</button>
               </div>
           </div>
@@ -316,9 +335,9 @@
         <div class="ChangePassword">
             <div class="ChangePassword_header">
                 <div>
-                    <a href="">
+                    <!-- <a href="">
                         <i class="fa-solid fa-arrow-left" class = "ChangePassword_header__icon"></i>
-                    </a>
+                    </a> -->
                     <a href="">
                         <i class="fa-solid fa-xmark" class = "ChangePassword_header__icon"></i>
                     </a>
@@ -348,10 +367,11 @@
         <i class="fa-solid fa-check ForgetPassword__checkEmail" ></i>
         <button class="ForgetPassword__button" >Send Reset Link</button>
         <p class="ForgetPassword__text">Back to 
-            <a href="" class="ForgetPassword__returnLogin">Login</a>
+            <a href="http://localhost:8080/login" class="ForgetPassword__returnLogin">Login</a>
         </p>   
     </div>
     </form>
+    
     <div class="notifications-message">
         
     </div>

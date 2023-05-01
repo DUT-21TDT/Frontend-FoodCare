@@ -7,9 +7,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/MyProfile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/UploadImage.css">
+
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script src = "MyProfile.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.js"
+integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function()
+    {
+        $(".iconAddAvatar").click(function(event){
+            event.preventDefault();
+            $(".UploadImg").fadeIn();
+            $(".MyProfile").css("opacity","0.5");
+            $(".container2").css("opacity","0.5");
+        })
+    })
+</script>
 </head>
 <body>
     <div class="MyProfile">
@@ -18,6 +35,11 @@
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
                     <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                </div>
+                <div class = "divAddAvatar">
+                    <a href="" class = "iconAddAvatar">
+                        <i class="fa-solid fa-camera"></i>
+                    </a>
                 </div>
             </a>
             <h3 class="profile-header__name">Nguyen Van A</h3>
@@ -58,6 +80,20 @@
             
             <canvas id="canvas"></canvas>
         </div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="UploadImg">
+                <div class="UploadImgHeader">
+                    <h2 class="UploadImg__title">Cập nhật ảnh đại diện</h2>
+                    <a href=""><i class="fa-solid fa-xmark UploadImg__xmark"></i></a>
+                </div>
+                <div class = "uploadImgBody">
+                    <input type="file" name="image">
+                    <button type="submit" class = "btnUploadImg">Cập nhật</button>
+                </div>
+            </div>
+        </form>
+
+      
 
 
 

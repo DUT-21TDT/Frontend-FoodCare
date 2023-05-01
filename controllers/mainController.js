@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
+var multer = require('multer');
 
 
 router.get("/Home", (req, res, next) => {
@@ -39,6 +40,21 @@ router.put("/Home/putEditProfile/:id", async (req,res,next)=>{
         res.status(500);
     }
 })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,__path_views + "/assets/images/imgAvatar"); 
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname); 
+    }
+  });
+  const upload = multer({ storage: storage });
+router.post('/upload', upload.single('image'), function (req, res, next) {
+    // req.file contains information about the uploaded file
+    res.render("pages/MyProfile.ejs",{
+    layout : './layouts/layoutNotFooter.ejs'});
+    
+  });
 router.get("/dashboard", (req, res, next) => {
     res.render("pages/dashboard", {
         title: "Dashboard",

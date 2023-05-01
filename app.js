@@ -4,6 +4,7 @@ var ejsLayout   = require('express-ejs-layouts')
 const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
+const multer = require('multer');
 let port = process.env.PORT || 8080;
 
 var app = express()
@@ -35,6 +36,8 @@ app.set('layout', './layouts/fulllayout','./layouts/layoutNotFooter','./layouts/
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__path_views, "assets")));
 app.use('/', require(__path_routes));
+
+
 
 
 app.use((req, res, next)=> {
