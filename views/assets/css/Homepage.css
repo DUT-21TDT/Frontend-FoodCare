@@ -1,3 +1,16 @@
+#foodcare .btn-primary {
+    background-color: var(--secondary);
+    border: solid 1px var(--primary);
+}
+
+#foodcare .btn-primary:hover {
+    opacity: 0.8;
+}
+
+#foodcare .form-control:focus {
+    box-shadow: 0 0 0 0.25rem var(--third);
+}
+
 #header {
     position: fixed;
     z-index: 1;
@@ -19,13 +32,13 @@
 }
 
 #nav>li a:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--secondary);
+    color: var(--white-color);
 }
 
 #nav>li a {
-    background-color: #f8f9fa;
-    color: black;
+    background-color: var(--white-color);
+    color: var(--secondary);
     font-size: 20px;
     text-decoration: none;
     display: inline-block;
@@ -55,8 +68,8 @@
 
 .user-signUp,
 .user-login {
-    background-color: var(--pink-color);
-    color: black;
+    background-color: var(--secondary);
+    color: var(--white-color);
     text-decoration: none;
     font-weight: 600;
     width: 100px;
@@ -110,7 +123,7 @@
 
 
 #content .food_in4 {
-    background-color: orange;
+    background-color: var(--primary);
     height: 860px;
 }
 
@@ -120,7 +133,7 @@
 }
 
 #content .search_result p {
-    color: black;
+    color: var(--secondary);
     font-weight: 500;
     font-size: 20px;
     padding-top: 10px;
@@ -153,7 +166,7 @@
 
 .carousel-inner h5,
 .carousel-inner p {
-    color: black;
+    color: var(--secondary);
 }
 
 #content .search_box,
@@ -167,8 +180,9 @@
 }
 
 #content .bmi_cal {
-    background-color: pink;
+    background-color: var(--third);
     height: 750px;
+    color: var(--black-color);
 }
 
 #content .fill_info,
@@ -182,7 +196,7 @@
     width: 250px;
     margin: 30px 0;
     border-radius: 10px;
-    border: 1px solid #000;
+    border: 1px solid var(--primary);
     font-size: 20px;
 }
 
@@ -200,7 +214,8 @@
     margin: 0 60px;
     height: 50px;
     width: max-content;
-    background-color: #0d6efd;
+    background-color: var(--secondary);
+    color: var(--white-color);
     border-radius: 10px;
     font-weight: 600;
     font-size: 20px;
@@ -209,15 +224,15 @@
 }
 
 .bmi_btn .cal_btn:hover {
-    background-color: #0b5ed7;
+    opacity: 0.8;
 }
 
 #content .menu_nutrition {
-    background-color: white;
+    background-color: var(--primary);
 }
 
 #content .food_suggest {
-    background-color: goldenrod;
+    background-color: var(--third);
     height: 850px;
 }
 
@@ -245,20 +260,22 @@
     font-weight: 700;
     font-size: 30px;
     border-radius: 10px;
-    background-color: #0d6efd;
+    background-color: var(--secondary);
+    color: var(--white-color);
 }
 
 #content .random_container .rand-btn:hover {
-    background-color: #0b5ed7;
+    opacity: 0.8;
 }
 
-#footer .container {
-    background-color: #000;
-    color: white;
+#footer .container-fluid {
+    background-color: var(--black-color);
+    color: var(--white-color);
 }
 
 #footer .footer_info {
     padding: 50px 80px;
+
 }
 
 #footer .fa-2xl,
@@ -290,6 +307,10 @@
 
 #footer .product_name {
     padding-left: 28px;
+}
+
+.error {
+    display: inline-block;
 }
 
 .user_modal {
@@ -341,7 +362,7 @@
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    background-color: #ccc;
+    background-color: var(--white-color);
 }
 
 .user_modal .login_form input+label {
@@ -349,7 +370,7 @@
 }
 
 .body_flogin .forgot_pass {
-    padding-left: 272px;
+    padding-left: 154px;
 }
 
 .body_flogin .login_fbtn {
@@ -388,11 +409,11 @@
 
 .signup_modal .signup_container {
     position: relative;
-    background-color: #fff;
+    background-color: var(--third);
     height: 650px;
     width: 850px;
     margin-top: 80px;
-    border: solid 2px #000;
+    border: solid 2px var(--secondary);
     border-radius: 5px;
     animation: modalFadeIn ease 0.4s;
 }
@@ -400,11 +421,11 @@
 
 .user_modal .login_container {
     position: relative;
-    background-color: #fff;
+    background-color: var(--third);
     height: 600px;
     width: 500px;
     margin-top: 80px;
-    border: solid 2px #000;
+    border: solid 2px var(--secondary);
     border-radius: 5px;
     animation: modalFadeIn ease 0.4s;
 }
@@ -431,7 +452,7 @@
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    background-color: #ccc;
+    background-color: var(--white-color);
 }
 
 .user_modal .login_form input+label {
@@ -439,12 +460,12 @@
 }
 
 .body_flogin .forgot_pass {
-    padding-left: 272px;
+    padding-left: 154px;
 }
 
 .body_flogin .login_fbtn {
     padding-top: 30px;
-    padding-left: 216px;
+    padding-left: 116px;
     width: 150px;
 }
 
@@ -502,7 +523,7 @@
 
 .body_flogin .signup_fbtn {
     padding-top: 20px;
-    padding-left: 384px;
+    padding-left: 372px;
 }
 
 .signup_container .signup_way {
@@ -513,6 +534,14 @@
 .signup_container .footer_signup {
     padding-top: 50px;
     margin-left: -60px;
+}
+
+.form_direct {
+    border: none;
+    margin-left: 8px;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 2px;
 }
 
 @keyframes modalFadeIn {
@@ -539,17 +568,17 @@
 }
 
 .search_result .context a {
-    color: black;
+    color: var(--secondary);
     font-weight: 450;
 }
 
 .search_result .context h6 {
-    color: black;
+    color: var(--secondary);
     font-weight: 700;
 }
 
 .search_result .context a:hover {
-    color: white;
+    color: var(--white-color);
 }
 
 #content .turnBackBtn {
@@ -564,7 +593,7 @@
 #content .detail_header a {
     font-size: 20px;
     text-decoration: none;
-    color: #000
+    color: var(--secondary);
 }
 
 .my-custom-scrollbar {

@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-router.use("/", require('../controllers/loginController'));
-// router.use('/logout', require("../controllers/logoutController"));
+router.use("/login", require('../controllers/loginController'));
+
+router.use('/begin', require('../controllers/main_Controller'));
+
 router.use("/", require('../controllers/mainController'));
 
 
