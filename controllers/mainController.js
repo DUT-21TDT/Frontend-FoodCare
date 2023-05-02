@@ -4,7 +4,7 @@ var axios = require('axios');
 var multer = require('multer');
 
 
-router.get("/Home", (req, res, next) => {
+router.get("/", (req, res, next) => {
     res.render("pages/homepage.ejs", {
         layout:  './layouts/fulllayout.ejs',
         title: "Dashboard"});

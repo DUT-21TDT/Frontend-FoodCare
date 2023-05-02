@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
 const multer = require('multer');
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 80;
 
 var app = express()
 var http = require('http').Server(app);
