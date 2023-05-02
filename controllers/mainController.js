@@ -8,9 +8,13 @@ router.get("/Home", (req, res, next) => {
         layout:  './layouts/fulllayout.ejs',
         title: "Dashboard"});
 });
-router.get("/Home/MyProfile",(req,res,next)=>{
-    res.render("pages/MyProfile.ejs",{
-    layout : './layouts/layoutNotFooter.ejs'});
+router.get("/Home/MyProfile",(req, res, next) => {
+        if (1 == 0) // Điều kiện nếu chưa đăng nhập
+            console.log("OK");
+        else next(); // Đã đăng nhập thì render ra Profile
+    },(req,res,next)=>{
+        res.render("pages/MyProfile.ejs",{
+        layout : './layouts/layoutNotFooter.ejs'});
 })
 router.get("/Home/MyMenu",(req,res,next)=>{
     res.render("pages/MyMenu.ejs"),{

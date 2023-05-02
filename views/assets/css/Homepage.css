@@ -9,17 +9,17 @@
     right: 0;
 }
 
-#slider button, 
+#slider button,
 #slider button {
     z-index: 0;
 }
 
-#nav>li{
+#nav>li {
     display: inline-block;
 }
 
 #nav>li a:hover {
-    background-color:#000;
+    background-color: #000;
     color: #fff;
 }
 
@@ -35,7 +35,7 @@
     padding: 0 20px;
 }
 
-#nav>li + li {
+#nav>li+li {
     margin-left: 40px;
 }
 
@@ -49,7 +49,7 @@
 }
 
 
-.header-user div{
+.header-user div {
     display: inline-block;
 }
 
@@ -109,12 +109,12 @@
 
 
 
-#content .food_in4{
+#content .food_in4 {
     background-color: orange;
     height: 860px;
 }
 
-#content .search_result img{
+#content .search_result img {
     width: 200px;
     height: 300px;
 }
@@ -151,13 +151,13 @@
     border-radius: 5px;
 }
 
-.carousel-inner h5, 
+.carousel-inner h5,
 .carousel-inner p {
     color: black;
 }
 
 #content .search_box,
-#content .search_btn{
+#content .search_btn {
     height: 50px;
     font-size: 20px;
 }
@@ -176,7 +176,7 @@
     display: inline-block;
 }
 
-#content .fill_info input{
+#content .fill_info input {
     display: inline-block;
     height: 50px;
     width: 250px;
@@ -186,7 +186,7 @@
     font-size: 20px;
 }
 
-#content .fill_info .bmi_result{
+#content .fill_info .bmi_result {
     width: 400px;
 }
 
@@ -236,7 +236,7 @@
     padding-top: 16px;
 }
 
-.food_suggest .random_container h2{
+.food_suggest .random_container h2 {
     font-weight: 400;
 }
 
@@ -261,7 +261,7 @@
     padding: 50px 80px;
 }
 
-#footer .fa-2xl, 
+#footer .fa-2xl,
 #footer .community h3 {
     padding-left: 8px;
 }
@@ -337,14 +337,14 @@
     font-size: 18px;
 }
 
-.user_modal .login_form input{
+.user_modal .login_form input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
     background-color: #ccc;
 }
 
-.user_modal .login_form input + label{
+.user_modal .login_form input+label {
     padding-top: 10px;
 }
 
@@ -362,7 +362,7 @@
     padding: 15px 0 0 166px;
 }
 
-.body_flogin .login_way p{
+.body_flogin .login_way p {
     padding-left: 36px;
 }
 
@@ -395,7 +395,7 @@
     border: solid 2px #000;
     border-radius: 5px;
     animation: modalFadeIn ease 0.4s;
-} 
+}
 
 
 .user_modal .login_container {
@@ -427,14 +427,14 @@
     font-size: 18px;
 }
 
-.user_modal .login_form input{
+.user_modal .login_form input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
     background-color: #ccc;
 }
 
-.user_modal .login_form input + label{
+.user_modal .login_form input+label {
     padding-top: 10px;
 }
 
@@ -484,6 +484,7 @@
     margin-bottom: 8px;
     border-radius: 5px;
 }
+
 .signup_form .lform input {
     display: block;
     width: 200px;
@@ -509,7 +510,7 @@
     padding-left: 340px;
 }
 
-.signup_container .footer_signup{
+.signup_container .footer_signup {
     padding-top: 50px;
     margin-left: -60px;
 }
@@ -517,8 +518,9 @@
 @keyframes modalFadeIn {
     from {
         opacity: 0;
-       transform: translateY(-15px);
+        transform: translateY(-15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -536,14 +538,14 @@
     text-align: center;
 }
 
-.search_result .context a{
+.search_result .context a {
     color: black;
-    font-weight: 450;   
+    font-weight: 450;
 }
 
 .search_result .context h6 {
     color: black;
-    font-weight: 700;   
+    font-weight: 700;
 }
 
 .search_result .context a:hover {
@@ -572,7 +574,7 @@
     font-size: 20px;
 }
 
-#content .nutrition_container{
+#content .nutrition_container {
     padding: 50px 50px 0 50px;
     height: 626px;
 }
@@ -596,52 +598,3 @@
 .ran_img_container {
     margin-left: 80px;
 }
-
-/* The side navigation menu */
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 406px;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #manageMenu {
-    transition: margin-left .5s;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
