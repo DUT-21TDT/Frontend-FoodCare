@@ -13,10 +13,13 @@
             <div class="g-col-7">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
                     <li class="nav-item text-center"><a href="http://localhost:8080/">Home</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_information">Food Information</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_information">Food
+                            Information</a></li>
                     <li class="nav-item text-center"><a href="http://localhost:8080/#bmi_calculator">BMI</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#menu_nutrition">Menu Nutrition</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_suggestion">Food Suggestion</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#menu_nutrition">Menu Nutrition</a>
+                    </li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_suggestion">Food
+                            Suggestion</a></li>
                 </ul>
             </div>
             <div class="g-col-2">
@@ -67,10 +70,14 @@
                 <div class="g-col-7">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
                         <li class="nav-item text-center"><a href="http://localhost:8080/user">Home</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_information">Food Information</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#bmi_calculator">BMI</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#menu_nutrition">Menu Nutrition</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_suggestion">Food Suggestion</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_information">Food
+                                Information</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#bmi_calculator">BMI</a>
+                        </li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#menu_nutrition">Menu
+                                Nutrition</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_suggestion">Food
+                                Suggestion</a></li>
                     </ul>
 
                 </div>
@@ -213,7 +220,7 @@
                                         </div>
                                     </div>
                                     <div class="EditProfile__Footer">
-                                        <button class="btn btn-cancel">Cancel</button>
+                                        <button class="btn btn-cancel" type="button">Cancel</button>
                                         <button class="btn btn-save" type="submit">Save</button>
                                     </div>
                                 </div>
@@ -339,6 +346,11 @@
                         $("#content").css("opacity", "0.5");
                         event.stopPropagation();
                     }
+                });
+                $(".EditProfile__Footer .btn-cancel").click(function () {
+                    $(".EditProfile").fadeOut();
+                    $("#container_w100").css("opacity", "1");
+                    $("#content").css("opacity", "1");
                 });
 
                 $(".changePassword").on({
