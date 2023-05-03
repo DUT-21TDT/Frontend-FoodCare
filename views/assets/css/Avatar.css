@@ -1,3 +1,7 @@
+.absolutee-container {
+    position: relative;
+    margin-bottom: -72px;
+}
 
 .list-ava{
     width:210px;
@@ -9,8 +13,9 @@
     box-shadow:  0 0 10px rgba(0,0,0,0.5);
     display:none;
     right:20%;
-    top:115%;
+    top:116%;
     position:absolute;
+    background-color: var(--white-color);
 }
 @keyframes show{
     from{

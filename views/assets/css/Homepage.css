@@ -11,10 +11,9 @@
     box-shadow: 0 0 0 0.25rem var(--third);
 }
 
-#header {
+#foodcare #header {
     position: fixed;
     z-index: 1;
-    background-color: var(--white-color);
     height: var(--header-size);
     position: fixed;
     top: 0;
@@ -209,11 +208,11 @@
     padding-bottom: 12px;
 }
 
-
+.bmi_btn .info-btn,
 .bmi_btn .cal_btn {
     margin: 0 60px;
     height: 50px;
-    width: max-content;
+    width: 120px;
     background-color: var(--secondary);
     color: var(--white-color);
     border-radius: 10px;
@@ -223,6 +222,11 @@
     border: none;
 }
 
+.bmi_btn .info-btn {
+    width: 180px;
+    line-height: 50px;
+}
+.bmi_btn .info-btn:hover,
 .bmi_btn .cal_btn:hover {
     opacity: 0.8;
 }
