@@ -152,9 +152,9 @@ object-position: center;
     line-height: 15px;
 }
 .EditProfile__Footer .btn.btn-save{
-    background-color: var(--button-color);
+    background-color: var(--white-color);
     border:1px solid var(--border-color);
-    color:var(--white-color);
+    color:var(--button-color);
     border-radius:3px;
     font-weight: 300;
     line-height: 15px;

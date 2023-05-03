@@ -66,7 +66,7 @@
                 </div>
                 <div class="g-col-7">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/begin/test">Home</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080">Home</a></li>
                         <li class="nav-item text-center"><a href="">Food Information</a></li>
                         <li class="nav-item text-center"><a href="">BMI</a></li>
                         <li class="nav-item text-center"><a href="">Menu Nutrition</a></li>
@@ -109,7 +109,7 @@
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="http://localhost:8080/begin/profile"
+                                            <a href="http://localhost:8080/profile"
                                                 class="list-ava__body-item2 myProfile">My Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="http://localhost:8080/begin/myMenu"
+                                            <a href="http://localhost:8080/myMenu"
                                                 class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -128,7 +128,7 @@
 
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
-                                            <a href="http://localhost:8080/begin/test"
+                                            <a href="http://localhost:8080"
                                                 class="list-ava__body-item2 logOut">Log
                                                 out</a>
                                         </div>
@@ -214,7 +214,7 @@
                                         </div>
                                     </div>
                                     <div class="EditProfile__Footer">
-                                        <button class="btn btn-cancel">Cancel</button>
+                                        <button class="btn btn-cancel" type = "button">Cancel</button>
                                         <button class="btn btn-save" type="submit">Save</button>
                                     </div>
                                 </div>
@@ -342,6 +342,11 @@
                         $("#content").css("opacity", "0.5");
                         event.stopPropagation();
                     }
+                });
+                $(".EditProfile__Footer .btn-cancel").click(function(){
+                $(".EditProfile").fadeOut();
+                $("#container_w100").css("opacity","1");
+                $("#content").css("opacity","1");
                 });
 
                 $(".changePassword").on({

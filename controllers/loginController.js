@@ -9,6 +9,31 @@ router.get("/", (req, res, next) => {
       });
         
 });
+router.post("/userLogin",  async (req,res,next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  try {
+    let response = await axios.post("https://reqres.in/api/login", {
+      email: username,
+      password: password
+    });
+
+    if (response.status == 200) {
+      // let tokenId = response.data.token;
+      // let accounts = response.data.data;
+
+      // req.session.tokenId = tokenId;
+      // req.session.accounts = accounts;
+      res.redirect("http://localhost:8080");
+    } else {
+      res.status(400).send("Đăng nhập thất bại");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Đã xảy ra lỗi");
+  }
+});
 router.post("/signup", async (req,res,next) =>{
   let [fullname,email,username,birth,sex,password] = req.body;
   try{
