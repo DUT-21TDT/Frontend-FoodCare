@@ -1,11 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-router.use("/login", require('../controllers/loginController'));
+router.use('/user', require('../controllers/mainController'));
 
-router.use('/begin', require('../controllers/main_Controller'));
-
-router.use("/", require('../controllers/mainController'));
-
+router.use('/', require('../controllers/loginController'));
 
 module.exports = router;

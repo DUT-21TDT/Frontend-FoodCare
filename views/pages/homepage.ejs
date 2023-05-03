@@ -27,7 +27,7 @@
 </div>
 
 <div id="content">
-  <div class="container food_in4">
+  <div class="container food_in4" id="food_information">
     <div class="row text-center pt-4">
       <h1>Food Information</h1>
       <p style="font-size: 25px;">Provide you more knowledge about nutrition</p>
@@ -86,7 +86,7 @@
     </div>
   </div>
   <!-- BMI CALCULATOR -->
-  <div class="container bmi_cal">
+  <div class="container bmi_cal" id="bmi_calculator">
     <div class="row text-center pt-4">
       <h1>Fill your information</h1>
       <p style="font-size: 25px;">To calculate your BMI and know the suitable menu</p>
@@ -112,13 +112,17 @@
     </div>
 
     <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-      <a class="info-btn text-center" href="http://localhost:8080/begin/profile">More information</a>
-      <button type="button" class="cal_btn">Calculate</button>
+      <% if (!auth) { %>
+        <a class="info-btn text-center" href="http://localhost:8080/user/profile">More information</a>
+        <% } else { %>
+          <a class="info-btn text-center js-click-login" href="#">More information</a>
+          <% } %>
+            <button type="button" class="cal_btn">Calculate</button>
     </div>
   </div>
 
   <!-- Menu nutrition -->
-  <div class="container food_in4 menu_nutrition">
+  <div class="container food_in4 menu_nutrition" id="menu_nutrition">
     <div class="row text-center pt-4">
       <h1>Menu</h1>
       <p style="font-size: 25px;">Create your favorite menu and more...</p>
@@ -180,7 +184,7 @@
   </div>
 
   <!-- Food Suggestion -->
-  <div class="container food_suggest">
+  <div class="container food_suggest" id="food_suggestion">
     <div class="row text-center pt-4 ">
       <h1>Food Suggestion</h1>
       <p style="font-size: 25px;">Help you to decide what to eat immediately...</p>
@@ -332,38 +336,39 @@
     } else {
       // Nếu hợp lệ, tính chỉ số BMI và hiển thị kết quả
       var bmi = weight / (height * height);
-      $('.bmi_result').val("Your BMI is "+ bmi.toFixed(2));
+      $('.bmi_result').val("Your BMI is " + bmi.toFixed(2));
       var status;
       if (bmi < 16) {
         status = 'Gầy độ III';
       } else if (bmi >= 16 && bmi < 17) {
-          status = 'Gầy độ II';
+        status = 'Gầy độ II';
       } else if (bmi >= 17 && bmi < 18.5) {
         status = 'Gầy độ I';
       } else if (bmi >= 18.5 && bmi < 25) {
-        status = 'Bình thường';}
-        else if(bmi >= 25 && bmi < 30) {
-          status = 'Thừa cân';
-        }
-        else if(bmi >= 30 && bmi < 35) {
-          status = 'Béo phì độ I';
-        }
-        else if(bmi >= 35 && bmi < 40) {
-          status = 'Béo phì độ II';
-        }
-        else if( bmi >= 40) {
-          status = 'Béo phì độ III';
-        }
+        status = 'Bình thường';
       }
-      
-
-      var pElements = $('.bmi_input:last').siblings('p:first');
-      if (pElements.length > 0){
-        pElements.text( 'BMI cho rằng sức khoẻ của bạn là ' + status);
-      } else {
-        $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
+      else if (bmi >= 25 && bmi < 30) {
+        status = 'Thừa cân';
+      }
+      else if (bmi >= 30 && bmi < 35) {
+        status = 'Béo phì độ I';
+      }
+      else if (bmi >= 35 && bmi < 40) {
+        status = 'Béo phì độ II';
+      }
+      else if (bmi >= 40) {
+        status = 'Béo phì độ III';
       }
     }
+
+
+    var pElements = $('.bmi_input:last').siblings('p:first');
+    if (pElements.length > 0) {
+      pElements.text('BMI cho rằng sức khoẻ của bạn là ' + status);
+    } else {
+      $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
+    }
+  }
   )
 </script>
 

@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({
 // set Routers
 app.set('views', __path_views);
 app.use(ejsLayout);
-app.set('layout', './layouts/fulllayout', './layouts/layoutNotFooter', './layouts/layoutLogin', './layouts/main_layout');
+app.set('layout', './layouts/main_layout');
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__path_views, "assets")));
 app.use('/', require(__path_routes));

@@ -26,6 +26,8 @@
     z-index: 0;
 }
 
+
+
 #nav>li {
     display: inline-block;
 }
@@ -36,7 +38,7 @@
 }
 
 #nav>li a {
-    background-color: var(--white-color);
+    background-color: var(--header-color);
     color: var(--secondary);
     font-size: 20px;
     text-decoration: none;
@@ -225,7 +227,9 @@
 .bmi_btn .info-btn {
     width: 180px;
     line-height: 50px;
+    text-decoration: none;
 }
+
 .bmi_btn .info-btn:hover,
 .bmi_btn .cal_btn:hover {
     opacity: 0.8;

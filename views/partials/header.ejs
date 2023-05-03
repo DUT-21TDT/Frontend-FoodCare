@@ -1,22 +1,22 @@
 <!-- login or not login -->
-<% if (1==0) { %>
+<% if (auth) { %>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
 
 
         <div class="container">
             <div class="g-col-3" style="width: 100px;">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="http://localhost:8080/">
                     <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
                         class="d-inline-block align-text-center">
                 </a>
             </div>
             <div class="g-col-7">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/begin/test">Home</a></li>
-                    <li class="nav-item text-center"><a href="">Food Information</a></li>
-                    <li class="nav-item text-center"><a href="">BMI</a></li>
-                    <li class="nav-item text-center"><a href="">Menu Nutrition</a></li>
-                    <li class="nav-item text-center"><a href="">Food Suggestion</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/">Home</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_information">Food Information</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#bmi_calculator">BMI</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#menu_nutrition">Menu Nutrition</a></li>
+                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_suggestion">Food Suggestion</a></li>
                 </ul>
             </div>
             <div class="g-col-2">
@@ -59,18 +59,18 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
             <div class="container">
                 <div class="g-col-3" style="width: 100px;">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="http://localhost:8080/user">
                         <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
                             class="d-inline-block align-text-center">
                     </a>
                 </div>
                 <div class="g-col-7">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/begin/test">Home</a></li>
-                        <li class="nav-item text-center"><a href="">Food Information</a></li>
-                        <li class="nav-item text-center"><a href="">BMI</a></li>
-                        <li class="nav-item text-center"><a href="">Menu Nutrition</a></li>
-                        <li class="nav-item text-center"><a href="">Food Suggestion</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user">Home</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_information">Food Information</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#bmi_calculator">BMI</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#menu_nutrition">Menu Nutrition</a></li>
+                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_suggestion">Food Suggestion</a></li>
                     </ul>
 
                 </div>
@@ -109,7 +109,7 @@
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="http://localhost:8080/begin/profile"
+                                            <a href="http://localhost:8080/user/profile"
                                                 class="list-ava__body-item2 myProfile">My Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="http://localhost:8080/begin/myMenu"
+                                            <a href="http://localhost:8080/user/myMenu"
                                                 class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -128,8 +128,7 @@
 
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
-                                            <a href="http://localhost:8080/begin/test"
-                                                class="list-ava__body-item2 logOut">Log
+                                            <a href="http://localhost:8080/" class="list-ava__body-item2 logOut">Log
                                                 out</a>
                                         </div>
                                     </div>
@@ -287,11 +286,9 @@
         </nav>
 
         <link rel="stylesheet" href="../assets/css/Avatar.css">
-        <link rel="stylesheet" href="../assets/css/BaseHomepage.css">
         <link rel="stylesheet" href="../assets/css/ChangePassword.css">
         <link rel="stylesheet" href="../assets/css/EditProfile.css">
         <link rel="stylesheet" href="../assets/css/ForgetPassword.css">
-        <link rel="stylesheet" href="../assets/css/Homepage.css">
         <link rel="stylesheet" href="../assets/css/Notification-form.css">
         <link rel="stylesheet" href="../assets/css/ResetPassword.css">
         <script src="../assets/js/avatar.js"></script>

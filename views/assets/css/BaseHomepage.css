@@ -7,6 +7,7 @@
     --primary: #00C896;
     --secondary: #474747;
     --third: #CBFBE7;
+    --header-color: #f8f9fa;
 }
 
 * {
@@ -23,6 +24,7 @@ html {
     line-height: 1.6rem;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 .grid {
