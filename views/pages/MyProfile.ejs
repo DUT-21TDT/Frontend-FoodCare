@@ -50,9 +50,33 @@
 
         <canvas id="canvas"></canvas>
     </div>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="UploadImg">
+            <div class="UploadImgHeader">
+                <h2 class="UploadImg__title">Cập nhật ảnh đại diện</h2>
+                <a href=""><i class="fa-solid fa-xmark UploadImg__xmark"></i></a>
+            </div>
+            <div class = "uploadImgBody">
+                <input type="file" name="image">
+                <button type="submit" class = "btnUploadImg">Cập nhật</button>
+            </div>
+        </div>
+    </form>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script src="../assets/js/MyProfile.js"></script>
+<script>
+    $(document).ready(function()
+    {
+        $(".iconAddAvatar").click(function(event){
+            event.preventDefault();
+            $(".UploadImg").show();
+            $(".MyProfile").css("opacity","0.5");
+            $(".container2").css("opacity","0.5");
+        })
+    })
+</script>
 <link rel="stylesheet" href="../assets/css/MyProfile.css">
+<link rel="stylesheet" href="../assets/css/UploadImage.css">
