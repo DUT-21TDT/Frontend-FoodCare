@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 var multer = require('multer');
 
-//Homepage
+// Homepage
 router.get("/", (req, res, next) => {
     res.render("pages/homepage", {
         layout: './layouts/main_layout.ejs',
@@ -11,6 +11,15 @@ router.get("/", (req, res, next) => {
         auth: 0
     });
 });
+
+// router.get("/", (req, res, next) => {
+//     if(req.session.authenticated){
+//         res.render("pages/homepage", {
+//             layout: './layouts/main_layout.ejs',
+//             title: "Home",
+//         });
+//     }
+// });
 
 //My Profile
 router.get("/profile", (req, res, next) => {

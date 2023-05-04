@@ -32,10 +32,9 @@ router.post("/userLogin", async (req, res, next) => {
     if (response.status == 200) {
       // let tokenId = response.data.token;
       // let accounts = response.data.data;
-
       // req.session.tokenId = tokenId;
       // req.session.accounts = accounts;
-      res.redirect("http://localhost:8080");
+      res.redirect("http://localhost:8080/user");
     } else {
       res.status(400).send("Đăng nhập thất bại");
     }
@@ -65,8 +64,8 @@ router.post("/signup", async (req, res, next) => {
         });
     }
     else {
-      alert("Đã đăng ký thành công");
-      res.status(500);
+      alert("Đăng ký  không thành công");
+      res.status(400);
     }
   } catch (error) {
     res.status(500);

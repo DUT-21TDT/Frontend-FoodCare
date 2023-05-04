@@ -4,6 +4,7 @@ var ejsLayout = require('express-ejs-layouts')
 const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
+const session = require('express-session');
 let port = process.env.PORT || 8080;
 
 var app = express()
@@ -35,6 +36,12 @@ app.set('layout', './layouts/main_layout');
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__path_views, "assets")));
 app.use('/', require(__path_routes));
+
+app.use(session({
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 
 app.use((req, res, next) => {
