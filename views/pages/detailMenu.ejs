@@ -1,73 +1,128 @@
-
-    <div id="content">
-        <div class="container food_in4">
-            <div class="row text-center pt-4 detail_header" style="position: relative; ">
-                <h1>Menu for Children's 2-3 years old</h1>
-                <a href="#">Creator: <span style="font-weight: bold;">Cờ rít ti a nô Rô nan đô</span></a>
-                <button class="turnBackBtn"><i class="fa-solid fa-left-long fa-xl"></i></button>
-            </div>
-            <div class="nutrition_container row mt-4">
-                <div class="col-7">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                      <div class="button_container">
-                        <button>Breakfast</button>
-                        <button>Lunch</button>
-                        <button>Dinner</button>
-                      </div>
-                        <table class="table table-bordered table-striped mb-0 text-center" style="border: black;">
-                          <thead>
-                            <tr>
-                              <th scope="col">STT</th>
-                              <th scope="col">Tên món ăn</th>
-                              <th scope="col">Đơn vị</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Bún chả cá</td>
-                              <td>1 tô</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Bánh mì</td>
-                              <td>3 lát</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Chuối</td>
-                              <td>1 quả</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>Sữa chua</td>
-                              <td>1 hộp</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">5</th>
-                              <td>Phở</td>
-                              <td>1 tô</td>
-                            </tr>
-                            <!-- <tr>
-                              <th scope="row">6</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                            </tr> -->
-                          </tbody>
-                        </table>                    
-                      </div>
-                </div>
-                <div class="col-5">
-                  <div class="ran_img_container">
-                    <img src="./assets/img/search_img/search-1.jpg" class="rand_img" alt="" style="max-width: 80%;">
-                  </div>
-                </div>
-            </div>
-            <div class="row" style="height: 100px;">
-                <div class="react_btn">
-                  <button>Like <i class="fa-solid fa-heart fa"></i></button>
-                  <button>Comment <i class="fa-solid fa-comment"></i></button>
-                </div>
-            </div>
-        </div>
+<div id="content" style="padding: 80px 0 0 0;">
+  <div class="container food_in4">
+    <div class="row text-center pt-4 detail_header" style="position: relative;">
+      <h1>Menu for Children's 2-3 years old</h1>
+      <a href="#">Creator: <span style="font-weight: bold;">Cờ rít ti a nô Rô nan đô</span></a>
+      <button class="turnBackBtn"><i class="fa-solid fa-left-long fa-xl"></i></button>
     </div>
+    <div class="nutrition_container row mt-4">
+      <div class="col-7">
+        <div class="CYM_body">
+          <div class="CYM_body__left">
+            <div class="CYM_body__left-top">
+              <div class="CYM_body__left-nutriinfor">
+                <div class="CYM_body__left-nutriinfor--item">
+                  <div class="nutriinfor--item__circle">370</div>
+                  <span class="nutriinfor--item__text">Weight</span>
+                </div>
+                <div class="CYM_body__left-nutriinfor--item">
+                  <div class="nutriinfor--item__circle">370</div>
+                  <span class="nutriinfor--item__text">Calories</span>
+                </div>
+                <div class="CYM_body__left-nutriinfor--item">
+                  <div class="nutriinfor--item__circle">370</div>
+                  <span class="nutriinfor--item__text">Protein</span>
+                </div>
+                <div class="CYM_body__left-nutriinfor--item">
+                  <div class="nutriinfor--item__circle">370</div>
+                  <span class="nutriinfor--item__text">Glucid</span>
+                </div>
+                <div class="CYM_body__left-nutriinfor--item">
+                  <div class="nutriinfor--item__circle">370</div>
+                  <span class="nutriinfor--item__text">Lipid</span>
+                </div>
+              </div>
+              <div class="CYM_body__left-bottom">
+                <div>
+                  <table class="CYM_body__left-bottom--table">
+                    <thead>
+                      <tr>
+                        <th>Name of food</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="Breakfast" style="display:none">
+
+                    </tbody>
+                    <tbody id="Lunch" style="display:none">
+
+                    </tbody>
+                    <tbody id="Dinner" style="display:none">
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="ran_img_container">
+          <img src="../assets/images/menu_img/top-view-delicious-meal-arrangement.jpg" class="rand_img" alt=""
+            style="max-width: 80%;">
+        </div>
+      </div>
+    </div>
+    <div class="row" style="height: 100px;">
+      <div class="react_btn">
+        <button>Like <i class="fa-solid fa-heart fa"></i></button>
+        <button class="cmt">Comment <i class="fa-solid fa-comment"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="../assets/css/Create Your Menu.css">
+<link rel="stylesheet" href="../assets/css/Homepage.css">
+
+
+<script>
+  const signUp = document.querySelectorAll('.js-click-register')
+  const registerModal = document.querySelector('.js-userregister_modal')
+  const registerModalContainer = document.querySelector('.js-register-container')
+
+  const login = document.querySelectorAll('.js-click-login')
+  const loginModal = document.querySelector('.js-user_modal')
+  const modalContainer = document.querySelector('.js-login_container')
+
+  const modalClose = document.querySelectorAll('.js-modal-close')
+  function showModal() {
+    registerModal.classList.remove('open')
+    loginModal.classList.add('open')
+  }
+
+  function showRegisterModal() {
+    loginModal.classList.remove('open')
+    registerModal.classList.add('open')
+  }
+
+  function hideModal() {
+    loginModal.classList.remove('open')
+    registerModal.classList.remove('open')
+  }
+
+  for (const loginBtn of login) {
+    loginBtn.addEventListener('click', showModal);
+  }
+
+  for (const signupBtn of signUp) {
+    signupBtn.addEventListener('click', showRegisterModal)
+  }
+
+  for (const closeBtn of modalClose) {
+    closeBtn.addEventListener('click', hideModal)
+  }
+
+  loginModal.addEventListener('click', hideModal)
+  registerModal.addEventListener('click', hideModal)
+
+  modalContainer.addEventListener('click', function (event) {
+    event.stopPropagation()
+  })
+
+  registerModalContainer.addEventListener('click', function (event) {
+    event.stopPropagation()
+  })
+</script>

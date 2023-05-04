@@ -5,20 +5,20 @@
 
         <div class="container">
             <div class="g-col-3" style="width: 100px;">
-                <a class="navbar-brand" href="http://localhost:8080/">
+                <a class="navbar-brand" href="/">
                     <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
                         class="d-inline-block align-text-center">
                 </a>
             </div>
             <div class="g-col-7">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/">Home</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_information">Food
+                    <li class="nav-item text-center"><a href="/">Home</a></li>
+                    <li class="nav-item text-center"><a href="/#food_information">Food
                             Information</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#bmi_calculator">BMI</a></li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#menu_nutrition">Menu Nutrition</a>
+                    <li class="nav-item text-center"><a href="/#bmi_calculator">BMI</a></li>
+                    <li class="nav-item text-center"><a href="/#menu_nutrition">Menu Nutrition</a>
                     </li>
-                    <li class="nav-item text-center"><a href="http://localhost:8080/#food_suggestion">Food
+                    <li class="nav-item text-center"><a href="/#food_suggestion">Food
                             Suggestion</a></li>
                 </ul>
             </div>
@@ -57,32 +57,132 @@
 
 
     </nav>
+
+
+    <div id="login_modal" class="user_modal js-user_modal">
+        <div class="login_container js-login_container">
+            <div class="close_btn js-modal-close">
+                <i class="fa-regular fa-circle-xmark fa-xl"></i>
+            </div>
+            <header class="header_flogin">
+                <h2>LOGIN</h2>
+            </header>
+
+            <body class="body_flogin">
+                <form action="/" class="login_form" id="login-form" method="post">
+                    <label for="username">Username</label>
+                    <br>
+                    <input placeholder="Your username is" type="text" name="username" id="username" required
+                        minlength="8">
+                    <label for="password">Password</label>
+                    <br>
+                    <input placeholder="Your password is" type="password" name="password" id="password" required
+                        minlength="8">
+                    <a href="#" class="forgot_pass"><span>Forgot password?</span></a>
+                    <div class="login_fbtn">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                <div class="login_way">
+                    <p>Or login with</p>
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                    <i class="fa-solid fa-envelope fa-2xl"></i>
+                    <i class="fa-brands fa-github fa-2xl"></i>
+                </div>
+            </body>
+
+            <footer class="footer_flogin">
+                <p>Don't have an account?<button class="js-click-register form_direct">Sign up</button></p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="signup_modal" class="signup_modal js-userregister_modal">
+        <div class="signup_container js-register-container">
+            <div class="close_btn js-modal-close">
+                <i class="fa-regular fa-circle-xmark fa-xl"></i>
+            </div>
+            <header class="header_flogin">
+                <h2>Sign Up</h2>
+            </header>
+
+            <body class="body_flogin">
+                <form action="/signup" class="signup_form container" method="post" id="signup-form">
+                    <div class="row justify-content-md-center">
+                        <div class="col-6 lform enter_info">
+                            <label for="username">Full name</label>
+                            <br>
+                            <input placeholder="Your fullname is" type="text" name="fullname" id="">
+                            <label for="username">Email</label>
+                            <br>
+                            <input placeholder="Your email is" type="text" name="email" id="">
+                            <label for="username">Username</label>
+                            <br>
+                            <input placeholder="Your username is" type="text" name="username" id="">
+                            <label for="username">Password</label>
+                            <br>
+                            <input placeholder="Your password is" type="text" name="password" id="">
+                        </div>
+                        <div class="col-6 rform enter_info">
+                            <label for="username">Birth</label>
+                            <br>
+                            <input type="date" id="">
+                            <div class="sex_box">
+                                <label for="sex_box">Sex</label>
+                                <br>
+                                <input type="radio" name="gender" id="male">
+                                <label for="male">Male</label><br>
+                                <input type="radio" name="gender" id="female">
+                                <label for="male">Female</label>
+                            </div>
+                            <label class="pass_again" for="username">Password again</label>
+                            <br>
+                            <input placeholder="Enter password again" type="text" name="password-again" id="">
+                        </div>
+                    </div>
+                    <div class="signup_fbtn">
+                        <button type="submit" class="btn btn-primary">Sign up</button>
+                    </div>
+                </form>
+                <div class="signup_way">
+                    <p>Or sign up with</p>
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                    <i class="fa-solid fa-envelope fa-2xl"></i>
+                    <i class="fa-brands fa-github fa-2xl"></i>
+
+                    <div class="footer_signup">
+                        <p>Already have an account? <button class="js-click-login form_direct">Login</button></p>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </div>
     <% } else { %>
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
             <div class="container">
                 <div class="g-col-3" style="width: 100px;">
-                    <a class="navbar-brand" href="http://localhost:8080/user">
+                    <a class="navbar-brand" href="/user">
                         <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
                             class="d-inline-block align-text-center">
                     </a>
                 </div>
                 <div class="g-col-7">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user">Home</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_information">Food
+                        <li class="nav-item text-center"><a href="/user">Home</a></li>
+                        <li class="nav-item text-center"><a href="/user#food_information">Food
                                 Information</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#bmi_calculator">BMI</a>
+                        <li class="nav-item text-center"><a href="/user#bmi_calculator">BMI</a>
                         </li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#menu_nutrition">Menu
+                        <li class="nav-item text-center"><a href="/user#menu_nutrition">Menu
                                 Nutrition</a></li>
-                        <li class="nav-item text-center"><a href="http://localhost:8080/user#food_suggestion">Food
+                        <li class="nav-item text-center"><a href="/user#food_suggestion">Food
                                 Suggestion</a></li>
                     </ul>
 
                 </div>
 
-                <div class="g-col-2">
+                <div class="g-col-2" style="position: relative;">
                     <!-- Mapping -->
                     <div class="nofi_avatar">
                         <a href="" class="EditProfile__header-icon">
@@ -148,24 +248,9 @@
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">
                                         <ul class="EditProfile__header-list">
-                                            <!-- <li class="EditProfile__header-item">
-                            <a href="" class="EditProfile__header-icon"> 
-                                <i class="fa-solid fa-arrow-left EditProfile__header--Back"></i>
-                            </a>
-                        </li> -->
                                             <li class="EditProfile__header-item">
                                                 <h2 class=EditProfile__header--text>Edit Profile</h2>
                                             </li>
-                                            <!-- <li class="EditProfile__header-item nofi_avatar">
-                            <a href="" class = "EditProfile__header-icon">
-                                <i class="fa-regular fa-bell EditProfile__header--Nofi"></i>
-                            </a>
-                            <a href="" class="EditProfile__header-avatar">
-                                <div class="avatar-img">
-                                    <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
-                                </div>
-                            </a>
-                        </li> -->
                                         </ul>
                                     </div>
 
@@ -176,10 +261,6 @@
                                                 <input type="" class="EditProfile__form--input firstname"
                                                     placeholder="Họ và tên" name="fullname">
                                             </div>
-                                            <!-- <div class = "EditProfile__form-name lastname">
-                                <span class="EditProfile__form-name label">Last Name</span>
-                                <input type="" class="EditProfile__form--input lastname" placeholder="Tên">
-                            </div> -->
                                         </div>
                                         <div class="EditProfile__form">
                                             <span class="EditProfile__form-email label">Email</span>
@@ -214,7 +295,7 @@
                                                 <input type="checkbox" class="EditProfile__form-password--checkbox">
                                             </div>
                                             <!-- <input type="" class="EditProfile__form--input password" placeholder="Mật khẩu">
-                            <input type="checkbox" class = "EditProfile__form-password--checkbox"> -->
+                                <input type="checkbox" class = "EditProfile__form-password--checkbox"> -->
 
 
                                         </div>
@@ -225,6 +306,7 @@
                                     </div>
                                 </div>
                             </form>
+
 
                             <!-- ChangePasswordForm -->
                             <form action="" class="changepw-form container">

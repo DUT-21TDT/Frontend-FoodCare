@@ -630,6 +630,11 @@
     margin: 0 50px;
     font-size: 20px;
     border-radius: 20px;
+    width: 80px;
+}
+
+.react_btn .cmt{
+    width: 140px;
 }
 
 .ran_img_container {
