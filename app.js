@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var ejsLayout = require('express-ejs-layouts')
+var session = require('express-session')
 const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
@@ -27,6 +28,18 @@ app.use(bodyParser.urlencoded({
   extended: bParserConfig.extended,
   parameterLimit: bParserConfig.parameterLimit
 }));
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'somesecret',
+  cookie: { maxAge: 60 * 60000 }
+})); // 60000 is one minute
+
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  next();
+});
 
 // set Routers
 app.set('views', __path_views);

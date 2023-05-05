@@ -37,7 +37,15 @@ router.get("/createMenu", (req, res, next) => {
         title: "Create Menu",
         auth: 0
     });
-})
+});
+
+router.get("/detailMenu", (req, res, next) => {
+    res.render("pages/detailMenu", {
+      layout: './layouts/main_layout.ejs',
+      title: "Detail Menu",
+      auth: 1
+    });
+  });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

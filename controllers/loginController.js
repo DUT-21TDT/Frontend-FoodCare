@@ -11,35 +11,33 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.get("/detailMenu", (req, res, next) => {
-  res.render("pages/detailMenu", {
-    layout: './layouts/main_layout.ejs',
-    title: "Detail Menu",
-    auth: 1
-  });
-});
-
 router.post("/", async (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
+  const instance = axios.create({baseURL: `${process.env.API_URL}/login`});
+
   try {
-    let response = await axios.post("https://reqres.in/api/login", {
-      email: username,
+    var data = await instance.post("/", {
+      username: username,
       password: password
+    }).then(res => {
+        return res.data;
+    }).catch((err) => {
+      console.log({message: err});
     });
 
-    if (response.status == 200) {
+    if (data.success) {
       // let tokenId = response.data.token;
       // let accounts = response.data.data;
 
       // req.session.tokenId = tokenId;
       // req.session.accounts = accounts;
-      res.render("pages/homepage", {
-        layout: './layouts/main_layout.ejs',
-        title: "Home",
-        auth: 0
-    });
+      req.session.token = data.data.token;
+      req.session.user = {
+        "username": data.data.username
+      }
+      res.redirect("/user");
     } else {
       res.status(400).send("Đăng nhập thất bại");
     }
