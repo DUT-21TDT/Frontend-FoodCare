@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var ejsLayout = require('express-ejs-layouts')
-var session = require('express-session')
 const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
