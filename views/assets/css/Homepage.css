@@ -1,7 +1,19 @@
-#header {
+#foodcare .btn-primary {
+    background-color: var(--secondary);
+    border: solid 1px var(--primary);
+}
+
+#foodcare .btn-primary:hover {
+    opacity: 0.8;
+}
+
+#foodcare .form-control:focus {
+    box-shadow: 0 0 0 0.25rem var(--third);
+}
+
+#foodcare #header {
     position: fixed;
     z-index: 1;
-    background-color: var(--white-color);
     height: var(--header-size);
     position: fixed;
     top: 0;
@@ -9,23 +21,25 @@
     right: 0;
 }
 
-#slider button, 
+#slider button,
 #slider button {
     z-index: 0;
 }
 
-#nav>li{
+
+
+#nav>li {
     display: inline-block;
 }
 
 #nav>li a:hover {
-    background-color:#000;
-    color: #fff;
+    background-color: var(--secondary);
+    color: var(--white-color);
 }
 
 #nav>li a {
-    background-color: #f8f9fa;
-    color: black;
+    background-color: var(--header-color);
+    color: var(--secondary);
     font-size: 20px;
     text-decoration: none;
     display: inline-block;
@@ -35,7 +49,7 @@
     padding: 0 20px;
 }
 
-#nav>li + li {
+#nav>li+li {
     margin-left: 40px;
 }
 
@@ -49,14 +63,14 @@
 }
 
 
-.header-user div{
+.header-user div {
     display: inline-block;
 }
 
 .user-signUp,
 .user-login {
-    background-color: var(--pink-color);
-    color: black;
+    background-color: var(--secondary);
+    color: var(--white-color);
     text-decoration: none;
     font-weight: 600;
     width: 100px;
@@ -109,18 +123,43 @@
 
 
 
-#content .food_in4{
-    background-color: orange;
+#content .food_in4 {
+    background-color: var(--primary);
     height: 860px;
 }
 
-#content .search_result img{
+#food_information ul {
+    display: flex;
+}
+
+#foodcare .paginationjs-page {
+    color: var(--secondary);
+    margin: 0 4px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid var(--secondary);
+    background-color: var(--white-color);
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#foodcare .active {
+    color: var(--white-color);
+    background-color: var(--secondary);
+    cursor: default;
+}
+
+
+#content .search_result img {
     width: 200px;
     height: 300px;
 }
 
 #content .search_result p {
-    color: black;
+    color: var(--secondary);
     font-weight: 500;
     font-size: 20px;
     padding-top: 10px;
@@ -151,13 +190,13 @@
     border-radius: 5px;
 }
 
-.carousel-inner h5, 
+.carousel-inner h5,
 .carousel-inner p {
-    color: black;
+    color: var(--secondary);
 }
 
 #content .search_box,
-#content .search_btn{
+#content .search_btn {
     height: 50px;
     font-size: 20px;
 }
@@ -167,8 +206,9 @@
 }
 
 #content .bmi_cal {
-    background-color: pink;
+    background-color: var(--third);
     height: 750px;
+    color: var(--black-color);
 }
 
 #content .fill_info,
@@ -176,17 +216,17 @@
     display: inline-block;
 }
 
-#content .fill_info input{
+#content .fill_info input {
     display: inline-block;
     height: 50px;
     width: 250px;
     margin: 30px 0;
     border-radius: 10px;
-    border: 1px solid #000;
+    border: 1px solid var(--primary);
     font-size: 20px;
 }
 
-#content .fill_info .bmi_result{
+#content .fill_info .bmi_result {
     width: 400px;
 }
 
@@ -195,12 +235,13 @@
     padding-bottom: 12px;
 }
 
-
+.bmi_btn .info-btn,
 .bmi_btn .cal_btn {
     margin: 0 60px;
     height: 50px;
-    width: max-content;
-    background-color: #0d6efd;
+    width: 120px;
+    background-color: var(--secondary);
+    color: var(--white-color);
     border-radius: 10px;
     font-weight: 600;
     font-size: 20px;
@@ -208,16 +249,23 @@
     border: none;
 }
 
+.bmi_btn .info-btn {
+    width: 180px;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+.bmi_btn .info-btn:hover,
 .bmi_btn .cal_btn:hover {
-    background-color: #0b5ed7;
+    opacity: 0.8;
 }
 
 #content .menu_nutrition {
-    background-color: white;
+    background-color: var(--primary);
 }
 
 #content .food_suggest {
-    background-color: goldenrod;
+    background-color: var(--third);
     height: 850px;
 }
 
@@ -236,7 +284,7 @@
     padding-top: 16px;
 }
 
-.food_suggest .random_container h2{
+.food_suggest .random_container h2 {
     font-weight: 400;
 }
 
@@ -245,23 +293,25 @@
     font-weight: 700;
     font-size: 30px;
     border-radius: 10px;
-    background-color: #0d6efd;
+    background-color: var(--secondary);
+    color: var(--white-color);
 }
 
 #content .random_container .rand-btn:hover {
-    background-color: #0b5ed7;
+    opacity: 0.8;
 }
 
-#footer .container {
-    background-color: #000;
-    color: white;
+#footer .container-fluid {
+    background-color: var(--black-color);
+    color: var(--white-color);
 }
 
 #footer .footer_info {
     padding: 50px 80px;
+
 }
 
-#footer .fa-2xl, 
+#footer .fa-2xl,
 #footer .community h3 {
     padding-left: 8px;
 }
@@ -290,6 +340,10 @@
 
 #footer .product_name {
     padding-left: 28px;
+}
+
+.error {
+    display: inline-block;
 }
 
 .user_modal {
@@ -337,19 +391,19 @@
     font-size: 18px;
 }
 
-.user_modal .login_form input{
+.user_modal .login_form input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    background-color: #ccc;
+    background-color: var(--white-color);
 }
 
-.user_modal .login_form input + label{
+.user_modal .login_form input+label {
     padding-top: 10px;
 }
 
 .body_flogin .forgot_pass {
-    padding-left: 272px;
+    padding-left: 154px;
 }
 
 .body_flogin .login_fbtn {
@@ -362,7 +416,7 @@
     padding: 15px 0 0 166px;
 }
 
-.body_flogin .login_way p{
+.body_flogin .login_way p {
     padding-left: 36px;
 }
 
@@ -388,23 +442,23 @@
 
 .signup_modal .signup_container {
     position: relative;
-    background-color: #fff;
+    background-color: var(--third);
     height: 650px;
     width: 850px;
     margin-top: 80px;
-    border: solid 2px #000;
+    border: solid 2px var(--secondary);
     border-radius: 5px;
     animation: modalFadeIn ease 0.4s;
-} 
+}
 
 
 .user_modal .login_container {
     position: relative;
-    background-color: #fff;
+    background-color: var(--third);
     height: 600px;
     width: 500px;
     margin-top: 80px;
-    border: solid 2px #000;
+    border: solid 2px var(--secondary);
     border-radius: 5px;
     animation: modalFadeIn ease 0.4s;
 }
@@ -427,24 +481,24 @@
     font-size: 18px;
 }
 
-.user_modal .login_form input{
+.user_modal .login_form input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    background-color: #ccc;
+    background-color: var(--white-color);
 }
 
-.user_modal .login_form input + label{
+.user_modal .login_form input+label {
     padding-top: 10px;
 }
 
 .body_flogin .forgot_pass {
-    padding-left: 272px;
+    padding-left: 154px;
 }
 
 .body_flogin .login_fbtn {
     padding-top: 30px;
-    padding-left: 216px;
+    padding-left: 116px;
     width: 150px;
 }
 
@@ -484,6 +538,7 @@
     margin-bottom: 8px;
     border-radius: 5px;
 }
+
 .signup_form .lform input {
     display: block;
     width: 200px;
@@ -501,7 +556,7 @@
 
 .body_flogin .signup_fbtn {
     padding-top: 20px;
-    padding-left: 384px;
+    padding-left: 372px;
 }
 
 .signup_container .signup_way {
@@ -509,16 +564,25 @@
     padding-left: 340px;
 }
 
-.signup_container .footer_signup{
+.signup_container .footer_signup {
     padding-top: 50px;
     margin-left: -60px;
+}
+
+.form_direct {
+    border: none;
+    margin-left: 8px;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 2px;
 }
 
 @keyframes modalFadeIn {
     from {
         opacity: 0;
-       transform: translateY(-15px);
+        transform: translateY(-15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -536,18 +600,18 @@
     text-align: center;
 }
 
-.search_result .context a{
-    color: black;
-    font-weight: 450;   
+.search_result .context a {
+    color: var(--secondary);
+    font-weight: 450;
 }
 
 .search_result .context h6 {
-    color: black;
-    font-weight: 700;   
+    color: var(--secondary);
+    font-weight: 700;
 }
 
 .search_result .context a:hover {
-    color: white;
+    color: var(--white-color);
 }
 
 #content .turnBackBtn {
@@ -562,7 +626,7 @@
 #content .detail_header a {
     font-size: 20px;
     text-decoration: none;
-    color: #000
+    color: var(--secondary);
 }
 
 .my-custom-scrollbar {
@@ -572,7 +636,7 @@
     font-size: 20px;
 }
 
-#content .nutrition_container{
+#content .nutrition_container {
     padding: 50px 50px 0 50px;
     height: 626px;
 }
@@ -591,57 +655,13 @@
     margin: 0 50px;
     font-size: 20px;
     border-radius: 20px;
+    width: 80px;
+}
+
+.react_btn .cmt {
+    width: 140px;
 }
 
 .ran_img_container {
     margin-left: 80px;
 }
-
-/* The side navigation menu */
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 406px;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #manageMenu {
-    transition: margin-left .5s;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }

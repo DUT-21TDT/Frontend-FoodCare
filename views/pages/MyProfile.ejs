@@ -1,36 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/MyProfile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/UploadImage.css">
-
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-<script src = "MyProfile.js"></script> -->
-
-<script src="https://code.jquery.com/jquery-3.6.4.js"
-integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function()
-    {
-        $(".iconAddAvatar").click(function(event){
-            event.preventDefault();
-            $(".UploadImg").fadeIn();
-            $(".MyProfile").css("opacity","0.5");
-            $(".container2").css("opacity","0.5");
-        })
-    })
-</script>
-</head>
-<body>
+<div class="container">
     <div class="MyProfile">
-        <div class = "profile-header">
+        <div class="profile-header">
             <h1 class="profile-header__label">Profile</h1>
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
@@ -58,47 +28,43 @@ crossorigin="anonymous"></script>
                 <span class="profile-info__item--text">Age</span>
             </div>
         </div>
-        
+
         <div class="profile-notification">
             <span class="profile-notification__title">Notification</span>
             <div class="profile-notification__body">
                 <i class="fa-regular fa-bell profile-notifcation__icon"></i>
-                <span class ="profile-notifcation__text">Pop-up Notification</span>
+                <span class="profile-notifcation__text">Pop-up Notification</span>
                 <button id="toggle-btn" class="toggle-btn"></button>
             </div>
-            
+
         </div>
         <!-- <div class="container">
-            
-            <canvas id="canvas"></canvas>
-        </div> -->
-        
+                
+                <canvas id="canvas"></canvas>
+            </div> -->
+
     </div>
-    
+
 
         <div class="container2">
             
             <canvas id="canvas"></canvas>
         </div>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <div class="UploadImg">
-                <div class="UploadImgHeader">
-                    <h2 class="UploadImg__title">Cập nhật ảnh đại diện</h2>
-                    <a href=""><i class="fa-solid fa-xmark UploadImg__xmark"></i></a>
-                </div>
-                <div class = "uploadImgBody">
-                    <input type="file" name="image">
-                    <button type="submit" class = "btnUploadImg">Cập nhật</button>
-                </div>
-            </div>
-        </form>
 
-      
+</div>
 
-
-
-</body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-<script src = "../assets/js/MyProfile.js"></script>
-
-</html>
+<script src="../assets/js/MyProfile.js"></script>
+<script>
+    $(document).ready(function()
+    {
+        $(".iconAddAvatar").click(function(event){
+            event.preventDefault();
+            $(".UploadImg").show();
+            $(".MyProfile").css("opacity","0.5");
+            $(".container2").css("opacity","0.5");
+        })
+    })
+</script>
+<link rel="stylesheet" href="../assets/css/MyProfile.css">
+<link rel="stylesheet" href="../assets/css/UploadImage.css">

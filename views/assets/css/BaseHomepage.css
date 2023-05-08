@@ -4,6 +4,10 @@
     --pink-color: #CBCCFF;
     --text-color: #333;
     --header-size: 80px;
+    --primary: #00C896;
+    --secondary: #474747;
+    --third: #CBFBE7;
+    --header-color: #f8f9fa;
 }
 
 * {
@@ -16,10 +20,11 @@
 
 html {
     /* 10px */
-    font-size: 62,5%;
+    font-size: 62, 5%;
     line-height: 1.6rem;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 .grid {
@@ -35,4 +40,20 @@ html {
 .grid__row {
     display: flex;
     flex-wrap: wrap;
+}
+
+label.error {
+    display: block;
+    font-size: 16px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
 }

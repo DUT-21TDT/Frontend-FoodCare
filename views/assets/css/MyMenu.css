@@ -6,9 +6,13 @@
     display: none;
 }
 
+#main {
+    min-height: 820px;
+    padding: 40px 0;
+}
+
 #main .col {
-    max-width: 20%;
-    max-width: 20%;
+    max-width: 16.66666%;
 }
 
 #main a {
@@ -20,15 +24,17 @@
     padding-right: 12px;
     width: 20%;
 }
-.container {
-    background-color: #ccc;
-    
+
+#main .container {
+    background-color: var(--primary);
+
 }
 
 
 .category {
-    border-radius: 2px;
-    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--third);
 }
 
 .container .content {
@@ -54,8 +60,8 @@
     margin-left: 12px;
 }
 
-.category-item--active .category-item__link{
-    color: orange;
+.category-item--active .category-item__link {
+    color: var(--secondary);
 }
 
 .category-item--active .category-item__link::before {
@@ -65,13 +71,14 @@
     content: "";
     border: 6px solid;
     transform: translateY(calc(-50% - 1px));
-    border-color: transparent transparent transparent black;
+    border-color: transparent transparent transparent var(--secondary);
 }
 
 .category-item__link {
     position: relative;
-    font-size: 15px;
-    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--secondary);
     text-decoration: none;
     padding: 8px 16px;
     display: block;
@@ -80,7 +87,7 @@
 
 .category-item__link:hover {
     right: -4px;
-    color: orange;
+    color: var(--black-color);
 }
 
 .col-lg-10 {
@@ -98,7 +105,7 @@
 
 .home-filter__label {
     font-size: 1.2rem;
-    color: #555;
+    color: var(--secondary);
     margin-right: 16px;
 }
 
@@ -115,12 +122,12 @@
 
 .home-filter__page-num {
     font-size: 1rem;
-    color: black;
+    color: var(--secondary);
     margin-right: 22px;
-} 
+}
 
 .home-filter__page-current {
-    color: #000;
+    color: var(--secondary);
 }
 
 .home-filter__page-control {
@@ -129,13 +136,13 @@
     display: flex;
     width: 72px;
     height: 36px;
-    background-color: white;
+    background-color: var(--white-color);
 }
 
 .home-filter__page-btn {
     display: flex;
     flex: 1;
-    color: #555;
+    color: var(--secondary);
     text-decoration: none;
     justify-content: center;
     align-items: center;
@@ -147,7 +154,7 @@
 }
 
 .home-filter__page-btn--disabled .home-filter__page-icon {
-    color: #ccc;
+    color: var(--primary);
 }
 
 .home-filter__page-btn:first-child {
@@ -161,7 +168,7 @@
     height: 34px;
     padding: 0 12px;
     border-radius: 2px;
-    background-color: white;
+    background-color: var(--white-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -177,7 +184,7 @@
 
 .select-input__icon {
     font-size: 1.2rem;
-    color: rgb(131, 131, 131);
+    color: var(--secondary);
     margin: 0 2px 0 8px;
     position: relative;
     cursor: pointer;
@@ -189,7 +196,7 @@
     right: 0;
     top: 25px;
     border-radius: 2px;
-    background-color: white;
+    background-color: var(--white-color);
     padding: 16px 16px 8px 16px;
     list-style: none;
     display: none;
@@ -205,16 +212,16 @@
 }
 
 .select-input__link:hover {
-    color: orange;
+    color: var(--secondary);
 }
 
 .home-product-item {
     position: relative;
-    background-color: white;
+    background-color: var(--white-color);
     margin-top: 10px;
     border-radius: 4px;
     transition: top linear 0.1s;
-    color: black;
+    color: var(--secondary);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -225,7 +232,7 @@
 }
 
 .home-product-item__img {
-    padding-top: 100%; 
+    padding-top: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -234,7 +241,7 @@
 .home-product-item__name {
     font-size: 1.2rem;
     font-weight: 500;
-    color: black;
+    color: var(--secondary);
     line-height: 1.4rem;
     height: 2.8rem;
     margin: 10px;
@@ -259,16 +266,12 @@
     justify-content: space-around;
 }
 
-.home-product-item__love {
-    
-}
+.home-product-item__love {}
 
-.home-product-item__comment {
-
-}
+.home-product-item__comment {}
 
 .home-product-item__comment:hover {
-    color:rgba(0, 0, 0, 0.6)
+    color: rgba(0, 0, 0, 0.6)
 }
 
 .home-product-item__action {
@@ -282,13 +285,11 @@
     width: 72px;
 }
 
-.home-product-item__status {
-
-}
+.home-product-item__status {}
 
 .home-product-item__public,
 .home-product-item__private {
-    position:absolute;
+    position: absolute;
     top: 4px;
     right: 6px;
     cursor: pointer;
@@ -296,6 +297,6 @@
 
 .home-product-item__public:hover,
 .home-product-item__private:hover {
-    color:rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
 }

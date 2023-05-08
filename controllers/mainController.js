@@ -3,11 +3,13 @@ var router = express.Router();
 var axios = require('axios');
 var multer = require('multer');
 
-
+// Homepage
 router.get("/", (req, res, next) => {
-    res.render("pages/homepage.ejs", {
-        layout:  './layouts/fulllayout.ejs',
-        title: "Dashboard"});
+    res.render("pages/homepage", {
+        layout: './layouts/main_layout.ejs',
+        title: "Home",
+        auth: 0
+    });
 });
 router.get("/Home/MyProfile",(req,res,next)=>{
     res.render("pages/MyProfile.ejs",{
@@ -40,21 +42,6 @@ router.put("/Home/putEditProfile/:id", async (req,res,next)=>{
         res.status(500);
     }
 })
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null,__path_views + "/assets/images/imgAvatar"); 
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname); 
-    }
-  });
-  const upload = multer({ storage: storage });
-router.post('/upload', upload.single('image'), function (req, res, next) {
-    // req.file contains information about the uploaded file
-    res.render("pages/MyProfile.ejs",{
-    layout : './layouts/layoutNotFooter.ejs'});
-    
-  });
 router.get("/dashboard", (req, res, next) => {
     res.render("pages/dashboard", {
         title: "Dashboard",
@@ -62,26 +49,49 @@ router.get("/dashboard", (req, res, next) => {
     });
 });
 
-router.get("/Accounts", (req, res, next) => {
-    res.render("pages/accounts", {
-        title: "Quản lý tài khoản",
-        name: "accounts",
+//My menu
+router.get("/myMenu", (req, res, next) => {
+    res.render("pages/MyMenu", {
+        layout: './layouts/main_layout.ejs',
+        title: "My Menu",
+        auth: 0
+    });
+})
+
+//Create menu
+router.get("/createMenu", (req, res, next) => {
+    res.render("pages/CreateYourMenu", {
+        layout: './layouts/main_layout.ejs',
+        title: "Create Menu",
+        auth: 0
     });
 });
 
-
-router.get("/Foods", (req, res, next) => {
-    res.render("pages/foods", {
-        title: "Quản lý thực phẩm",
-        name: "foods",
+router.get("/detailMenu", (req, res, next) => {
+    res.render("pages/detailMenu", {
+      layout: './layouts/main_layout.ejs',
+      title: "Detail Menu",
+      auth: 1
     });
+  });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __path_views + "/assets/images/imgAvatar");
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+router.post('/upload', upload.single('image'), function (req, res, next) {
+    // req.file contains information about the uploaded file
+    res.render("pages/MyProfile.ejs", {
+        layout: './layouts/main_layout.ejs'
+    });
+
 });
 
-router.get("/FoodMenu", (req, res, next) => {
-    res.render("pages/foodMenu.ejs", {
-        title: "Quản lý thực đơn",
-        name: "foodMenu",
-    });
-});
+
 
 module.exports = router;
