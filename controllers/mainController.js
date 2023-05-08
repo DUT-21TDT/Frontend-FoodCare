@@ -11,22 +11,41 @@ router.get("/", (req, res, next) => {
         auth: 0
     });
 });
-
-// router.get("/", (req, res, next) => {
-//     if(req.session.authenticated){
-//         res.render("pages/homepage", {
-//             layout: './layouts/main_layout.ejs',
-//             title: "Home",
-//         });
-//     }
-// });
-
-//My Profile
-router.get("/profile", (req, res, next) => {
-    res.render("pages/MyProfile", {
-        layout: './layouts/main_layout.ejs',
-        title: "My Profile",
-        auth: 0
+router.get("/Home/MyProfile",(req,res,next)=>{
+    res.render("pages/MyProfile.ejs",{
+    layout : './layouts/layoutNotFooter.ejs'});
+})
+router.get("/Home/MyMenu",(req,res,next)=>{
+    res.render("pages/MyMenu.ejs"),{
+        layout:  './layouts/fulllayout.ejs'
+    };
+})
+router.get("/Home/CreateYourMenu",(req,res,next) => {
+    res.render("pages/CreateYourMenu.ejs",{
+        layout : './layouts/layoutNotFooter.ejs'});
+})
+router.put("/Home/putEditProfile/:id", async (req,res,next)=>{
+    let [fullname,email,height,weight,age,password] = req.body;
+    let id = req.body.params;
+    try{
+        await axios.put("URL",{
+            UserID : id,
+            Fullname : fullname,
+            email : email,
+            Height: height,
+            Weight: weight,
+            Age : age,
+        })
+    }
+    catch(error){
+        console.log(error);
+        res.status(500);
+    }
+})
+router.get("/dashboard", (req, res, next) => {
+    res.render("pages/dashboard", {
+        title: "Dashboard",
+        name: "dashboard",
     });
 });
 

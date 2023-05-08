@@ -5,8 +5,13 @@
     border-radius: 7px;
     display:none;
     position: absolute;
+<<<<<<< HEAD
+    top: 40%;
+    left: 50%;
+=======
     top:50%;
     right:10%;
+>>>>>>> 0d0c51836175fa704a2218796baba23f58ea8287
     transform: translate(-50%, -50%);
     background:linear-gradient(to left bottom,#fbf4f5,#eff6fe);
 
