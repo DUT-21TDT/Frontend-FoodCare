@@ -15,10 +15,12 @@ router.post("/", async (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
+  console.log(username, password);
+
   const instance = axios.create({ baseURL: `${process.env.API_URL}/login` });
 
   try {
-    var data = await instance.post("/", {
+    var data = await instance.post("/", { // /api/v1/login/
       username: username,
       password: password
     }).then(res => {
@@ -27,6 +29,8 @@ router.post("/", async (req, res, next) => {
       console.log({ message: err });
     });
 
+    console.log(data);
+
     if (data.success) {
       // let tokenId = response.data.token;
       // let accounts = response.data.data;
@@ -34,11 +38,15 @@ router.post("/", async (req, res, next) => {
       // req.session.accounts = accounts;
       //Phân quyền user + get data user để set header
       // req.session.token = data.data.token;
-      // req.session.user = {
-      //   "username": data.data.username
-      // }
+      req.session.user = {
+        "username": data.data.username,
+        "avatarImg": data.data.avatarImg,
+      }
+
+      res.redirect("/");
+
       // res.redirect("/user");
-      res.redirect("http://localhost:8080/user");
+      // res.redirect("http://localhost:8080/user");
     } else {
       res.status(400).send("Đăng nhập thất bại");
     }

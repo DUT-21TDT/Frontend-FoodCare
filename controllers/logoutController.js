@@ -4,7 +4,7 @@ var axios = require('axios');
 
 
 router.get("/", async (req, res, next) => {
-    req.session.destroy(function (err) { return res.redirect("http://localhost:8080/"); });
+    req.session.destroy(function (err) { return res.redirect("/"); });
 });
 
 module.exports = router;

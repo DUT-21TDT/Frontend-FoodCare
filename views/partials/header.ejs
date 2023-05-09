@@ -1,5 +1,5 @@
 <!-- login or not login -->
-<% if (auth) { %>
+<% if (!user) { %>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
 
 
@@ -57,7 +57,6 @@
 
 
     </nav>
-
 
     <div id="login_modal" class="user_modal js-user_modal">
         <div class="login_container js-login_container">
@@ -199,7 +198,7 @@
                         </a>
                         <a href="" class="EditProfile__header-avatar">
                             <div class="avatar-img">
-                                <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                                <img src="<%= user.avatarImg %>" alt="">
                             </div>
                             <!-- Mapping -->
                             <div class="absolutee-container">
@@ -207,16 +206,16 @@
                                     <div class="list-ava__header">
                                         <a href="" class="list-ava__header-avatar">
                                             <div class="avatar-img">
-                                                <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                                                <img src="<%= user.avatarImg %>" alt="">
                                             </div>
                                         </a>
-                                        <span class="list-ava__header--name">Nguyen Van A</span>
+                                        <span class="list-ava__header--name"><%= user.username %></span>
                                     </div>
                                     <div class="line"></div>
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="http://localhost:8080/user/profile"
+                                            <a href="/user/profile"
                                                 class="list-ava__body-item2 myProfile">My Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -225,7 +224,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="http://localhost:8080/user/myMenu"
+                                            <a href="/user/myMenu"
                                                 class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -235,7 +234,7 @@
 
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
-                                            <a href="http://localhost:8080/" class="list-ava__body-item2 logOut">Log
+                                            <a href="/logout" class="list-ava__body-item2 logOut">Log
                                                 out</a>
                                         </div>
                                     </div>
@@ -243,7 +242,7 @@
                             </div>
 
                             <!-- EditProFile-form -->
-                            <form action="http://localhost:8080/Home/putEditProfile/:id" id="form-EditProfile"
+                            <form action="/Home/putEditProfile/:id" id="form-EditProfile"
                                 method="PUT">
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">
