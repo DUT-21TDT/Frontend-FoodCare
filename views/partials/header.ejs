@@ -1,5 +1,5 @@
 <!-- login or not login -->
-<% if (auth) { %>
+<% if (!user) { %>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
 
 
@@ -58,7 +58,6 @@
 
     </nav>
 
-
     <div id="login_modal" class="user_modal js-user_modal">
         <div class="login_container js-login_container">
             <div class="close_btn js-modal-close">
@@ -110,36 +109,34 @@
                 <form action="/signup" class="signup_form container" method="post" id="signup-form">
                     <div class="row justify-content-md-center">
                         <div class="col-6 lform enter_info">
-                            <label for="fullname">Full name</label>
+                            <label for="username">Full name</label>
                             <br>
-                            <input placeholder="Your fullname is" type="text" name="fullname" minlength="8" required>
-                            <label for="email">Email</label>
+                            <input placeholder="Your fullname is" type="text" name="fullname" id="">
+                            <label for="username">Email</label>
                             <br>
-                            <input placeholder="Your email is" type="email" name="email"
-                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required minlength="8">
+                            <input placeholder="Your email is" type="text" name="email" id="">
                             <label for="username">Username</label>
                             <br>
-                            <input placeholder="Your username is" type="text" name="username" required minlength="8">
-                            <label for="password">Password</label>
+                            <input placeholder="Your username is" type="text" name="username" id="">
+                            <label for="username">Password</label>
                             <br>
-                            <input placeholder="Your password is" type="text" name="password" required minlength="8">
+                            <input placeholder="Your password is" type="text" name="password" id="">
                         </div>
                         <div class="col-6 rform enter_info">
-                            <label for="Birth">Birth</label>
+                            <label for="username">Birth</label>
                             <br>
-                            <input type="date" name="birthday" required>
+                            <input type="date" id="">
                             <div class="sex_box">
                                 <label for="sex_box">Sex</label>
                                 <br>
-                                <input type="radio" name="gender" id="male" checked>
+                                <input type="radio" name="gender" id="male">
                                 <label for="male">Male</label><br>
                                 <input type="radio" name="gender" id="female">
                                 <label for="male">Female</label>
                             </div>
-                            <label class="pass_again" for="password_again">Password again</label>
+                            <label class="pass_again" for="username">Password again</label>
                             <br>
-                            <input placeholder="Enter password again" type="text" name="password-again" required
-                                minlength="8">
+                            <input placeholder="Enter password again" type="text" name="password-again" id="">
                         </div>
                     </div>
                     <div class="signup_fbtn">
@@ -201,7 +198,7 @@
                         </a>
                         <a href="" class="EditProfile__header-avatar">
                             <div class="avatar-img">
-                                <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                                <img src="<%= user.avatarImg %>" alt="">
                             </div>
                             <!-- Mapping -->
                             <div class="absolutee-container">
@@ -209,16 +206,16 @@
                                     <div class="list-ava__header">
                                         <a href="" class="list-ava__header-avatar">
                                             <div class="avatar-img">
-                                                <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                                                <img src="<%= user.avatarImg %>" alt="">
                                             </div>
                                         </a>
-                                        <span class="list-ava__header--name">Nguyen Van A</span>
+                                        <span class="list-ava__header--name"><%= user.username %></span>
                                     </div>
                                     <div class="line"></div>
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="http://localhost:8080/user/profile"
+                                            <a href="/user/profile"
                                                 class="list-ava__body-item2 myProfile">My Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -227,7 +224,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="http://localhost:8080/user/myMenu"
+                                            <a href="/user/myMenu"
                                                 class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
                                         <div class="list-ava__body-item">
@@ -237,8 +234,7 @@
 
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
-                                            <a href="http://localhost:8080/logout"
-                                                class="list-ava__body-item2 logOut">Log
+                                            <a href="/logout" class="list-ava__body-item2 logOut">Log
                                                 out</a>
                                         </div>
                                     </div>
@@ -246,7 +242,7 @@
                             </div>
 
                             <!-- EditProFile-form -->
-                            <form action="http://localhost:8080/Home/putEditProfile/:id" id="form-EditProfile"
+                            <form action="/Home/putEditProfile/:id" id="form-EditProfile"
                                 method="PUT">
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">

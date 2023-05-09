@@ -5,7 +5,9 @@ const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
 const session = require("express-session");
-let port = process.env.PORT || 8080;
+const dotenv      = require("dotenv");
+dotenv.config();
+let port = process.env.PORT || 8888;
 
 var app = express()
 var http = require('http').Server(app);
