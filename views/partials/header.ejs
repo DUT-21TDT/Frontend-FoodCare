@@ -110,34 +110,36 @@
                 <form action="/signup" class="signup_form container" method="post" id="signup-form">
                     <div class="row justify-content-md-center">
                         <div class="col-6 lform enter_info">
-                            <label for="username">Full name</label>
+                            <label for="fullname">Full name</label>
                             <br>
-                            <input placeholder="Your fullname is" type="text" name="fullname" id="">
-                            <label for="username">Email</label>
+                            <input placeholder="Your fullname is" type="text" name="fullname" minlength="8" required>
+                            <label for="email">Email</label>
                             <br>
-                            <input placeholder="Your email is" type="text" name="email" id="">
+                            <input placeholder="Your email is" type="email" name="email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required minlength="8">
                             <label for="username">Username</label>
                             <br>
-                            <input placeholder="Your username is" type="text" name="username" id="">
-                            <label for="username">Password</label>
+                            <input placeholder="Your username is" type="text" name="username" required minlength="8">
+                            <label for="password">Password</label>
                             <br>
-                            <input placeholder="Your password is" type="text" name="password" id="">
+                            <input placeholder="Your password is" type="text" name="password" required minlength="8">
                         </div>
                         <div class="col-6 rform enter_info">
-                            <label for="username">Birth</label>
+                            <label for="Birth">Birth</label>
                             <br>
-                            <input type="date" id="">
+                            <input type="date" name="birthday" required>
                             <div class="sex_box">
                                 <label for="sex_box">Sex</label>
                                 <br>
-                                <input type="radio" name="gender" id="male">
+                                <input type="radio" name="gender" id="male" checked>
                                 <label for="male">Male</label><br>
                                 <input type="radio" name="gender" id="female">
                                 <label for="male">Female</label>
                             </div>
-                            <label class="pass_again" for="username">Password again</label>
+                            <label class="pass_again" for="password_again">Password again</label>
                             <br>
-                            <input placeholder="Enter password again" type="text" name="password-again" id="">
+                            <input placeholder="Enter password again" type="text" name="password-again" required
+                                minlength="8">
                         </div>
                     </div>
                     <div class="signup_fbtn">
@@ -235,7 +237,8 @@
 
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
-                                            <a href="http://localhost:8080/" class="list-ava__body-item2 logOut">Log
+                                            <a href="http://localhost:8080/logout"
+                                                class="list-ava__body-item2 logOut">Log
                                                 out</a>
                                         </div>
                                     </div>
