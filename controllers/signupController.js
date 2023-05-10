@@ -4,14 +4,17 @@ var axios = require('axios');
 
 //Sign up new account
 router.post("/signup", async (req, res, next) => {
-    let [fullname, email, username, birth, sex, password] = req.body;
+    let [fullname, email, username, birth, male, password] = req.body;
+
+    const instance = axios.create({ baseURL: `${process.env.API_URL}/signup` });
+
     try {
-        let response = await axios.post("URL", {
+        let response = await instance.post("/", {
             Name: fullname,
             email: email,
             Username: username,
-            DateofBirth: birth,
-            Gender: sex,
+            Birth: birth,
+            Gender: male,
             Password: password,
         })
 

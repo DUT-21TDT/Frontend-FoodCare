@@ -111,11 +111,11 @@
       </form>
     </div>
 
-            <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-              <button type="button" class="cal_btn">More information</button>
-              <button type="button" class="cal_btn">Calculate</button>
-            </div>
-          </div>
+    <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
+      <button type="button" class="cal_btn">More information</button>
+      <button type="button" class="cal_btn">Calculate</button>
+    </div>
+  </div>
 
   <!-- Menu nutrition -->
   <div class="container food_in4 menu_nutrition" id="menu_nutrition">
@@ -201,19 +201,27 @@
     <div class="g-col-3 justify-content-md-center">
       <div class="row text-center justify-content-md-center random_container">
         <h2>You want to eat...</h2>
-        <div class="ran_img_container">
-          <img src="../assets/images/search_img/search-1.jpg" class="rand_img" alt="">
+        <div class="random_result">
+          <div class="ran_img_container">
+            <img src="../assets/images/search_img/search-1.jpg" class="rand_img" alt="">
+          </div>
+          <h2 class="pt-4 pb-4">Phở</h2>
         </div>
-        <h2 class="pt-4 pb-4">Phở</h2>
-        <button class="rand-btn">
-          RANDOM
-        </button>
+        <% if (!user) { %>
+          <button class="rand-btn random_js-btn">
+            <% } else { %>
+              <button class="rand-btn js-click-login">
+                <% } %>
+                  RANDOM
+              </button>
       </div>
     </div>
 
   </div>
 
 </div>
+
+<script src="../assets/js/randomBtn.js"></script>
 
 <!-- 
 
