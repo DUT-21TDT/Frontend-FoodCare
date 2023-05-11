@@ -11,33 +11,36 @@ router.get("/", (req, res, next) => {
         auth: 0
     });
 });
-router.get("/Home/MyProfile",(req,res,next)=>{
-    res.render("pages/MyProfile.ejs",{
-    layout : './layouts/layoutNotFooter.ejs'});
+router.get("/MyProfile", (req, res, next) => {
+    res.render("pages/MyProfile.ejs", {
+        layout: './layouts/layoutNotFooter.ejs'
+    });
 })
-router.get("/Home/MyMenu",(req,res,next)=>{
-    res.render("pages/MyMenu.ejs"),{
-        layout:  './layouts/fulllayout.ejs'
+router.get("/MyMenu", (req, res, next) => {
+    res.render("pages/MyMenu.ejs"), {
+        layout: './layouts/fulllayout.ejs'
     };
 })
-router.get("/Home/CreateYourMenu",(req,res,next) => {
-    res.render("pages/CreateYourMenu.ejs",{
-        layout : './layouts/layoutNotFooter.ejs'});
+router.get("/CreateYourMenu", (req, res, next) => {
+    res.render("pages/CreateYourMenu.ejs", {
+        layout: './layouts/layoutNotFooter.ejs'
+    });
 })
-router.put("/Home/putEditProfile/:id", async (req,res,next)=>{
-    let [fullname,email,height,weight,age,password] = req.body;
+router.put("/EditProfile/:id", async (req, res, next) => {
+    let [fullname, birth, gender] = req.body;
     let id = req.body.params;
-    try{
-        await axios.put("URL",{
-            UserID : id,
-            Fullname : fullname,
-            email : email,
-            Height: height,
-            Weight: weight,
-            Age : age,
-        })
+    try {
+        await axios.put("URL", {
+            name: fullname,
+            dateofbirth: birth,
+            gender: gender
+        }).then(res => {
+            console.log(res.message);
+        }).catch((err) => {
+            console.log({ message: err });
+        });
     }
-    catch(error){
+    catch (error) {
         console.log(error);
         res.status(500);
     }
@@ -56,7 +59,6 @@ router.get("/myMenu", (req, res, next) => {
     res.render("pages/MyMenu", {
         layout: './layouts/main_layout.ejs',
         title: "My Menu",
-        auth: 0
     });
 })
 
@@ -65,17 +67,15 @@ router.get("/createMenu", (req, res, next) => {
     res.render("pages/CreateYourMenu", {
         layout: './layouts/main_layout.ejs',
         title: "Create Menu",
-        auth: 0
     });
 });
 
 router.get("/detailMenu", (req, res, next) => {
     res.render("pages/detailMenu", {
-      layout: './layouts/main_layout.ejs',
-      title: "Detail Menu",
-      auth: 1
+        layout: './layouts/main_layout.ejs',
+        title: "Detail Menu",
     });
-  });
+});
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -86,11 +86,25 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage: storage });
-router.post('/upload', upload.single('image'), function (req, res, next) {
+
+router.post('/upload', upload.single('image'), async function (req, res, next) {
     // req.file contains information about the uploaded file
-    res.render("pages/MyProfile.ejs", {
-        layout: './layouts/main_layout.ejs'
-    });
+    var img = req.image;
+    try {
+        await axios.put("/profile/upload-avatar", {
+            avatar: img
+        }).then(res => {
+            return res.data;
+        }).catch((err) => {
+            console.log({ message: err });
+        });
+
+        res.redirect("/profile");
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500);
+    }
 
 });
 

@@ -9,4 +9,5 @@ router.use('/logout', require('../controllers/logoutController'));
 
 router.use('/signup', require('../controllers/signupController'));
 
+
 module.exports = router;

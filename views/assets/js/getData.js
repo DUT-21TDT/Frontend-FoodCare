@@ -1,8 +1,9 @@
 var userData = [];
 var pageSize = 4;
+var url = `https://reqres.in/api/users?page=1`;
 
 function loadPage(pageNumber) {
-    var url = `https://reqres.in/api/users?page=2`;
+    url = `http://127.0.0.1:3000/api/v1/foods/all`;
     $.ajax({
         url: url,
     }).then(data => {
@@ -39,7 +40,7 @@ function loadPage(pageNumber) {
 
 
 $(document).ready(function () {
-    var url = "https://reqres.in/api/users?page=2";
+    url = "http://127.0.0.1:3000/api/v1/foods/all";
 
     $.ajax({
         dataType: 'json',
@@ -97,3 +98,34 @@ $(document).ready(function () {
     })
 
 });
+
+$(`.food_search-input`).change(() => {
+    url = "foods/all";
+    $.ajax({
+        dataType: 'json',
+        url: url,
+        success: function (datas) {
+            userData = datas.data;
+        }
+    });
+
+
+    $('.food_page-btn').pagination({
+        dataSource: function (done) {
+            $.ajax({
+                success: function () {
+                    done(userData);
+                }
+            });
+        },
+        pageSize: pageSize,
+        showPrevious: false,
+        showNext: false,
+        afterPageOnClick: function (event, pageNumber) {
+            loadPage(pageNumber);
+        },
+        beforeInit: function (event, pageNumber) {
+            loadPage(1);
+        }
+    })
+})

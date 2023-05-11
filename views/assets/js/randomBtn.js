@@ -2,11 +2,11 @@
 
 $('.random_js-btn').on("click", function () {
     $('.random_result').html('');
-    var url = `https://reqres.in/api/users?page=2`;
+    var url = `https://reqres.in/api/users?page=1`;
     $.ajax({
         url: url,
     }).then(data => {
-        $('.food_result-container').html('');
+        $('.random_result').html('');
         var result = "";
         let x;
         $('.random_result').html('');

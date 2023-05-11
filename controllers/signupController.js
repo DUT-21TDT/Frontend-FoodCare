@@ -10,12 +10,12 @@ router.post("/signup", async (req, res, next) => {
 
     try {
         let response = await instance.post("/", {
-            Name: fullname,
+            name: fullname,
             email: email,
-            Username: username,
-            Birth: birth,
+            username: username,
+            dateofbirth: birth,
             Gender: male,
-            Password: password,
+            password: password,
         })
 
         if (response.status == 200) {

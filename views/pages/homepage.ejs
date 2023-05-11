@@ -34,7 +34,7 @@
     </div>
     <div class="row justify-content-md-center pt-5">
       <div class="col-lg-6">
-        <div class="input-group">
+        <div class="input-group food_search-input">
           <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
           <button type="button" class="btn btn-primary search_btn">
@@ -112,8 +112,14 @@
     </div>
 
     <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-      <button type="button" class="cal_btn">More information</button>
-      <button type="button" class="cal_btn">Calculate</button>
+      <% if (user) { %>
+        <a href="/home/myprofile" class="cal_btn info_btn text-center">
+          <% } else { %>
+            <a class="cal_btn info_btn js-click-login text-center">
+              <% } %>
+                More information
+            </a>
+            <button type="button" class="cal_btn calculator-bmi-js">Calculate</button>
     </div>
   </div>
 
@@ -330,7 +336,7 @@
 </script>
 
 <script>
-  $(".cal_btn").click(function (event) {
+  $(".calculator-bmi-js").click(function (event) {
     event.preventDefault();
     var h = $(".height_input").val();
     var w = $(".weight_input").val();
