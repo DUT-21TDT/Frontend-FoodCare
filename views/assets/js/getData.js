@@ -14,7 +14,8 @@ function loadPage(pageNumber) {
             if (i < data.data.count) {
                 result += `
             <div class="search_result food_result">
-            <a href="">
+            <a href="" target="_blank">
+                <p id ="foodID" hidden>${data.data.list[i].foodId}</p>
               <img class="search_img" src="${data.data.list[i].foodImage}" alt="">
               <p class="text-center">${data.data.list[i].foodName}</p>
             </a>

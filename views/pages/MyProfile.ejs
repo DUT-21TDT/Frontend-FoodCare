@@ -12,19 +12,21 @@
                     </a>
                 </div>
             </a>
-            <h3 class="profile-header__name">Nguyen Van A</h3>
+            <h4 class="profile-header__name">
+                <%= user.username %>
+            </h4>
         </div>
         <div class="profile-info">
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">172cm</span>
+                <span class="profile-info__item--measurement height-measurement">172cm</span>
                 <span class="profile-info__item--text">Height</span>
             </div>
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">67Kg</span>
+                <span class="profile-info__item--measurement weight-measurement">67Kg</span>
                 <span class="profile-info__item--text">Weight</span>
             </div>
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">20</span>
+                <span class="profile-info__item--measurement age-measurement">21</span>
                 <span class="profile-info__item--text">Age</span>
             </div>
         </div>
@@ -39,9 +41,8 @@
 
         </div>
         <!-- <div class="container">
-                
-                <canvas id="canvas"></canvas>
-            </div> -->
+            <canvas id="canvas"></canvas>
+        </div> -->
 
     </div>
 
@@ -64,30 +65,6 @@
         </div>
     </form>
 
-    <script>
-        async function uploadImage() {
-            const fileInput = document.getElementById("imageAvatar-upload");
-            const file = fileInput.files[0];
-            const formData = new FormData();
-            formData.append("imageAvatar-upload", file);
-
-            var url = `http://localhost:3001/api/v1/profile/upload-avatar`;
-
-            await $.ajax({
-                url: url,
-                type: "PUT",
-                avatar: formData,
-                success: function (data) {
-                    console.log(data);
-                    if (data.data) {
-                        console.log("ok");
-                    }
-                    return data.data;
-                }
-            });
-
-        }
-    </script>
 
 </div>
 

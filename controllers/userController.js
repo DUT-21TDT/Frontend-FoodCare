@@ -18,8 +18,6 @@ const getBMIwithProfile = async (req, res, next) => {
         return data.data;
     }).catch((err) => {
         return null;
-        console.log({ message: err });
-        throw err;
     });
     if (BMIs) {
         res.json({
@@ -36,7 +34,33 @@ const getBMIwithProfile = async (req, res, next) => {
     }
 }
 
+const getBMICurrent = async(req, res, next) => {
+    const BMIs = await instance.get("/profile/bmi-records/current", {
+        headers: {
+            Cookie: `token=${req.session.token}`
+        }
+    }).then((data) => {
+        return data.data;
+    }).catch((err) => {
+        return null;
+    });
+    if (BMIs) {
+        res.json({
+            success: true,
+            message: "get BMI successfuly.",
+            data: BMIs.data
+        });
+    } else {
+        res.json({
+            success: false,
+            message: "get BMI error",
+            data: null
+        });
+    }
+}
+
 module.exports = {
     renderProfileView,
     getBMIwithProfile,
+    getBMICurrent,
 };
