@@ -8,6 +8,12 @@ const renderProfileView = (req, res, next) => {
         title: "My profile",
     });
 };
+const renderEditProfileView = (req,res,next) =>{
+    res.render("pages/EditProfileNew", {
+        layout: './layouts/main_layout.ejs',
+        title: "Edit Profile",
+    });
+}
 
 const getBMIwithProfile = async (req, res, next) => {
     const BMIs = await instance.get("/profile/bmi-records/all", {
@@ -39,4 +45,5 @@ const getBMIwithProfile = async (req, res, next) => {
 module.exports = {
     renderProfileView,
     getBMIwithProfile,
+    renderEditProfileView,
 };

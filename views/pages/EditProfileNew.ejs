@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../assets/css/EditProfileNew.css">
-<div class="container">
+<div class="container Editprofile">
         <div class="row align-items-start">
           <!-- <div class="col">
             <a href="" class="EditProfile__header-icon"> 
@@ -15,7 +15,7 @@
           <div class="col">
             <div class="mb-3">
               <label for="disabledTextInput" class="form-label">FullName</label>
-              <input type="text" id="disabledTextInput" class="form-control" placeholder="Nguyen Van A" style = "width:80%;">
+              <input type="text" id="disabledTextInput" class="form-control" placeholder= "Nguyen Van A" style = "width:80%;">
             </div>
             <label for="disabledTextInput" class="form-label">Email</label>
             <div class="input-group mb-3" style = "width:80%;">
@@ -46,11 +46,20 @@
         </div>
         <div class="row align-items-end">
           <div class="col">
-              <button style = "margin-left: 250px;">Change Your Password</button>
+              <button style = "margin-left: 250px; width:150px;" id = "btnChangePass" type = "button">Change Password</button>
           </div>
           <div class="col " style = "margin-right: 200px;">
-              <button style = "width:180px;">Update Profile</button>
+              <button style = "width:150px;" id = "btnUpdateProfile">Update Profile</button>
           </div>
           
         </div>
-      </div>
+</div>
+<script>
+    $(document).ready(function (){
+       $("#btnChangePass").on({
+                    click: function () {
+                        $(".ChangePassword").fadeIn();    
+                    }
+         })
+    })
+</script>
