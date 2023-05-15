@@ -41,6 +41,7 @@ app.use(session({
 })); // 60000 is one minute
 
 app.use(function (req, res, next) {
+  // res.locals.user = req.session.token;
   res.locals.user = req.session.user;
   next();
 });

@@ -4,10 +4,10 @@
             <h1 class="profile-header__label">Profile</h1>
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
-                    <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                    <img src="<%= user.avatarImg %>" alt="">
                 </div>
-                <div class = "divAddAvatar">
-                    <a href="" class = "iconAddAvatar">
+                <div class="divAddAvatar">
+                    <a href="" class="iconAddAvatar">
                         <i class="fa-solid fa-camera"></i>
                     </a>
                 </div>
@@ -46,25 +46,64 @@
     </div>
 
 
-        <div class="container2">
-            
-            <canvas id="canvas"></canvas>
+    <div class="container2">
+
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <form enctype="multipart/form-data">
+        <div class="UploadImg">
+            <div class="UploadImgHeader">
+                <h2 class="UploadImg__title">Cập nhật ảnh đại diện</h2>
+                <a href=""><i class="fa-solid fa-xmark UploadImg__xmark"></i></a>
+            </div>
+            <div class="uploadImgBody">
+                <input type="file" name="image" id="imageAvatar-upload">
+                <button type="button" class="btnUploadImg" onclick="uploadImage()">Cập nhật</button>
+            </div>
         </div>
+    </form>
+
+    <script>
+        async function uploadImage() {
+            const fileInput = document.getElementById("imageAvatar-upload");
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("imageAvatar-upload", file);
+
+            var url = `http://localhost:3001/api/v1/profile/upload-avatar`;
+
+            await $.ajax({
+                url: url,
+                type: "PUT",
+                avatar: formData,
+                success: function (data) {
+                    console.log(data);
+                    if (data.data) {
+                        console.log("ok");
+                    }
+                    return data.data;
+                }
+            });
+
+        }
+    </script>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script src="../assets/js/MyProfile.js"></script>
 <script>
-    $(document).ready(function()
-    {
-        $(".iconAddAvatar").click(function(event){
+    $(document).ready(function () {
+        $(".iconAddAvatar").click(function (event) {
             event.preventDefault();
             $(".UploadImg").show();
-            $(".MyProfile").css("opacity","0.5");
-            $(".container2").css("opacity","0.5");
+            $(".MyProfile").css("opacity", "0.5");
+            $(".container2").css("opacity", "0.5");
         })
     })
 </script>
+
+<script src="../assets/js/getProfileData.js"></script>
 <link rel="stylesheet" href="../assets/css/MyProfile.css">
 <link rel="stylesheet" href="../assets/css/UploadImage.css">

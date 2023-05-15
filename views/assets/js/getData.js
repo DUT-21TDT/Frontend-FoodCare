@@ -1,9 +1,9 @@
-var userData = [];
+
 var pageSize = 4;
-var url = `https://reqres.in/api/users?page=1`;
+var url = `http://localhost:3001/api/v1/foods`;
 
 function loadPage(pageNumber) {
-    url = `http://127.0.0.1:3000/api/v1/foods/all`;
+    url = `http://localhost:3001/api/v1/foods`;
     $.ajax({
         url: url,
     }).then(data => {
@@ -11,12 +11,12 @@ function loadPage(pageNumber) {
         var result = "";
 
         for (var i = (pageNumber - 1) * pageSize; i < (pageNumber - 1) * pageSize + pageSize; i++) {
-            if (i < data.data.length) {
+            if (i < data.data.count) {
                 result += `
             <div class="search_result food_result">
             <a href="">
-              <img class="search_img" src="${data.data[i].avatar}" alt="">
-              <p class="text-center">${data.data[i].first_name}</p>
+              <img class="search_img" src="${data.data.list[i].foodImage}" alt="">
+              <p class="text-center">${data.data.list[i].foodName}</p>
             </a>
           </div>
             `;
@@ -39,46 +39,24 @@ function loadPage(pageNumber) {
 }
 
 
-$(document).ready(function () {
-    url = "http://127.0.0.1:3000/api/v1/foods/all";
+$(document).ready(async function () {
+    url = `http://localhost:3001/api/v1/foods`;
 
-    $.ajax({
+    var foodData = await $.ajax({
         dataType: 'json',
         url: url,
         success: function (datas) {
-            userData = datas.data;
-            // var result = "";
-            // var res = "";
-            // datas.data.forEach(item => {
-            //     const { email, first_name, last_name, avatar } = item;
-            //     result += `
-            //         <tr>
-            //             <td>${first_name}</td>
-            //             <td>${last_name}</td>
-            //             <td>${email}</td>
-            //             <td><img src = "${avatar}" width="30" class = "rounded-circle"></td>
-            //         </tr>
-            //         `;
-
-            //     res += `
-            //         <div class="col-3">
-            //             <h3>${first_name}</h3>
-            //             <h3>${last_name}</h3>
-            //             <img src = "${avatar}" width="40" class = "rounded-circle">
-            //         </div>
-            //     `;
-            // });
-            // $('table').append(result);
-            // $('.info_person').append(res);
+            return datas.data;
         }
     });
 
+    console.log(foodData.data.list);
 
     $('.food_page-btn').pagination({
         dataSource: function (done) {
             $.ajax({
                 success: function () {
-                    done(userData);
+                    done(foodData.data.list);
                 }
             });
         },
@@ -90,22 +68,18 @@ $(document).ready(function () {
         },
         beforeInit: function (event, pageNumber) {
             loadPage(1);
-        }/*,
-        callback: function(data, pagination) {
-            var html = `<p>Phan tu</p>`;
-            $(`#content`).html(html);
-        }*/
+        }
     })
 
 });
 
-$(`.food_search-input`).change(() => {
-    url = "foods/all";
-    $.ajax({
+$(`.food_search-input`).change(async () => {
+    url = "http://localhost:3001/api/v1/foods";
+    var foodData = await $.ajax({
         dataType: 'json',
         url: url,
         success: function (datas) {
-            userData = datas.data;
+            return datas.data;
         }
     });
 
@@ -114,7 +88,7 @@ $(`.food_search-input`).change(() => {
         dataSource: function (done) {
             $.ajax({
                 success: function () {
-                    done(userData);
+                    done(foodData.data.list);
                 }
             });
         },
@@ -129,3 +103,4 @@ $(`.food_search-input`).change(() => {
         }
     })
 })
+

@@ -7,20 +7,20 @@
             <div class="g-col-3" style="width: 100px;">
                 <a class="navbar-brand" href="/">
                     <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
-                        class="d-inline-block align-text-center">
+                        class="d-inline-block align-text-center"">
                 </a>
             </div>
-            <div class="g-col-7">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                    <li class="nav-item text-center"><a href="/">Home</a></li>
-                    <li class="nav-item text-center"><a href="/#food_information">Food
-                            Information</a></li>
-                    <li class="nav-item text-center"><a href="/#bmi_calculator">BMI</a></li>
-                    <li class="nav-item text-center"><a href="/#menu_nutrition">Menu Nutrition</a>
-                    </li>
-                    <li class="nav-item text-center"><a href="/#food_suggestion">Food
-                            Suggestion</a></li>
-                </ul>
+            <div class=" g-col-7">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
+                        <li class="nav-item text-center"><a href="/">Home</a></li>
+                        <li class="nav-item text-center"><a href="/#food_information">Food
+                                Information</a></li>
+                        <li class="nav-item text-center"><a href="/#bmi_calculator">BMI</a></li>
+                        <li class="nav-item text-center"><a href="/#menu_nutrition">Menu Nutrition</a>
+                        </li>
+                        <li class="nav-item text-center"><a href="/#food_suggestion">Food
+                                Suggestion</a></li>
+                    </ul>
             </div>
             <div class="g-col-2">
 
@@ -71,12 +71,10 @@
                 <form action="/" class="login_form" id="login-form" method="post">
                     <label for="username">Username</label>
                     <br>
-                    <input placeholder="Your username is" type="text" name="username" id="username" required
-                        minlength="8">
+                    <input placeholder="Your username is" type="text" name="username" required minlength="5">
                     <label for="password">Password</label>
                     <br>
-                    <input placeholder="Your password is" type="password" name="password" id="password" required
-                        minlength="8">
+                    <input placeholder="Your password is" type="password" name="password" required minlength="5">
                     <a href="#" class="forgot_pass"><span>Forgot password?</span></a>
                     <div class="login_fbtn">
                         <button type="submit" class="btn btn-primary">Login</button>
@@ -111,21 +109,23 @@
                         <div class="col-6 lform enter_info">
                             <label for="username">Full name</label>
                             <br>
-                            <input placeholder="Your fullname is" type="text" name="fullname" id="">
+                            <input placeholder="Your fullname is" type="text" name="fullname" required>
                             <label for="username">Email</label>
                             <br>
-                            <input placeholder="Your email is" type="text" name="email" id="">
+                            <input placeholder="Your email is" type="text" name="email" required>
                             <label for="username">Username</label>
                             <br>
-                            <input placeholder="Your username is" type="text" name="username" id="">
+                            <input placeholder="Your username is" type="text" name="username" required>
                             <label for="username">Password</label>
                             <br>
-                            <input placeholder="Your password is" type="text" name="password" id="">
+                            <input placeholder="Your password is" type="password" name="password" id="password"
+                                minlength="5">
+
                         </div>
                         <div class="col-6 rform enter_info">
                             <label for="date">Birth</label>
                             <br>
-                            <input type="date" id="" name="birth">
+                            <input type="date" name="birth">
                             <div class="sex_box">
                                 <label for="sex_box">Sex</label>
                                 <br>
@@ -136,7 +136,7 @@
                             </div>
                             <label class="pass_again" for="username">Password again</label>
                             <br>
-                            <input placeholder="Enter password again" type="text" name="password-again" id="">
+                            <input placeholder="Enter password again" type="password" name="password_again">
                         </div>
                     </div>
                     <div class="signup_fbtn">
@@ -209,14 +209,16 @@
                                                 <img src="<%= user.avatarImg %>" alt="">
                                             </div>
                                         </a>
-                                        <span class="list-ava__header--name"><%= user.username %></span>
+                                        <a class="list-ava__header--name">
+                                            <%= user.username %>
+                                        </a>
                                     </div>
                                     <div class="line"></div>
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="/user/profile"
-                                                class="list-ava__body-item2 myProfile">My Profile</a>
+                                            <a href="/user/profile" class="list-ava__body-item2 myProfile">My
+                                                Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-gear"></i>
@@ -224,8 +226,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="/user/myMenu"
-                                                class="list-ava__body-item2 myMenu">My menu</a>
+                                            <a href="/user/myMenu" class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-shield-halved"></i>
@@ -242,8 +243,7 @@
                             </div>
 
                             <!-- EditProFile-form -->
-                            <form action="/Home/putEditProfile/:id" id="form-EditProfile"
-                                method="PUT">
+                            <form action="/Home/putEditProfile/:id" id="form-EditProfile" method="PUT">
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">
                                         <ul class="EditProfile__header-list">
@@ -380,6 +380,7 @@
         <link rel="stylesheet" href="../assets/css/Notification-form.css">
         <link rel="stylesheet" href="../assets/css/ResetPassword.css">
         <script src="../assets/js/avatar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
         <script>
             function LoadCss(url) {

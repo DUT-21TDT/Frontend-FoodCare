@@ -18,6 +18,8 @@ router.post("/", async (req, res, next) => {
 
   const instance = axios.create({ baseURL: `${process.env.API_URL}/login` });
 
+  console.log(`${process.env.API_URL}/login`);
+
   try {
     var data = await instance.post("/", { // /api/v1/login/
       username: username,
@@ -28,14 +30,15 @@ router.post("/", async (req, res, next) => {
       console.log({ message: err });
     });
 
-
     if (data.success) {
+      req.session.token = data.token;
       req.session.user = {
         "username": data.data.username,
-        "avatarImg": data.data.avatarImg,
+        "avatarImg": data.data.avatar,
       }
-
       res.redirect("/");
+
+      console.log(req.session.user)
 
     } else {
       res.status(400).send("Đăng nhập thất bại");
