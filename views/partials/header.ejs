@@ -222,7 +222,7 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-gear"></i>
-                                            <a href="" class="list-ava__body-item2 editProfile">Edit Profile</a>
+                                            <a href="/user/editprofile" class="list-ava__body-item2 editProfile">Edit Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
@@ -243,7 +243,7 @@
                             </div>
 
                             <!-- EditProFile-form -->
-                            <form action="/Home/putEditProfile/:id" id="form-EditProfile" method="PUT">
+                            <!-- <form action="/Home/putEditProfile/:id" id="form-EditProfile" method="PUT">
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">
                                         <ul class="EditProfile__header-list">
@@ -293,8 +293,7 @@
                                                     placeholder="Mật khẩu">
                                                 <input type="checkbox" class="EditProfile__form-password--checkbox">
                                             </div>
-                                            <!-- <input type="" class="EditProfile__form--input password" placeholder="Mật khẩu">
-                                <input type="checkbox" class = "EditProfile__form-password--checkbox"> -->
+                                          
 
 
                                         </div>
@@ -304,7 +303,7 @@
                                         <button class="btn btn-save" type="submit">Save</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
 
 
                             <!-- ChangePasswordForm -->
@@ -312,11 +311,11 @@
                                 <div class="ChangePassword">
                                     <div class="ChangePassword_header">
                                         <div>
-                                            <a href="">
+                                            <!-- <a href="">
                                                 <i class="fa-solid fa-arrow-left"
                                                     class="ChangePassword_header__icon"></i>
-                                            </a>
-                                            <a href="">
+                                            </a> -->
+                                            <a href="" class = "changePassword_xmark">
                                                 <i class="fa-solid fa-xmark" class="ChangePassword_header__icon"></i>
                                             </a>
                                         </div>
@@ -419,32 +418,32 @@
                     });
                     event.stopPropagation();
                 });
-                $(".editProfile").on({
-                    click: function (event) {
-                        event.preventDefault();
-                        $(".EditProfile").fadeIn();
-                        $(".list-ava").slideUp(250);
-                        $("#container_w100").css("opacity", "0.5");
-                        $("#content").css("opacity", "0.5");
-                        event.stopPropagation();
-                    }
-                });
-                $(".EditProfile__Footer .btn-cancel").click(function () {
-                    $(".EditProfile").fadeOut();
-                    $("#container_w100").css("opacity", "1");
-                    $("#content").css("opacity", "1");
-                });
+                // $(".editProfile").on({
+                //     click: function (event) {
+                //         event.preventDefault();
+                //         $(".EditProfile").fadeIn();
+                //         $(".list-ava").slideUp(250);
+                //         $("#container_w100").css("opacity", "0.5");
+                //         $("#content").css("opacity", "0.5");
+                //         event.stopPropagation();
+                //     }
+                // });
+                // $(".EditProfile__Footer .btn-cancel").click(function () {
+                //     $(".EditProfile").fadeOut();
+                //     $("#container_w100").css("opacity", "1");
+                //     $("#content").css("opacity", "1");
+                // });
 
-                $(".changePassword").on({
-                    click: function (event) {
-                        event.preventDefault();
-                        $(".ChangePassword").fadeIn();
-                        $(".list-ava").slideUp(250);
-                        $("#container_w100").css("opacity", "0.5");
-                        $("#content").css("opacity", "0.5");
-                        event.stopPropagation();
-                    }
-                })
+                // $(".changePassword").on({
+                //     click: function (event) {
+                //         event.preventDefault();
+                //         $(".ChangePassword").fadeIn();
+                //         $(".list-ava").slideUp(250);
+                //         $("#container_w100").css("opacity", "0.5");
+                //         $("#content").css("opacity", "0.5");
+                //         event.stopPropagation();
+                //     }
+                // })
                 $(".myProfile").on({
                     click: function (event) {
 
@@ -471,11 +470,17 @@
 
                 });
                 $(".ChangePassword_footer__button").mousemove(function () {
-                    $(".ChangePassword_footer__button").css("background-color", "#0064e0");
+                    $(".ChangePassword_footer__button").css("background-color", "#474747");
                 });
                 $(".ChangePassword_footer__button").mouseleave(function () {
-                    $(".ChangePassword_footer__button").css("background-color", "#8fbcf2");
+                    $(".ChangePassword_footer__button").css("background-color", "#919191");
                 });
+                $(".changePassword_xmark").click(function(event){
+                    event.preventDefault();
+                    $(".ChangePassword").fadeOut("fast");
+
+                });
+               
                 // $(".ChangePassword_footer__button").onclick(function(event)
                 // {
                 //     let type = 'success';

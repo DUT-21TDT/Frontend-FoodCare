@@ -141,6 +141,24 @@
 .profile-notifcation__text {
     margin-left: -25px;
 }
+.profile-updateHeightAndWeight {
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    line-height: 50px;
+    font-weight: 500;
+}
+
+.profile-updateHeightAndWeight > a{
+    text-decoration: none;
+    color:#6d6265;
+}
+
+
+
 
 .toggle-btn {
     width: 50px;

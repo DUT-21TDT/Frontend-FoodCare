@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="../assets/css/EditProfileNew.css">
+<div class="container Editprofile">
+        <div class="row align-items-start">
+          <!-- <div class="col">
+            <a href="" class="EditProfile__header-icon"> 
+              <i class="fa-solid fa-arrow-left EditProfile__header--Back"></i>
+          </a>
+          </div> -->
+          <div class="col">
+            <h2 class = EditProfile__header--text>Edit Profile</h2> 
+          </div>
+          
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="mb-3">
+              <label for="disabledTextInput" class="form-label">FullName</label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder= "Nguyen Van A" style = "width:80%;">
+            </div>
+            <label for="disabledTextInput" class="form-label">Email</label>
+            <div class="input-group mb-3" style = "width:80%;">
+              <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="nguyenvana@gmail.com">
+              <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+              </div>
+            </div>
+            <label for="disabledTextInput" class="form-label">Gender</label>
+            <select class="form-select" aria-label="Default select example" style = "height: 60px; width:80%;">
+              <!-- <option selected>Male</option> -->
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select>
+            <label for="disabledTextInput" class="form-label" style = "margin-top:20px;">Birthday</label>
+            <div class="input-group mb-3" style = "width:80%;">
+              <input type="date" class="form-control" value="20/01/2023" style = "margin-bottom:5px;">
+            </div>
+          </div>
+          <div class="col">
+            <a href="" class="Editprofile__avatar">
+              <div class="avatar-img">
+                  <img src="<%= user.avatarImg %>" alt="">
+              </div>
+          </a>
+          </div>
+          
+        </div>
+        <div class="row align-items-end">
+          <div class="col">
+              <button style = "margin-left: 250px; width:150px;" id = "btnChangePass" type = "button">Change Password</button>
+          </div>
+          <div class="col " style = "margin-right: 200px;">
+              <button style = "width:150px;" id = "btnUpdateProfile">Update Profile</button>
+          </div>
+          
+        </div>
+</div>
+<script>
+    $(document).ready(function (){
+       $("#btnChangePass").on({
+                    click: function () {
+                        $(".ChangePassword").fadeIn();    
+                    }
+         })
+    })
+</script>
