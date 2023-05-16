@@ -6,7 +6,7 @@
                 <div class="avatar-img">
                     <img src="<%= user.avatarImg %>" alt="">
                 </div>
-                <div class="divAddAvatar">
+                <div class="divAddAvatar" id="changeFoodImg">
                     <a href="" class="iconAddAvatar">
                         <i class="fa-solid fa-camera"></i>
                     </a>
@@ -26,7 +26,9 @@
                 <span class="profile-info__item--text">Weight</span>
             </div>
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement age-measurement">21</span>
+                <span class="profile-info__item--measurement age-measurement">
+                    <%= userInfo.dateofbirth %>
+                </span>
                 <span class="profile-info__item--text">Age</span>
             </div>
         </div>
@@ -55,19 +57,6 @@
         <canvas id="canvas"></canvas>
     </div>
 
-    <form enctype="multipart/form-data">
-        <div class="UploadImg">
-            <div class="UploadImgHeader">
-                <h2 class="UploadImg__title">Cập nhật ảnh đại diện</h2>
-                <a href=""><i class="fa-solid fa-xmark UploadImg__xmark"></i></a>
-            </div>
-            <div class="uploadImgBody">
-                <input type="file" name="image" id="imageAvatar-upload">
-                <button type="button" class="btnUploadImg" onclick="uploadImage()">Cập nhật</button>
-            </div>
-        </div>
-    </form>
-
 
 </div>
 
@@ -87,3 +76,97 @@
 <script src="../assets/js/getProfileData.js"></script>
 <link rel="stylesheet" href="../assets/css/MyProfile.css">
 <link rel="stylesheet" href="../assets/css/UploadImage.css">
+
+<!-- <script>
+
+    $("#changeFoodImg").on("click", function (e) {
+        var fileDialog = $('<input type="file" name="foodImage" accept=".png,.jpg,.jpeg">');
+        fileDialog.click();
+        fileDialog.on("change", onFileSelected);
+        return false;
+    });
+
+    var onFileSelected = async function (e) {
+
+        var formData = new FormData();
+        formData.append('foodImage', $(this)[0].files[0]);
+        var notice = document.getElementById("foodImageNotice");
+        notice.innerText = "Đang tải ảnh, vui lòng đợi xíu nhaaa!";
+        notice.style.color = "black";
+        await $.ajax({
+            url: `/AdminCP/upload`,
+            type: "POST", // <- Change here
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (response) => {
+                notice.innerText = response.notice;
+                notice.style.color = "red";
+                if (response.success) {
+                    document.getElementById("foodImage").src = response.data.link;
+                    notice.style.color = "green";
+                }
+            },
+            error: function (err) {
+                notice.innerText = "Xảy ra lỗi khi thực hiện upload ảnh!";
+                notice.style.color = "red";
+                console.log(err);
+            }
+        });
+    };
+
+    $('#submit').on('click', delay(() => {
+        const foodId = "<%= foodId %>";
+        // get params from form
+        const txtFoodName = $("#txtFoodName").val();
+        if (txtFoodName.length < 3) {
+            alert("Vui lòng nhập tên thực phẩm");
+            return;
+        }
+
+        const txtEnergy = $("#txtEnergy").val();
+        const txtCarbohydrate = $("#txtCarbohydrate").val();
+        const txtLipid = $("#txtLipid").val();
+        const txtProtein = $("#txtProtein").val();
+        const txtVitamins = $("#txtVitamins").val();
+        const txtMinerals = $("#txtMinerals").val();
+        const foodImage = document.getElementById("foodImage").src;
+
+        const data = {
+            "foodName": txtFoodName,
+            "foodImage": foodImage,
+            "nutrition": {
+                "energy": txtEnergy,
+                "carbohydrate": txtCarbohydrate,
+                "lipid": txtLipid,
+                "protein": txtProtein,
+                "vitamins": txtVitamins,
+                "minerals": txtMinerals,
+            }
+        }
+
+        if (foodId === "") {
+            $.post(`/AdminCP/Foods/add`, data, (response, status) => {
+                alert(response.message);
+                if (response.success) {
+                    window.location = "/AdminCP/Foods";
+                }
+            }).fail((err) => {
+                alert(err);
+            });
+        } else {
+            $.ajax({
+                url: `/AdminCP/Foods/update/${foodId}`,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(data), // access in body
+            }).done(function (response) {
+                alert(response.notice);
+                window.location = "/AdminCP/Foods";
+            }).fail(function (err) {
+                alert(err);
+            })
+        }
+    }, 3));
+
+</script> -->

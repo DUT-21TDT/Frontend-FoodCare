@@ -8,6 +8,7 @@ const {
     getBMIwithProfile,
     getBMICurrent,
     renderEditProfileView,
+    //uploadFile,
 } = require("../controllers/userController");
 
 
@@ -15,7 +16,7 @@ const {
 router.get("/profile", auth, renderProfileView);
 router.get("/getBMI", auth, getBMIwithProfile);
 router.get("/getBMICurrent", auth, getBMICurrent);
-router.get("/editprofile",auth,renderEditProfileView);
+router.get("/editprofile", auth, renderEditProfileView);
 //router.put("/profile/upload", auth, uploadFile);
 
 module.exports = router;
