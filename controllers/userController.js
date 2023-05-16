@@ -1,4 +1,5 @@
 var axios = require('axios');
+const { response } = require('express');
 
 const instance = axios.create({ baseURL: `${process.env.API_URL}/` });
 
@@ -8,10 +9,32 @@ const renderProfileView = (req, res, next) => {
         title: "My profile",
     });
 };
-const renderEditProfileView = (req,res,next) =>{
+
+const getUserInfoByUserId = async (userId, token)=>{
+    // http://localhost:3001/api/v1/profile/userid=
+    const userInfo = await instance.get(`/profile/userid=${userId}`, {
+        headers: {
+            Cookie: `token=${token}`
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        return null;
+    });
+
+    return userInfo;
+}
+
+const renderEditProfileView = async (req,res,next) =>{
+
+    const userId = req.session.user.userId;
+
+    const userInfo = await getUserInfoByUserId(userId, req.session.token);
+
     res.render("pages/EditProfileNew", {
         layout: './layouts/main_layout.ejs',
         title: "Edit Profile",
+        userInfo: userInfo.data,
     });
 }
 

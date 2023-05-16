@@ -15,9 +15,9 @@ function loadPage(pageNumber) {
                 result += `
             <div class="search_result food_result">
             <a href="" target="_blank">
-                <p id ="foodID" hidden>${data.data.list[i].foodId}</p>
-              <img class="search_img" src="${data.data.list[i].foodImage}" alt="">
-              <p class="text-center">${data.data.list[i].foodName}</p>
+                <p id ="foodID" hidden>${data.data.list[i].foodid}</p>
+              <img class="search_img" src="${data.data.list[i].foodimage}" alt="">
+              <p class="text-center">${data.data.list[i].foodname}</p>
             </a>
           </div>
             `;

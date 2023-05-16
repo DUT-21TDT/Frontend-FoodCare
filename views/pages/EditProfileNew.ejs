@@ -15,11 +15,11 @@
           <div class="col">
             <div class="mb-3">
               <label for="disabledTextInput" class="form-label">FullName</label>
-              <input type="text" id="disabledTextInput" class="form-control" placeholder= "Nguyen Van A" style = "width:80%;">
+              <input type="text" id="disabledTextInput" class="form-control" placeholder= "Nhập tên người dùng..." value = "<%= userInfo.name %>" style = "width:80%;">
             </div>
             <label for="disabledTextInput" class="form-label">Email</label>
             <div class="input-group mb-3" style = "width:80%;">
-              <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="nguyenvana@gmail.com">
+              <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Nhật email..." value = "<%= userInfo.email %>" >
               <div class="input-group-text">
                 <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
               </div>
@@ -27,12 +27,24 @@
             <label for="disabledTextInput" class="form-label">Gender</label>
             <select class="form-select" aria-label="Default select example" style = "height: 60px; width:80%;">
               <!-- <option selected>Male</option> -->
-              <option value="1">Male</option>
-              <option value="2">Female</option>
+              <option value="0" 
+                <% 
+                        if (userInfo.gender === 0) {
+                %> 
+                            selected
+                <% } %>
+                >Male</option>
+                <option value="1"
+                <% 
+                        if (userInfo.gender === 1) {
+                %> 
+                            selected
+                <% } %>
+                >Female</option>
             </select>
             <label for="disabledTextInput" class="form-label" style = "margin-top:20px;">Birthday</label>
             <div class="input-group mb-3" style = "width:80%;">
-              <input type="date" class="form-control" value="20/01/2023" style = "margin-bottom:5px;">
+              <input type="date" class="form-control" value="<%= userInfo.dateofbirth %>" style = "margin-bottom:5px;">
             </div>
           </div>
           <div class="col">
