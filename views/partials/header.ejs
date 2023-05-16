@@ -222,17 +222,13 @@
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-gear"></i>
-                                            <a href="/user/editprofile" class="list-ava__body-item2 editProfile">Edit Profile</a>
+                                            <a href="/user/editprofile" class="list-ava__body-item2 editProfile">Edit
+                                                Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
                                             <a href="/user/myMenu" class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
-                                        <div class="list-ava__body-item">
-                                            <i class="list-ava__body-item--icon fa-solid fa-shield-halved"></i>
-                                            <a href="" class="list-ava__body-item2 changePassword">Change Password</a>
-                                        </div>
-
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
                                             <a href="/logout" class="list-ava__body-item2 logOut">Log
@@ -315,7 +311,7 @@
                                                 <i class="fa-solid fa-arrow-left"
                                                     class="ChangePassword_header__icon"></i>
                                             </a> -->
-                                            <a href="" class = "changePassword_xmark">
+                                            <a href="" class="changePassword_xmark">
                                                 <i class="fa-solid fa-xmark" class="ChangePassword_header__icon"></i>
                                             </a>
                                         </div>
@@ -475,20 +471,12 @@
                 $(".ChangePassword_footer__button").mouseleave(function () {
                     $(".ChangePassword_footer__button").css("background-color", "#919191");
                 });
-                $(".changePassword_xmark").click(function(event){
+                $(".changePassword_xmark").click(function (event) {
                     event.preventDefault();
                     $(".ChangePassword").fadeOut("fast");
 
                 });
-               
-                // $(".ChangePassword_footer__button").onclick(function(event)
-                // {
-                //     let type = 'success';
-                //     let icon = 'fa-solid fa-circle-check';
-                //     let title = 'Success Message';
-                //     let text = 'You can insert a description for the message here. The text relates to the action that has been performed';
-                //     createToast(type, icon, title, text);
-                // });
+
             });
         </script>
         <% } %>

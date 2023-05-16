@@ -14,8 +14,6 @@ router.post("/", async (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
-  console.log(username, password);
-
   const instance = axios.create({ baseURL: `${process.env.API_URL}/login` });
 
   console.log(`${process.env.API_URL}/login`);
@@ -36,6 +34,7 @@ router.post("/", async (req, res, next) => {
         "username": data.data.username,
         "avatarImg": data.data.avatar,
       }
+
       res.redirect("/");
 
       console.log(req.session.user)
