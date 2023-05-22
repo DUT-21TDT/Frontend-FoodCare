@@ -665,3 +665,14 @@
 .ran_img_container {
     margin-left: 80px;
 }
+
+.hidden {
+    display: none;
+}
+
+#notification {
+    background-color: #ffcccc;
+    color: #ff0000;
+    padding: 10px;
+    margin-top: 10px;
+}

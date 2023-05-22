@@ -4,9 +4,12 @@ var axios = require('axios');
 
 //Homepage
 router.get("/", (req, res, next) => {
+  const notification = req.query.notification;
+
   res.render("pages/homepage", {
     layout: './layouts/main_layout.ejs',
     title: "Food Care",
+    notification: notification
   });
 });
 
@@ -19,7 +22,7 @@ router.post("/", async (req, res, next) => {
   console.log(`${process.env.API_URL}/login`);
 
   try {
-    var data = await instance.post("/", { // /api/v1/login/
+    var data = await instance.post("/", {
       username: username,
       password: password
     }).then(res => {
@@ -41,13 +44,13 @@ router.post("/", async (req, res, next) => {
       console.log(req.session.user)
 
     } else {
-      res.status(400).send("Đăng nhập thất bại");
+      // Redirect to the homepage with the notification query parameter
+      res.redirect("/?notification=Đăng nhập thất bại");
     }
   } catch (error) {
     console.log(error);
     res.status(500).send("Đã xảy ra lỗi");
   }
 });
-
 
 module.exports = router;
