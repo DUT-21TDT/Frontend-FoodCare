@@ -1,9 +1,8 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: inherit;
-    
+.foodDetailContainer {
+    padding: 120px 0;
 }
+
+
 .FID_header{
     width:100%;
     height:55px;

@@ -11,4 +11,6 @@ router.use('/signup', require('../controllers/signupController'));
 
 router.use("/user", require('./user.route'));
 
+router.use("/foodDetail", require('./public.route'));
+
 module.exports = router;

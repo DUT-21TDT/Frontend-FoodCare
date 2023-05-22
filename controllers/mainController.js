@@ -17,12 +17,7 @@ router.get("/Profile", (req, res, next) => {
     });
 });
 
-router.get("/MyMenu", (req, res, next) => {
-    res.render("pages/MyMenu", {
-        layout: './layouts/main_layout.ejs',
-        title: "My menu",
-    });
-});
+
 
 router.get("/CreateMenu", (req, res, next) => {
     res.render("pages/CreateYourMenu", {
