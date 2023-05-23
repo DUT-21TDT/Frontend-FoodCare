@@ -28,8 +28,12 @@ router.post("/", async (req, res, next) => {
                 return res.data;
             })
             .catch((err) => {
-                console.log({ message: err });
-                return { success: false, message: "Đăng ký thất bại" };
+                if (err.response && err.response.status === 401) {
+                    return { success: false, message: err.response.data.message };
+                } else {
+                    // Handle other errors
+                    throw err;
+                }
             });
 
 

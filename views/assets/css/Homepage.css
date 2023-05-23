@@ -344,6 +344,7 @@
 
 .error {
     display: inline-block;
+    width: 234px;
 }
 
 .user_modal {
@@ -541,7 +542,7 @@
 
 .signup_form .lform input {
     display: block;
-    width: 200px;
+    width: 230px;
     font-size: 18px;
     margin-bottom: 10px;
 }

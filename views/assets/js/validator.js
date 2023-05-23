@@ -66,7 +66,7 @@ $(document).ready(function () {
             var emailPattern = /^[\w-]+(\.[\w-]+)*@(gmail\.com|yahoo\.com)$/i;
             return this.optional(element) || emailPattern.test(value);
         },
-        "Please enter a valid email address with 'gmail.com' or 'yahoo.com' domain."
+        "Please enter a valid email address."
     );
 });
 
