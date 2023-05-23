@@ -443,7 +443,7 @@
 .signup_modal .signup_container {
     position: relative;
     background-color: var(--third);
-    height: 650px;
+    height: 720px;
     width: 850px;
     margin-top: 80px;
     border: solid 2px var(--secondary);

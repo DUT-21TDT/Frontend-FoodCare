@@ -71,15 +71,17 @@
                 <form action="/" class="login_form" id="login-form" method="post">
                     <label for="username">Username</label>
                     <br>
-                    <input placeholder="Your username is" type="text" name="username" id="login_username">
+                    <input placeholder="Your username is" type="text" name="username" id="login_username"
+                        autocomplete="off">
                     <label for="password">Password</label>
                     <br>
-                    <input placeholder="Your password is" type="password" name="password" id="login_password" autocomplete="new-password">
+                    <input placeholder="Your password is" type="password" name="password" id="login_password"
+                        autocomplete="new-password">
                     <a href="#" class="forgot_pass"><span>Forgot password?</span></a>
                     <div class="login_fbtn">
-                      <button type="submit" class="btn btn-primary validate_login-btn">Login</button>
+                        <button type="submit" class="btn btn-primary validate_login-btn">Login</button>
                     </div>
-                  </form>
+                </form>
                 <div class="login_way">
                     <p>Or login with</p>
                     <i class="fa-brands fa-facebook fa-2xl"></i>
@@ -104,43 +106,47 @@
             </div>
 
             <div class="body_flogin">
-                <form action="/signup" class="signup_form container" method="post" id="signup-form">
+                <form action="/signup" class="signup_form container" method="post" id="signup-form" autocomplete="off">
                     <div class="row justify-content-md-center">
                         <div class="col-6 lform enter_info">
                             <label for="username">Full name</label>
                             <br>
-                            <input placeholder="Your fullname is" type="text" name="fullname" required>
+                            <input placeholder="Your fullname is" type="text" name="fullname" id="register_fullname"
+                                autocomplete="off">
                             <label for="username">Email</label>
                             <br>
-                            <input placeholder="Your email is" type="text" name="email" required>
+                            <input placeholder="Your email is" type="text" name="email" id="register_email"
+                                autocomplete="new-password">
                             <label for="username">Username</label>
                             <br>
-                            <input placeholder="Your username is" type="text" name="username" required>
+                            <input placeholder="Your username is" type="text" name="username" id="register_username"
+                                autocomplete="off">
                             <label for="username">Password</label>
                             <br>
-                            <input placeholder="Your password is" type="password" name="password" id="password"
-                                minlength="5">
+                            <input placeholder="Your password is" type="password" name="password" id="register_password"
+                                autocomplete="off">
 
                         </div>
                         <div class="col-6 rform enter_info">
                             <label for="date">Birth</label>
                             <br>
-                            <input type="date" name="birth">
+                            <input type="date" name="birth" id="birthday" autocomplete="off">
                             <div class="sex_box">
-                                <label for="sex_box">Sex</label>
+                                <label for="gender">Gender</label>
                                 <br>
-                                <input type="radio" name="male" id="male">
+                                <input type="radio" name="gender" id="male" value="male" checked>
                                 <label for="male">Male</label><br>
-                                <input type="radio" name="female" id="female">
-                                <label for="male">Female</label>
+                                <input type="radio" name="gender" id="female" value="female">
+                                <label for="female">Female</label>
                             </div>
-                            <label class="pass_again" for="username">Password again</label>
+                            <label class="pass_again" for="password_again" autocomplete="off">Password again</label>
                             <br>
-                            <input placeholder="Enter password again" type="password" name="password_again">
+                            <input placeholder="Enter password again" type="password" name="password_again"
+                                id="register_password_again" autocomplete="off">
                         </div>
                     </div>
                     <div class="signup_fbtn">
-                        <button type="submit" class="btn btn-primary">Sign up</button>
+                        <button type="submit" class="btn btn-primary validate_register-btn">Sign up</button>
                     </div>
                 </form>
                 <div class="signup_way">
@@ -162,6 +168,7 @@
         function checkErrorVisibility() {
             var errorLabels = document.getElementsByClassName("error");
             var loginButton = document.querySelector("#login-form button[type='submit']");
+            var registerButton = document.querySelector("#signup-form button[type='submit']");
             var hasHiddenError = true;
 
             for (var i = 0; i < errorLabels.length; i++) {
@@ -175,6 +182,7 @@
             }
 
             loginButton.disabled = hasHiddenError;
+            registerButton.disabled = hasHiddenError;
         }
 
         // Check if the notification query parameter exists in the URL

@@ -19,8 +19,6 @@ router.post("/", async (req, res, next) => {
 
   const instance = axios.create({ baseURL: `${process.env.API_URL}/login` });
 
-  console.log(`${process.env.API_URL}/login`);
-
   try {
     var data = await instance.post("/", {
       username: username,
@@ -39,13 +37,10 @@ router.post("/", async (req, res, next) => {
         "userId": data.data.userid,
       }
 
-      res.redirect("/");
 
-      console.log(req.session.user)
 
     } else {
-      // Redirect to the homepage with the notification query parameter
-      res.redirect("/?notification=Đăng nhập thất bại");
+      res.redirect(`/?notification=${data.message}`);
     }
   } catch (error) {
     console.log(error);
