@@ -46,16 +46,6 @@
       </div>
       <div class="btn-toolbar justify-content-md-center result_page food_page-btn" role="toolbar"
         aria-label="Toolbar with button groups">
-        <!-- <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary">1</button>
-          <button type="button" class="btn btn-primary">2</button>
-          <button type="button" class="btn btn-primary">3</button>
-        </div>
-        <div class="spacing"></div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <button type="button" class="btn btn btn-primary">68</button>
-          <button type="button" class="btn btn btn-primary">69</button>
-        </div> -->
       </div>
     </div>
   </div>
@@ -105,56 +95,20 @@
     </div>
     <div class="row justify-content-md-center pt-5">
       <div class="col-lg-6">
-        <div class="input-group">
+        <div class="input-group menu_search-input">
           <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
-          <button type="button" class="btn btn-primary search_btn">
-            <i class="fas fa-search"></i>
-          </button>
         </div>
       </div>
       <div class="row d-flex justify-content-md-center pt-5">
-        <div class="col-lg-9 d-flex justify-content-md-between ">
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/flat-lay-delicious-food-arrangement.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/top-view-delicious-meal-arrangement.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img"
-                src="../assets/images/menu_img/top-view-plate-with-keto-diet-food-toast-with-salmon-fillet.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/top-view-veggie-salad-bowls-with-couscous-nuts.jpg"
-                alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
+        <div class="col-lg-9 d-flex justify-content-md-between menu_result-container">
+
         </div>
       </div>
-      <div class="btn-toolbar justify-content-md-center result_page" role="toolbar"
+
+      <div class="btn-toolbar justify-content-md-center result_page menu_page-btn" role="toolbar"
         aria-label="Toolbar with button groups">
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary">1</button>
-          <button type="button" class="btn btn-primary">2</button>
-          <button type="button" class="btn btn-primary">3</button>
-        </div>
-        <div class="spacing"></div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <button type="button" class="btn btn btn-primary">68</button>
-          <button type="button" class="btn btn btn-primary">69</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -168,12 +122,23 @@
 
     <div class="row text-center pt-5 justify-content-md-center">
       <div class="col-lg-6">
-        <div class="input-group">
-          <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" />
-          <button type="button" class="btn btn-primary search_btn">
-            <i class="fas fa-search"></i>
-          </button>
+        <div class="input-group justify-content-center align-items-center">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="fatCheckbox" value="fat">
+            <label class="form-check-label" for="fatCheckbox" style="font-size: 20px;">Fat</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="vegetarianCheckbox" value="vegetarian">
+            <label class="form-check-label" for="vegetarianCheckbox" style="font-size: 20px;">Vegetarian</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="healthyCheckbox" value="healthy">
+            <label class="form-check-label" for="healthyCheckbox" style="font-size: 20px;">Healthy</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="budgetCheckbox" value="budget">
+            <label class="form-check-label" for="budgetCheckbox" style="font-size: 20px;">Budget</label>
+          </div>
         </div>
       </div>
     </div>

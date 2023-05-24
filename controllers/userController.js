@@ -33,6 +33,7 @@ const getUserInfoByUserId = async (userId, token) => {
 }
 
 const renderEditProfileView = async (req, res, next) => {
+    const notification = req.query.notification;
 
     const userId = req.session.user.userId;
 
@@ -42,6 +43,7 @@ const renderEditProfileView = async (req, res, next) => {
         layout: './layouts/main_layout.ejs',
         title: "Edit Profile",
         userInfo: userInfo.data,
+        notification: notification,
     });
 }
 
@@ -160,13 +162,6 @@ const updateProfileUser = async (req,res,next) =>{
         .catch((err) => {
           return null;
         });
-    if(response){
-        res.render("pages/EditProfileNew", {
-            layout: './layouts/main_layout.ejs',
-            title: "Edit Profile",
-        });
-    }
-
 }
 
 

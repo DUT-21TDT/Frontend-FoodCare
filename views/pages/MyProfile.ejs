@@ -27,7 +27,12 @@
             </div>
             <div class="profile-info__item">
                 <span class="profile-info__item--measurement age-measurement">
-                    <%= userInfo.dateofbirth %>
+                    <script>
+                        var birthDate = new Date("<%= userInfo.dateofbirth %>");
+                        var ageDate = new Date(Date.now() - birthDate.getTime());
+                        var calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        document.write(calculatedAge);
+                    </script>
                 </span>
                 <span class="profile-info__item--text">Age</span>
             </div>
@@ -62,6 +67,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script src="../assets/js/MyProfile.js"></script>
+
 
 
 <script src="../assets/js/getProfileData.js"></script>
