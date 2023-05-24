@@ -36,6 +36,7 @@ router.post("/", async (req, res, next) => {
         "avatarImg": data.data.avatar,
         "userId": data.data.userid,
       }
+      res.redirect("/");
 
       res.redirect(`/`);
 
