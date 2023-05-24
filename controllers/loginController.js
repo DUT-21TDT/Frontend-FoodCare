@@ -38,7 +38,7 @@ router.post("/", async (req, res, next) => {
       }
       res.redirect("/");
 
-
+      res.redirect(`/`);
 
     } else {
       res.redirect(`/?notification=${data.message}`);
