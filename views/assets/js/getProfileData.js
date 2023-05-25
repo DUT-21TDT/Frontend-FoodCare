@@ -10,8 +10,9 @@ async function getBMICurrent() {
 $(document).ready(async () => {
     const data = await getBMICurrent();
     if (data) {
+        console.log(data);
         $('.height-measurement').text(`${data.height} cm`);
         $('.weight-measurement').text(`${data.weight} kg`);
-        //$('.age-measurement').text(`${data1.dateofbirth}`);
+
     }
-})
+});

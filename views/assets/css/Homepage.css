@@ -144,6 +144,7 @@
     border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
+    display: inline-block;
 }
 
 #foodcare .active {
@@ -163,6 +164,24 @@
     font-weight: 500;
     font-size: 20px;
     padding-top: 10px;
+}
+
+.form-check-label {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.form-check-inline:not(:last-child) {
+    padding-right: 9px;
+}
+
+.form-check-input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 5px;
+    margin-top: 6px;
 }
 
 #content .search_result,
