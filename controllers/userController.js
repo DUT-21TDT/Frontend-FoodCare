@@ -157,7 +157,7 @@ const updateProfileUser = async (req,res,next) =>{
         },
       })
         .then((data) => {
-          return data.data;
+            return data.data;
         })
         .catch((err) => {
           return null;
