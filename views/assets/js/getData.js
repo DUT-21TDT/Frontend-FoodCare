@@ -1,7 +1,7 @@
 
 const pageSize = 4;
-var url = `http://localhost:3001/api/v1/public/foods`;
-var urlMenu = `http://localhost:3001/api/v1/public/menus`;
+var url = `/get/foods`;
+var urlMenu = `/get/menus`;
 let foodData;
 let menuData;
 

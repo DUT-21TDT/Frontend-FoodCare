@@ -8,11 +8,8 @@ const pathConfig = require('./path');
 const session = require("express-session");
 const dotenv = require("dotenv");
 dotenv.config();
-let port = process.env.PORT || 8888;
-
 
 var app = express()
-var http = require('http').Server(app);
 app.use(express.json());
 
 
@@ -73,9 +70,5 @@ app.use((err, req, res, next) => {
 });
 
 
+module.exports = app;
 
-
-// start the Express server
-http.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
-});
