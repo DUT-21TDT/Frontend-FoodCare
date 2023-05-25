@@ -13,4 +13,6 @@ router.use("/user", require('./user.route'));
 
 router.use("/foodDetail", require('./public.route'));
 
+router.use("/get", require('./getData.route'));
+
 module.exports = router;
