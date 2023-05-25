@@ -1,7 +1,7 @@
 
 const pageSize = 4;
-var url = `http://localhost:3001/api/v1/foods`;
-var urlMenu = `http://localhost:3001/api/v1/menus/public`;
+var url = `http://localhost:3001/api/v1/public/foods`;
+var urlMenu = `http://localhost:3001/api/v1/public/menus`;
 let foodData;
 let menuData;
 
@@ -53,7 +53,7 @@ function loadMenu(data, pageNumber) {
             if (i < data.length) {
                 result += `
                     <div class="search_result menu_result">
-                        <a href="#" target="_blank">
+                        <a href="/foodDetail/menuid=${data[i].menuid}" target="_blank">
                             <p id="menuID" hidden>${data[i].menuid}</p>
                             <img class="search_img" src="${data[i].menuimage}" alt="">
                             <p class="text-center">${data[i].menuname}</p>
