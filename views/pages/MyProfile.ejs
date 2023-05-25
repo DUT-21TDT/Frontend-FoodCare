@@ -4,27 +4,36 @@
             <h1 class="profile-header__label">Profile</h1>
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
-                    <img src="../assets/images/coffee_noel_final_3_2.jpg" alt="">
+                    <img src="<%= user.avatarImg %>" alt="" id="avatar_img">
                 </div>
-                <div class = "divAddAvatar">
-                    <a href="" class = "iconAddAvatar">
+                <div class="divAddAvatar" id="changeAvaImg">
+                    <a href="#" class="iconAddAvatar">
                         <i class="fa-solid fa-camera"></i>
                     </a>
                 </div>
             </a>
-            <h3 class="profile-header__name">Nguyen Van A</h3>
+            <h4 class="profile-header__name">
+                <%= user.username %>
+            </h4>
         </div>
         <div class="profile-info">
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">172cm</span>
+                <span class="profile-info__item--measurement height-measurement">... cm</span>
                 <span class="profile-info__item--text">Height</span>
             </div>
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">67Kg</span>
+                <span class="profile-info__item--measurement weight-measurement">... Kg</span>
                 <span class="profile-info__item--text">Weight</span>
             </div>
             <div class="profile-info__item">
-                <span class="profile-info__item--measurement">20</span>
+                <span class="profile-info__item--measurement age-measurement">
+                    <script>
+                        var birthDate = new Date("<%= userInfo.dateofbirth %>");
+                        var ageDate = new Date(Date.now() - birthDate.getTime());
+                        var calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        document.write(calculatedAge);
+                    </script>
+                </span>
                 <span class="profile-info__item--text">Age</span>
             </div>
         </div>
@@ -38,33 +47,61 @@
             </div>
 
         </div>
+        <div class="profile-updateHeightAndWeight">
+            <a href=""> Update height and weight</a>
+        </div>
         <!-- <div class="container">
-                
-                <canvas id="canvas"></canvas>
-            </div> -->
+            <canvas id="canvas"></canvas>
+        </div> -->
 
     </div>
 
 
-        <div class="container2">
-            
-            <canvas id="canvas"></canvas>
-        </div>
+    <div class="container2">
+
+        <canvas id="canvas"></canvas>
+    </div>
+
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script src="../assets/js/MyProfile.js"></script>
-<script>
-    $(document).ready(function()
-    {
-        $(".iconAddAvatar").click(function(event){
-            event.preventDefault();
-            $(".UploadImg").show();
-            $(".MyProfile").css("opacity","0.5");
-            $(".container2").css("opacity","0.5");
-        })
-    })
-</script>
+
+
+
+<script src="../assets/js/getProfileData.js"></script>
 <link rel="stylesheet" href="../assets/css/MyProfile.css">
 <link rel="stylesheet" href="../assets/css/UploadImage.css">
+
+<script>
+
+    $("#changeAvaImg").on("click", function (e) {
+        var fileDialog = $('<input type="file" name="avaImage" accept=".png,.jpg,.jpeg">');
+        fileDialog.click();
+        fileDialog.on("change", onFileSelected);
+        return false;
+    });
+
+    var onFileSelected = async function (e) {
+
+        var formData = new FormData();
+        formData.append('avaImage', $(this)[0].files[0]);
+        await $.ajax({
+            url: `/user/profile/upload`,
+            type: "PUT", // <- Change here
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (response) => {
+                if (response.success) {
+                    document.getElementById("avatar_img").src = response.data.link;
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    };
+
+</script>

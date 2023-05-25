@@ -34,54 +34,18 @@
     </div>
     <div class="row justify-content-md-center pt-5">
       <div class="col-lg-6">
-        <div class="input-group">
+        <div class="input-group food_search-input">
           <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
-          <button type="button" class="btn btn-primary search_btn">
-            <i class="fas fa-search"></i>
-          </button>
         </div>
       </div>
       <div class="row d-flex justify-content-md-center pt-5">
         <div class="col-lg-9 d-flex justify-content-md-between food_result-container">
-          <!-- <div class="search_result food_result">
-            <a href="">
-              <img class="search_img" src="../assets/images/search_img/search-1.jpg" alt="">
-              <p class="text-center">Phở</p>
-            </a>
-          </div>
-          <div class="search_result food_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/search_img/search-2.jpg" alt="">
-              <p class="text-center">abc</p>
-            </a>
-          </div>
-          <div class="search_result food_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/search_img/search-3.jpg" alt="">
-              <p class="text-center">abc</p>
-            </a>
-          </div>
-          <div class="search_result food_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/search_img/search-4.jpg" alt="">
-              <p class="text-center">Bún chả cá</p>
-            </a>
-          </div> -->
+
         </div>
       </div>
       <div class="btn-toolbar justify-content-md-center result_page food_page-btn" role="toolbar"
         aria-label="Toolbar with button groups">
-        <!-- <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary">1</button>
-          <button type="button" class="btn btn-primary">2</button>
-          <button type="button" class="btn btn-primary">3</button>
-        </div>
-        <div class="spacing"></div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <button type="button" class="btn btn btn-primary">68</button>
-          <button type="button" class="btn btn btn-primary">69</button>
-        </div> -->
       </div>
     </div>
   </div>
@@ -111,11 +75,17 @@
       </form>
     </div>
 
-            <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-              <button type="button" class="cal_btn">More information</button>
-              <button type="button" class="cal_btn">Calculate</button>
-            </div>
-          </div>
+    <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
+      <% if (user) { %>
+        <a href="/user/profile" class="cal_btn info_btn text-center">
+          <% } else { %>
+            <a class="cal_btn info_btn js-click-login text-center">
+              <% } %>
+                More information
+            </a>
+            <button type="button" class="cal_btn calculator-bmi-js">Calculate</button>
+    </div>
+  </div>
 
   <!-- Menu nutrition -->
   <div class="container food_in4 menu_nutrition" id="menu_nutrition">
@@ -125,56 +95,20 @@
     </div>
     <div class="row justify-content-md-center pt-5">
       <div class="col-lg-6">
-        <div class="input-group">
+        <div class="input-group menu_search-input">
           <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
-          <button type="button" class="btn btn-primary search_btn">
-            <i class="fas fa-search"></i>
-          </button>
         </div>
       </div>
       <div class="row d-flex justify-content-md-center pt-5">
-        <div class="col-lg-9 d-flex justify-content-md-between ">
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/flat-lay-delicious-food-arrangement.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/top-view-delicious-meal-arrangement.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img"
-                src="../assets/images/menu_img/top-view-plate-with-keto-diet-food-toast-with-salmon-fillet.jpg" alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
-          <div class="search_result">
-            <a href="#">
-              <img class="search_img" src="../assets/images/menu_img/top-view-veggie-salad-bowls-with-couscous-nuts.jpg"
-                alt="">
-              <p class="text-center">Bữa trưa</p>
-            </a>
-          </div>
+        <div class="col-lg-9 d-flex justify-content-md-between menu_result-container">
+
         </div>
       </div>
-      <div class="btn-toolbar justify-content-md-center result_page" role="toolbar"
+
+      <div class="btn-toolbar justify-content-md-center result_page menu_page-btn" role="toolbar"
         aria-label="Toolbar with button groups">
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary">1</button>
-          <button type="button" class="btn btn-primary">2</button>
-          <button type="button" class="btn btn-primary">3</button>
-        </div>
-        <div class="spacing"></div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <button type="button" class="btn btn btn-primary">68</button>
-          <button type="button" class="btn btn btn-primary">69</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -188,12 +122,23 @@
 
     <div class="row text-center pt-5 justify-content-md-center">
       <div class="col-lg-6">
-        <div class="input-group">
-          <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" />
-          <button type="button" class="btn btn-primary search_btn">
-            <i class="fas fa-search"></i>
-          </button>
+        <div class="input-group justify-content-center align-items-center">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="fatCheckbox" value="fat">
+            <label class="form-check-label" for="fatCheckbox" style="font-size: 20px;">Fat</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="vegetarianCheckbox" value="vegetarian">
+            <label class="form-check-label" for="vegetarianCheckbox" style="font-size: 20px;">Vegetarian</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="healthyCheckbox" value="healthy">
+            <label class="form-check-label" for="healthyCheckbox" style="font-size: 20px;">Healthy</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="budgetCheckbox" value="budget">
+            <label class="form-check-label" for="budgetCheckbox" style="font-size: 20px;">Budget</label>
+          </div>
         </div>
       </div>
     </div>
@@ -201,13 +146,19 @@
     <div class="g-col-3 justify-content-md-center">
       <div class="row text-center justify-content-md-center random_container">
         <h2>You want to eat...</h2>
-        <div class="ran_img_container">
-          <img src="../assets/images/search_img/search-1.jpg" class="rand_img" alt="">
+        <div class="random_result">
+          <div class="ran_img_container">
+            <img src="../assets/images/initRandomImg.png" class="rand_img" alt="">
+          </div>
+          <h2 class="pt-4 pb-4">???</h2>
         </div>
-        <h2 class="pt-4 pb-4">Phở</h2>
-        <button class="rand-btn">
-          RANDOM
-        </button>
+        <% if (user) { %>
+          <button class="rand-btn random_js-btn">
+            <% } else { %>
+              <button class="rand-btn js-click-login">
+                <% } %>
+                  RANDOM
+              </button>
       </div>
     </div>
 
@@ -215,114 +166,9 @@
 
 </div>
 
-<!-- 
-
-<div id="login_modal" class="user_modal js-user_modal">
-  <div class="login_container js-login_container">
-    <div class="close_btn js-modal-close">
-      <i class="fa-regular fa-circle-xmark fa-xl"></i>
-    </div>
-    <header class="header_flogin">
-      <h2>LOGIN</h2>
-    </header>
-
-    <body class="body_flogin">
-      <form action="http://localhost:8080/userLogin" class="login_form" id="login-form" method = "post">
-        <label for="username">Username</label>
-        <br>
-        <input placeholder="Your username is" type="text" name="username" id="username" required>
-        <label for="password">Password</label>
-        <br>
-        <input placeholder="Your password is" type="password" name="password" id="password">
-        <a href="#" class="forgot_pass"><span>Forgot password?</span></a>
-        <div class="login_fbtn">
-          <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-      </form>
-      <div class="login_way">
-        <p>Or login with</p>
-        <i class="fa-brands fa-facebook fa-2xl"></i>
-        <i class="fa-solid fa-envelope fa-2xl"></i>
-        <i class="fa-brands fa-github fa-2xl"></i>
-      </div>
-    </body>
-
-    <footer class="footer_flogin">
-      <p>Don't have an account?<button class="js-click-register form_direct">Sign up</button></p>
-    </footer>
-  </div>
-</div>
-
-<div id="signup_modal" class="signup_modal js-userregister_modal">
-  <div class="signup_container js-register-container">
-    <div class="close_btn js-modal-close">
-      <i class="fa-regular fa-circle-xmark fa-xl"></i>
-    </div>
-    <header class="header_flogin">
-      <h2>Sign Up</h2>
-    </header>
-
-    <body class="body_flogin">
-      <form action="" class="signup_form container">
-        <div class="row justify-content-md-center">
-          <div class="col-6 lform enter_info">
-            <label for="username">Full name</label>
-            <br>
-            <input placeholder="Your fullname is" type="text" name="" id="">
-            <label for="username">Email</label>
-            <br>
-            <input placeholder="Your email is" type="text" name="" id="">
-            <label for="username">Username</label>
-            <br>
-            <input placeholder="Your username is" type="text" name="" id="">
-            <label for="username">Password</label>
-            <br>
-            <input placeholder="Your password is" type="text" name="" id="">
-          </div>
-          <div class="col-6 rform enter_info">
-            <label for="username">Birth</label>
-            <br>
-            <input type="date" id="">
-            <div class="sex_box">
-              <label for="sex_box">Sex</label>
-              <br>
-              <input type="radio" name="sex" id="male">
-              <label for="male">Male</label><br>
-              <input type="radio" name="sex" id="female">
-              <label for="male">Female</label>
-            </div>
-            <label class="pass_again" for="username">Password again</label>
-            <br>
-            <input placeholder="Enter password again" type="text" name="" id="">
-          </div>
-        </div>
-        <div class="signup_fbtn">
-          <button type="button" class="btn btn-primary">Sign up</button>
-        </div>
-      </form>
-      <div class="signup_way">
-        <p>Or sign up with</p>
-        <i class="fa-brands fa-facebook fa-2xl"></i>
-        <i class="fa-solid fa-envelope fa-2xl"></i>
-        <i class="fa-brands fa-github fa-2xl"></i>
-
-        <div class="footer_signup">
-          <p>Already have an account? <button class="js-click-login form_direct">Login</button></p>
-        </div>
-      </div>
-    </body>
-  </div>
-</div> -->
-<script>
-  $(document).ready(function () {
-    $("#login-form").validate();
-    $("#signup-form").validate();
-
-  });
-</script>
 
 <script>
-  $(".cal_btn").click(function (event) {
+  $(".calculator-bmi-js").click(function (event) {
     event.preventDefault();
     var h = $(".height_input").val();
     var w = $(".weight_input").val();

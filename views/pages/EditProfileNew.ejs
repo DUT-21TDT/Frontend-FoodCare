@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="../assets/css/EditProfileNew.css">
+<link rel="stylesheet" href="../assets/css/ChangePassword.css">
+<div class="container Editprofile">
+        <div class="row align-items-start">
+          <!-- <div class="col">
+            <a href="" class="EditProfile__header-icon"> 
+              <i class="fa-solid fa-arrow-left EditProfile__header--Back"></i>
+          </a>
+          </div> -->
+          <div class="col">
+            <h2 class = EditProfile__header--text>Edit Profile</h2> 
+            <div class="ChangePassword">
+              <div class="ChangePassword_header">
+                  <div>
+                      <a href="" class = "changePassword_xmark">
+                          <i class="fa-solid fa-xmark" class="ChangePassword_header__icon"></i>
+                      </a>
+                  </div>
+                  <span class="ChangePassword_header__name"><%= userInfo.name %></span>
+                  <h2 class="ChangePassword_header__title">Đổi mật khẩu</h2>
+          
+              </div>
+              <div class="ChangePassword_body">
+                  <input type="password" class="ChangePassword_body__input"
+                      placeholder="Mật khẩu hiện tại" id = "oldPassword" name = "oldPassword">
+                  <input type="password" class="ChangePassword_body__input"
+                      placeholder="Mật khẩu mới" id = "newPassword" name = "newPassword">
+                  <input type="password" class="ChangePassword_body__input"
+                      placeholder="Nhập lại mật khẩu mới" id="confirmPassword" name="confirmPassword">
+              </div>
+              <div class="ChangePassword_footer">
+                  <button class="ChangePassword_footer__button" type = "button" id = "btnChangePassword">Đổi mật khẩu</button>
+              </div>
+          </div>
+          </div>
+          
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="mb-3">
+              <label for="disabledTextInput" class="form-label">FullName</label>
+              <input type="text" id="fullname" class="form-control" placeholder= "Nhập tên người dùng..." value = "<%= userInfo.name %>" style = "width:80%;" >
+            </div>
+            <label for="disabledTextInput" class="form-label">Email</label>
+            <div class="input-group mb-3" style = "width:80%;">
+              <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Nhập email..." value = "<%= userInfo.email %>" >
+              <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+              </div>
+            </div>
+            <label for="disabledTextInput" class="form-label">Gender</label>
+            <select class="form-select" aria-label="Default select example" style = "height: 60px; width:80%;" id = "gender-select">
+              <!-- <option selected>Male</option> -->
+              <option value="0" 
+                <% 
+                        if (userInfo.gender === 0) {
+                %> 
+                            selected
+                <% } %>
+                >Male</option>
+                <option value="1"
+                <% 
+                        if (userInfo.gender === 1) {
+                %> 
+                            selected
+                <% } %>
+                >Female</option>
+            </select>
+            <label for="disabledTextInput" class="form-label" style = "margin-top:20px;">Birthday</label>
+            <div class="input-group mb-3" style = "width:80%;">
+              <input type="date" class="form-control" value="<%= userInfo.dateofbirth %>" style = "margin-bottom:5px;" id = "date-input">
+            </div>
+          </div>
+          <div class="col">
+            <a href="" class="Editprofile__avatar">
+              <div class="avatar-img">
+                  <img src="<%= user.avatarImg %>" alt="">
+              </div>
+          </a>
+          </div>
+          
+        </div>
+        <div class="row align-items-end">
+          <div class="col">
+              <button style = "margin-left: 250px; width:150px;" id = "btnChangePass" type = "button">Change Password</button>
+          </div>
+          <div class="col " style = "margin-right: 200px;">
+              <button style = "width:150px;" id = "btnUpdateProfile">Update Profile</button>
+          </div>
+          
+        </div>
+</div>
+<script>
+    $(document).ready(function (){
+      $("#btnChangePass").on({
+                    click: function () {
+                      
+                        $(".ChangePassword").fadeIn();    
+                    }
+         });
+         $(".ChangePassword_footer__forgetPass").on({
+                    click: function (event) {
+
+                        event.preventDefault();
+                        $(".ChangePassword").fadeOut("fast");
+                       
+                        // $("#container_w100").css("opacity","0.5");
+                        // $("#content").css("opacity","0.5");
+
+                    }
+
+                });
+        $(".ChangePassword_footer__button").mousemove(function () {
+                    $(".ChangePassword_footer__button").css("background-color", "#474747");
+        });
+        $(".ChangePassword_footer__button").mouseleave(function () {
+                    $(".ChangePassword_footer__button").css("background-color", "#919191");
+        });
+        $(".changePassword_xmark").click(function(event){
+                    event.preventDefault();
+                    $(".ChangePassword").fadeOut("fast");
+
+        });
+        function convertDateFormat(dateString) {
+        var parts = dateString.split("/");
+        var day = parts[0];
+        var month = parts[1];
+        var year = parts[2];
+        var convertedDate = year + "-" + month + "-" + day;
+        return convertedDate;
+      }
+      function convertDateFormat2(dateString) {
+        var parts = dateString.split("-");
+        var year = parts[0];
+        var month = parts[1];
+        var day = parts[2];
+        var convertedDate = day + "/" + month + "/" + year;
+        return convertedDate;
+      }
+      let dateofbirth = "<%= userInfo.dateofbirth %>";
+      $("#date-input").val(convertDateFormat(dateofbirth));
+
+
+      $("#btnChangePassword").click(function()
+      {
+        let oldPassword = $("#oldPassword").val();
+        let newPassword = $("#newPassword").val();
+        let confirmPassword = $("#confirmPassword").val();
+
+        if (newPassword === confirmPassword) {
+          try {
+            $.ajax({
+              url: '/user/change-password', 
+              type: 'PUT',
+              data: {
+                oldpassword: oldPassword,
+                newpassword: newPassword,
+                newpasswordAgain: confirmPassword
+              },
+              success: function(response) {
+                console.log(response); 
+              },
+              error: function(error) {
+                console.error(error);
+              }
+            });
+            alert("Change password successfully");
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          alert("Failed to change password");
+        }
+        $(".ChangePassword").fadeOut("fast");
+      })
+      $("#btnUpdateProfile").click(function()
+      {
+        
+          let Name =  $("#fullname").val();
+          let Dateofbirth = $("#date-input").val();
+          let Gender = $("#gender-select").val();
+        try {
+            $.ajax({
+              url: '/user/update-profile', 
+              type: 'PUT',
+              data: {
+                name: Name,
+                dateofbirth: Dateofbirth,
+                gender: Gender
+              },
+              success: function(response) {
+                console.log(response); 
+              },
+              error: function(error) {
+                console.error(error);
+              }
+            });
+            alert("Update profile successfully");
+          } catch (error) {
+            console.error(error);
+          }
+       
+      })
+
+    })
+</script>

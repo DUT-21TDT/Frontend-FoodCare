@@ -1,13 +1,9 @@
-.foodDetailContainer {
-    padding: 120px 0;
-}
-
-
 .FID_header{
-    width:100%;
+    /* width:100%; */
     height:55px;
     /* background-color: red; */
     position:relative;
+    margin-top:80px;
     
 }
 .FID_header a{
@@ -24,65 +20,61 @@
     right:50%;
     top:15%;
     position: absolute;;
-    font-size:40px;
+    font-size:50px;
 }
-.FID_body{
-    width:950px;
-    height:350px;
-    margin-left: 150px;
-    position: relative;
-    
+.FID_body__left--title{
+    font-size:35px;
+    margin-left:45px;   
+    margin-top:5px;
+    margin-bottom:20px;
 }
-.FID_body__left{
-    width:55%;
-    height:100%;
-    position: absolute;
-    left:0;
-}
-
 .FID_body__left-nutriinfor{
-    width:100%;
-    position: absolute;
-    bottom: 0;
-    height:85%;
+    height:300px;
     display:flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    align-items:flex-start;
     
 }
-.FID_body__left--title{
-    font-size:25px;
-    margin-left:45px;   
-    margin-top:5px;
-}
 .FID_body__left-nutriinfor--item{
-    width: 195px;
-    height:45px;
+    width: 280px;
+    height:70px;
     background-color: white;
-    border-radius: 20px;
+    border-radius:35px;
     display:flex;
     align-items: center;
+    justify-content:flex-start;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin:3 8px;
+    
    
 }
 .nutriinfor--item__circle{
-    width:60px;
-    height:60px;
+    width:85px;
+    height:85px;
     border-radius: 50%;
     background-color: #d6e68a;
     text-align: center;
-    line-height: 60px;
+    line-height: 85px;
+    font-weight: bold;
+    overflow-wrap:break-word;
+    font-size: 20px;
 }
 .nutriinfor--item__text{
-    margin-left:38px;
-    font-weight: bold;
+    margin-left:50px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.numberElement{
+    margin-left:70px;
 }
 .FID_body__right{
-    width:45%;
-    height:100%;
-    position:absolute;
-    right:0;
+    /* width:40%;
+    height:40%; */
+    /* position:absolute;
+    right:0; */
     overflow: hidden;
+    margin-right:40px;
     
 }
 .FID_body__right > img{
@@ -90,12 +82,6 @@
     object-position: center;
     width:100%;
     height:100%;
-}
-
-.FID_footer{
-    width:950px;
-    margin-left:150px;
-    
 }
 .FID_footer__title{
     font-size:25px;

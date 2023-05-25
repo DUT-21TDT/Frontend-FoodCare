@@ -1,11 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
-var ejsLayout = require('express-ejs-layouts')
+var ejsLayout = require('express-ejs-layouts');
+var cors = require('cors');
 const bodyParser = require("body-parser")
 const path = require('path');
 const pathConfig = require('./path');
 const session = require("express-session");
-const dotenv      = require("dotenv");
+const dotenv = require("dotenv");
 dotenv.config();
 let port = process.env.PORT || 8888;
 
@@ -40,9 +41,12 @@ app.use(session({
 })); // 60000 is one minute
 
 app.use(function (req, res, next) {
+  // res.locals.user = req.session.token;
   res.locals.user = req.session.user;
   next();
 });
+
+
 
 // set Routers
 app.set('views', __path_views);

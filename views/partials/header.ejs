@@ -7,20 +7,20 @@
             <div class="g-col-3" style="width: 100px;">
                 <a class="navbar-brand" href="/">
                     <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
-                        class="d-inline-block align-text-center">
+                        class="d-inline-block align-text-center"">
                 </a>
             </div>
-            <div class="g-col-7">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                    <li class="nav-item text-center"><a href="/">Home</a></li>
-                    <li class="nav-item text-center"><a href="/#food_information">Food
-                            Information</a></li>
-                    <li class="nav-item text-center"><a href="/#bmi_calculator">BMI</a></li>
-                    <li class="nav-item text-center"><a href="/#menu_nutrition">Menu Nutrition</a>
-                    </li>
-                    <li class="nav-item text-center"><a href="/#food_suggestion">Food
-                            Suggestion</a></li>
-                </ul>
+            <div class=" g-col-7">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
+                        <li class="nav-item text-center"><a href="/">Home</a></li>
+                        <li class="nav-item text-center"><a href="#food_information">Food
+                                Information</a></li>
+                        <li class="nav-item text-center"><a href="#bmi_calculator">BMI</a></li>
+                        <li class="nav-item text-center"><a href="#menu_nutrition">Menu Nutrition</a>
+                        </li>
+                        <li class="nav-item text-center"><a href="#food_suggestion">Food
+                                Suggestion</a></li>
+                    </ul>
             </div>
             <div class="g-col-2">
 
@@ -63,23 +63,23 @@
             <div class="close_btn js-modal-close">
                 <i class="fa-regular fa-circle-xmark fa-xl"></i>
             </div>
-            <header class="header_flogin">
+            <div class="header_flogin">
                 <h2>LOGIN</h2>
-            </header>
+            </div>
 
-            <body class="body_flogin">
+            <div class="body_flogin">
                 <form action="/" class="login_form" id="login-form" method="post">
                     <label for="username">Username</label>
                     <br>
-                    <input placeholder="Your username is" type="text" name="username" id="username" required
-                        minlength="8">
+                    <input placeholder="Your username is" type="text" name="username" id="login_username"
+                        autocomplete="off">
                     <label for="password">Password</label>
                     <br>
-                    <input placeholder="Your password is" type="password" name="password" id="password" required
-                        minlength="8">
+                    <input placeholder="Your password is" type="password" name="password" id="login_password"
+                        autocomplete="new-password">
                     <a href="#" class="forgot_pass"><span>Forgot password?</span></a>
                     <div class="login_fbtn">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary validate_login-btn">Login</button>
                     </div>
                 </form>
                 <div class="login_way">
@@ -88,11 +88,11 @@
                     <i class="fa-solid fa-envelope fa-2xl"></i>
                     <i class="fa-brands fa-github fa-2xl"></i>
                 </div>
-            </body>
+            </div>
 
-            <footer class="footer_flogin">
+            <div class="footer_flogin">
                 <p>Don't have an account?<button class="js-click-register form_direct">Sign up</button></p>
-            </footer>
+            </div>
         </div>
     </div>
 
@@ -101,46 +101,52 @@
             <div class="close_btn js-modal-close">
                 <i class="fa-regular fa-circle-xmark fa-xl"></i>
             </div>
-            <header class="header_flogin">
+            <div class="header_flogin">
                 <h2>Sign Up</h2>
-            </header>
+            </div>
 
-            <body class="body_flogin">
-                <form action="/signup" class="signup_form container" method="post" id="signup-form">
+            <div class="body_flogin">
+                <form action="/signup" class="signup_form container" method="post" id="signup-form" autocomplete="off">
                     <div class="row justify-content-md-center">
                         <div class="col-6 lform enter_info">
                             <label for="username">Full name</label>
                             <br>
-                            <input placeholder="Your fullname is" type="text" name="fullname" id="">
+                            <input placeholder="Your fullname is" type="text" name="fullname" id="register_fullname"
+                                autocomplete="off">
                             <label for="username">Email</label>
                             <br>
-                            <input placeholder="Your email is" type="text" name="email" id="">
+                            <input placeholder="Your email is" type="text" name="email" id="register_email"
+                                autocomplete="new-password">
                             <label for="username">Username</label>
                             <br>
-                            <input placeholder="Your username is" type="text" name="username" id="">
+                            <input placeholder="Your username is" type="text" name="username" id="register_username"
+                                autocomplete="off">
                             <label for="username">Password</label>
                             <br>
-                            <input placeholder="Your password is" type="text" name="password" id="">
+                            <input placeholder="Your password is" type="password" name="password" id="register_password"
+                                autocomplete="off">
+
                         </div>
                         <div class="col-6 rform enter_info">
-                            <label for="username">Birth</label>
+                            <label for="date">Birth</label>
                             <br>
-                            <input type="date" id="">
+                            <input type="date" name="birth" id="birthday" autocomplete="off">
                             <div class="sex_box">
-                                <label for="sex_box">Sex</label>
+                                <label for="gender">Gender</label>
                                 <br>
-                                <input type="radio" name="gender" id="male">
+                                <input type="radio" name="gender" id="male" value="male" checked>
                                 <label for="male">Male</label><br>
-                                <input type="radio" name="gender" id="female">
-                                <label for="male">Female</label>
+                                <input type="radio" name="gender" id="female" value="female">
+                                <label for="female">Female</label>
                             </div>
-                            <label class="pass_again" for="username">Password again</label>
+                            <label class="pass_again" for="password_again" autocomplete="off">Password again</label>
                             <br>
-                            <input placeholder="Enter password again" type="text" name="password-again" id="">
+                            <input placeholder="Enter password again" type="password" name="password_again"
+                                id="register_password_again" autocomplete="off">
                         </div>
                     </div>
                     <div class="signup_fbtn">
-                        <button type="submit" class="btn btn-primary">Sign up</button>
+                        <button type="submit" class="btn btn-primary validate_register-btn">Sign up</button>
                     </div>
                 </form>
                 <div class="signup_way">
@@ -153,29 +159,65 @@
                         <p>Already have an account? <button class="js-click-login form_direct">Login</button></p>
                     </div>
                 </div>
-            </body>
+            </div>
         </div>
     </div>
+    <script src="../assets/js/validator.js"></script>
+
+    <script>
+        function checkErrorVisibility() {
+            var errorLabels = document.getElementsByClassName("error");
+            var loginButton = document.querySelector("#login-form button[type='submit']");
+            var registerButton = document.querySelector("#signup-form button[type='submit']");
+            var hasHiddenError = true;
+
+            for (var i = 0; i < errorLabels.length; i++) {
+                var label = errorLabels[i];
+                var displayStyle = window.getComputedStyle(label).getPropertyValue("display");
+
+                if (displayStyle === "none") {
+                    hasHiddenError = false;
+                    break; // Exit the loop if any error label is hidden
+                }
+            }
+
+            loginButton.disabled = hasHiddenError;
+            registerButton.disabled = hasHiddenError;
+        }
+
+        // Check if the notification query parameter exists in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('notification')) {
+            // Get the notification message from the query parameter
+            const notificationMessage = urlParams.get('notification');
+
+            // Show the notification using alert()
+            alert(notificationMessage);
+
+            // Remove the notification query parameter from the URL without refreshing the page
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
     <% } else { %>
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
             <div class="container">
                 <div class="g-col-3" style="width: 100px;">
-                    <a class="navbar-brand" href="/user">
+                    <a class="navbar-brand" href="/">
                         <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
                             class="d-inline-block align-text-center">
                     </a>
                 </div>
                 <div class="g-col-7">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                        <li class="nav-item text-center"><a href="/user">Home</a></li>
-                        <li class="nav-item text-center"><a href="/user#food_information">Food
+                        <li class="nav-item text-center"><a href="/">Home</a></li>
+                        <li class="nav-item text-center"><a href="#food_information">Food
                                 Information</a></li>
-                        <li class="nav-item text-center"><a href="/user#bmi_calculator">BMI</a>
+                        <li class="nav-item text-center"><a href="#bmi_calculator">BMI</a>
                         </li>
-                        <li class="nav-item text-center"><a href="/user#menu_nutrition">Menu
+                        <li class="nav-item text-center"><a href="#menu_nutrition">Menu
                                 Nutrition</a></li>
-                        <li class="nav-item text-center"><a href="/user#food_suggestion">Food
+                        <li class="nav-item text-center"><a href="#food_suggestion">Food
                                 Suggestion</a></li>
                     </ul>
 
@@ -209,29 +251,26 @@
                                                 <img src="<%= user.avatarImg %>" alt="">
                                             </div>
                                         </a>
-                                        <span class="list-ava__header--name"><%= user.username %></span>
+                                        <a class="list-ava__header--name">
+                                            <%= user.username %>
+                                        </a>
                                     </div>
                                     <div class="line"></div>
                                     <div class="list-ava__body">
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-user"></i>
-                                            <a href="/user/profile"
-                                                class="list-ava__body-item2 myProfile">My Profile</a>
+                                            <a href="/user/profile" class="list-ava__body-item2 myProfile">My
+                                                Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-gear"></i>
-                                            <a href="" class="list-ava__body-item2 editProfile">Edit Profile</a>
+                                            <a href="/user/editprofile" class="list-ava__body-item2 editProfile">Edit
+                                                Profile</a>
                                         </div>
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-burger"></i>
-                                            <a href="/user/myMenu"
-                                                class="list-ava__body-item2 myMenu">My menu</a>
+                                            <a href="/user/myMenu" class="list-ava__body-item2 myMenu">My menu</a>
                                         </div>
-                                        <div class="list-ava__body-item">
-                                            <i class="list-ava__body-item--icon fa-solid fa-shield-halved"></i>
-                                            <a href="" class="list-ava__body-item2 changePassword">Change Password</a>
-                                        </div>
-
                                         <div class="list-ava__body-item">
                                             <i class="list-ava__body-item--icon fa-solid fa-right-from-bracket"></i>
                                             <a href="/logout" class="list-ava__body-item2 logOut">Log
@@ -242,8 +281,7 @@
                             </div>
 
                             <!-- EditProFile-form -->
-                            <form action="/Home/putEditProfile/:id" id="form-EditProfile"
-                                method="PUT">
+                            <!-- <form action="/Home/putEditProfile/:id" id="form-EditProfile" method="PUT">
                                 <div class="EditProfile container">
                                     <div class="EditProfile__header">
                                         <ul class="EditProfile__header-list">
@@ -293,8 +331,7 @@
                                                     placeholder="Mật khẩu">
                                                 <input type="checkbox" class="EditProfile__form-password--checkbox">
                                             </div>
-                                            <!-- <input type="" class="EditProfile__form--input password" placeholder="Mật khẩu">
-                                <input type="checkbox" class = "EditProfile__form-password--checkbox"> -->
+                                          
 
 
                                         </div>
@@ -304,19 +341,16 @@
                                         <button class="btn btn-save" type="submit">Save</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
 
 
                             <!-- ChangePasswordForm -->
-                            <form action="" class="changepw-form container">
+                            <!-- <form action="" class="changepw-form container">
                                 <div class="ChangePassword">
                                     <div class="ChangePassword_header">
                                         <div>
-                                            <a href="">
-                                                <i class="fa-solid fa-arrow-left"
-                                                    class="ChangePassword_header__icon"></i>
-                                            </a>
-                                            <a href="">
+                                
+                                            <a href="" class="changePassword_xmark">
                                                 <i class="fa-solid fa-xmark" class="ChangePassword_header__icon"></i>
                                             </a>
                                         </div>
@@ -336,7 +370,7 @@
                                         <button class="ChangePassword_footer__button">Đổi mật khẩu</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                             <form action="" id="forgetpw">
                                 <div class="ForgetPassword">
                                     <a href="" class="ForgetPassword__xmark"><i
@@ -380,6 +414,7 @@
         <link rel="stylesheet" href="../assets/css/Notification-form.css">
         <link rel="stylesheet" href="../assets/css/ResetPassword.css">
         <script src="../assets/js/avatar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
         <script>
             function LoadCss(url) {
@@ -418,32 +453,32 @@
                     });
                     event.stopPropagation();
                 });
-                $(".editProfile").on({
-                    click: function (event) {
-                        event.preventDefault();
-                        $(".EditProfile").fadeIn();
-                        $(".list-ava").slideUp(250);
-                        $("#container_w100").css("opacity", "0.5");
-                        $("#content").css("opacity", "0.5");
-                        event.stopPropagation();
-                    }
-                });
-                $(".EditProfile__Footer .btn-cancel").click(function () {
-                    $(".EditProfile").fadeOut();
-                    $("#container_w100").css("opacity", "1");
-                    $("#content").css("opacity", "1");
-                });
+                // $(".editProfile").on({
+                //     click: function (event) {
+                //         event.preventDefault();
+                //         $(".EditProfile").fadeIn();
+                //         $(".list-ava").slideUp(250);
+                //         $("#container_w100").css("opacity", "0.5");
+                //         $("#content").css("opacity", "0.5");
+                //         event.stopPropagation();
+                //     }
+                // });
+                // $(".EditProfile__Footer .btn-cancel").click(function () {
+                //     $(".EditProfile").fadeOut();
+                //     $("#container_w100").css("opacity", "1");
+                //     $("#content").css("opacity", "1");
+                // });
 
-                $(".changePassword").on({
-                    click: function (event) {
-                        event.preventDefault();
-                        $(".ChangePassword").fadeIn();
-                        $(".list-ava").slideUp(250);
-                        $("#container_w100").css("opacity", "0.5");
-                        $("#content").css("opacity", "0.5");
-                        event.stopPropagation();
-                    }
-                })
+                // $(".changePassword").on({
+                //     click: function (event) {
+                //         event.preventDefault();
+                //         $(".ChangePassword").fadeIn();
+                //         $(".list-ava").slideUp(250);
+                //         $("#container_w100").css("opacity", "0.5");
+                //         $("#content").css("opacity", "0.5");
+                //         event.stopPropagation();
+                //     }
+                // })
                 $(".myProfile").on({
                     click: function (event) {
 
@@ -470,19 +505,17 @@
 
                 });
                 $(".ChangePassword_footer__button").mousemove(function () {
-                    $(".ChangePassword_footer__button").css("background-color", "#0064e0");
+                    $(".ChangePassword_footer__button").css("background-color", "#474747");
                 });
                 $(".ChangePassword_footer__button").mouseleave(function () {
-                    $(".ChangePassword_footer__button").css("background-color", "#8fbcf2");
+                    $(".ChangePassword_footer__button").css("background-color", "#919191");
                 });
-                // $(".ChangePassword_footer__button").onclick(function(event)
-                // {
-                //     let type = 'success';
-                //     let icon = 'fa-solid fa-circle-check';
-                //     let title = 'Success Message';
-                //     let text = 'You can insert a description for the message here. The text relates to the action that has been performed';
-                //     createToast(type, icon, title, text);
-                // });
+                $(".changePassword_xmark").click(function (event) {
+                    event.preventDefault();
+                    $(".ChangePassword").fadeOut("fast");
+
+                });
+
             });
         </script>
         <% } %>

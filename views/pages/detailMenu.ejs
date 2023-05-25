@@ -1,67 +1,87 @@
 <div id="content" style="padding: 80px 0 0 0;">
   <div class="container food_in4">
     <div class="row text-center pt-4 detail_header" style="position: relative;">
-      <h1>Menu for Children's 2-3 years old</h1>
-      <a href="#">Creator: <span style="font-weight: bold;">Cờ rít ti a nô Rô nan đô</span></a>
+      <h1>
+        <%= data.menuname %>
+      </h1>
+      <a href="#">Creator: <span style="font-weight: bold;">
+          <%= data.creator %>
+        </span></a>
       <button class="turnBackBtn"><i class="fa-solid fa-left-long fa-xl"></i></button>
     </div>
     <div class="nutrition_container row mt-4">
-      <div class="col-7">
-        <div class="CYM_body">
-          <div class="CYM_body__left">
-            <div class="CYM_body__left-top">
-              <div class="CYM_body__left-nutriinfor">
-                <div class="CYM_body__left-nutriinfor--item">
-                  <div class="nutriinfor--item__circle">370</div>
-                  <span class="nutriinfor--item__text">Weight</span>
-                </div>
-                <div class="CYM_body__left-nutriinfor--item">
-                  <div class="nutriinfor--item__circle">370</div>
-                  <span class="nutriinfor--item__text">Calories</span>
-                </div>
-                <div class="CYM_body__left-nutriinfor--item">
-                  <div class="nutriinfor--item__circle">370</div>
-                  <span class="nutriinfor--item__text">Protein</span>
-                </div>
-                <div class="CYM_body__left-nutriinfor--item">
-                  <div class="nutriinfor--item__circle">370</div>
-                  <span class="nutriinfor--item__text">Glucid</span>
-                </div>
-                <div class="CYM_body__left-nutriinfor--item">
-                  <div class="nutriinfor--item__circle">370</div>
-                  <span class="nutriinfor--item__text">Lipid</span>
-                </div>
-              </div>
-              <div class="CYM_body__left-bottom">
-                <div>
-                  <table class="CYM_body__left-bottom--table">
-                    <thead>
-                      <tr>
-                        <th>Name of food</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody id="Breakfast" style="display:none">
-
-                    </tbody>
-                    <tbody id="Lunch" style="display:none">
-
-                    </tbody>
-                    <tbody id="Dinner" style="display:none">
-
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-            </div>
+      <div class="col">
+        <h3 class="FID_body__left--title">Nutritions</h3>
+        <div class="FID_body__left-nutriinfor">
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Energy</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.energy %> Calo
+            </span>
           </div>
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Carbs</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.carbs %> gram
+            </span>
+          </div>
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Lipid</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.lipid %> gram
+            </span>
+          </div>
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Protein</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.protein %> gram
+            </span>
+          </div>
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Vitamins</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.vitamins %>
+            </span>
+          </div>
+          <div class="FID_body__left-nutriinfor--item">
+            <div class="nutriinfor--item__circle">Minerals</div>
+            <span class="nutriinfor--item__text">
+              <%= nutrition.minerals %>
+            </span>
+          </div>
+        </div>
+        <div class="CYM_body__left-bottom">
+          <div style="margin-left: 64px;">
+            <table class="CYM_body__left-bottom--table">
+              <thead>
+                <tr>
+                  <th>Name of food</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="detailMenuContent">
+                <% for (let i=0; i < foodElements.length; i++) { %>
+                  <tr>
+                    <td>
+                      <a href="/foodDetail/<%= foodElements[i].foodId%>" target="_blank"
+                        style="text-decoration: none; font-size: 20px; color: var(--black-color);">
+                        <%=foodElements[i].foodName %>
+                      </a>
+                    </td>
+                    <td>
+                      <%= foodElements[i].foodAmount %>
+                    </td>
+                  </tr>
+                  <% } %>
+              </tbody>
+            </table>
+          </div>
+
         </div>
       </div>
       <div class="col-5">
-        <div class="ran_img_container">
-          <img src="../assets/images/menu_img/top-view-delicious-meal-arrangement.jpg" class="rand_img" alt=""
-            style="max-width: 80%;">
+        <div class="ran_img_container detailMenuImage_container" style="margin-top: 132px;">
+          <img src="<%= data.menuImage %>" class="rand_img detailMenuImage" alt="" style="max-width: 100%;">
         </div>
       </div>
     </div>
@@ -76,53 +96,4 @@
 
 <link rel="stylesheet" href="../assets/css/Create Your Menu.css">
 <link rel="stylesheet" href="../assets/css/Homepage.css">
-
-
-<script>
-  const signUp = document.querySelectorAll('.js-click-register')
-  const registerModal = document.querySelector('.js-userregister_modal')
-  const registerModalContainer = document.querySelector('.js-register-container')
-
-  const login = document.querySelectorAll('.js-click-login')
-  const loginModal = document.querySelector('.js-user_modal')
-  const modalContainer = document.querySelector('.js-login_container')
-
-  const modalClose = document.querySelectorAll('.js-modal-close')
-  function showModal() {
-    registerModal.classList.remove('open')
-    loginModal.classList.add('open')
-  }
-
-  function showRegisterModal() {
-    loginModal.classList.remove('open')
-    registerModal.classList.add('open')
-  }
-
-  function hideModal() {
-    loginModal.classList.remove('open')
-    registerModal.classList.remove('open')
-  }
-
-  for (const loginBtn of login) {
-    loginBtn.addEventListener('click', showModal);
-  }
-
-  for (const signupBtn of signUp) {
-    signupBtn.addEventListener('click', showRegisterModal)
-  }
-
-  for (const closeBtn of modalClose) {
-    closeBtn.addEventListener('click', hideModal)
-  }
-
-  loginModal.addEventListener('click', hideModal)
-  registerModal.addEventListener('click', hideModal)
-
-  modalContainer.addEventListener('click', function (event) {
-    event.stopPropagation()
-  })
-
-  registerModalContainer.addEventListener('click', function (event) {
-    event.stopPropagation()
-  })
-</script>
+<link rel="stylesheet" href="../assets/css/FID_New_V2.css">
