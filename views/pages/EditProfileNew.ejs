@@ -164,11 +164,12 @@
                 console.error(error);
               }
             });
+            alert("Change password successfully");
           } catch (error) {
             console.error(error);
           }
         } else {
-          console.log('Passwords do not match.');
+          alert("Failed to change password");
         }
         $(".ChangePassword").fadeOut("fast");
       })
@@ -194,6 +195,7 @@
                 console.error(error);
               }
             });
+            alert("Update profile successfully");
           } catch (error) {
             console.error(error);
           }
