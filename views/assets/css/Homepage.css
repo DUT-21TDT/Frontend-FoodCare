@@ -125,7 +125,7 @@
 
 #content .food_in4 {
     background-color: var(--primary);
-    height: 860px;
+    height: 920px;
 }
 
 #food_information ul {
@@ -666,6 +666,7 @@
 }
 
 .react_btn {
+    margin-top: 80px;
     display: flex;
     align-items: center;
     justify-content: center;

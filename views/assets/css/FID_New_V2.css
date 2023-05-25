@@ -37,7 +37,7 @@
     
 }
 .FID_body__left-nutriinfor--item{
-    width: 300px;
+    width: 280px;
     height:70px;
     background-color: white;
     border-radius:35px;
@@ -45,7 +45,7 @@
     align-items: center;
     justify-content:flex-start;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    margin:0 5px;
+    margin:3 8px;
     
    
 }
@@ -58,11 +58,12 @@
     line-height: 85px;
     font-weight: bold;
     overflow-wrap:break-word;
-    
+    font-size: 20px;
 }
 .nutriinfor--item__text{
     margin-left:50px;
-    
+    font-size: 20px;
+    font-weight: 500;
 }
 .numberElement{
     margin-left:70px;
