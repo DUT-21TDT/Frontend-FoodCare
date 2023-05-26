@@ -114,57 +114,77 @@ const getBMICurrent = async (req, res, next) => {
         });
     }
 }
-const userChangePassword = async (req,res,next) => {
+const userChangePassword = async (req, res, next) => {
     let oldpassword = req.body.oldpassword;
     let newpassword = req.body.newpassword;
     let newpasswordAgain = req.body.newpasswordAgain;
     const data = {
-        "oldpassword" : oldpassword,
+        "oldpassword": oldpassword,
         "newpassword": newpassword,
     }
-    if(newpassword === newpasswordAgain)
-    {
-        let responseData = await instance.put("/profile/change-password",data,{
+    if (newpassword === newpasswordAgain) {
+        let responseData = await instance.put("/profile/change-password", data, {
             headers: {
-                Cookie : `token=${req.session.token}`
+                Cookie: `token=${req.session.token}`
             }
         }).then(response => {
             return response.data;
         }).catch(error => {
-            console.log({message : error.message});
+            console.log({ message: error.message });
             return {
-                "sucess" : false,
+                "sucess": false,
             }
         });
         return responseData;
     }
 
 }
-const updateProfileUser = async (req,res,next) =>{
+const updateProfileUser = async (req, res, next) => {
 
     let name = req.body.name;
     let dateofbirth = req.body.dateofbirth;
     let gender = req.body.gender;
-   
+
     const data = {
-        "name" : name,
-        "dateofbirth" : dateofbirth,
-        "gender" : gender,
+        "name": name,
+        "dateofbirth": dateofbirth,
+        "gender": gender,
     };
     const response = await instance.put("/profile/update-profile", data, {
         headers: {
-          Cookie: `token=${req.session.token}`,
+            Cookie: `token=${req.session.token}`,
         },
-      })
+    })
         .then((data) => {
             return data.data;
         })
         .catch((err) => {
-          return null;
+            return null;
         });
 }
 
+const updateBMI = async (req, res, next) => {
+    let { height, weight } = req.body;
 
+    const data = {
+        "height": height,
+        "weight": weight,
+    };
+
+    const respponse = await instance.post("/profile/bmi-records/update", data, {
+        headers: {
+            Cookie: `token=${req.session.token}`,
+        },
+    })
+        .then((data) => {
+            return data.data;
+        })
+        .catch((err) => {
+            return null;
+        });
+
+    res.redirect("/user/profile");
+}
 
 
 module.exports = {
@@ -176,4 +196,5 @@ module.exports = {
     renderCreateNewMenu,
     userChangePassword,
     updateProfileUser,
+    updateBMI,
 };

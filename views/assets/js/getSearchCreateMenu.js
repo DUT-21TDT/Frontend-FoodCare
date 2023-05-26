@@ -99,6 +99,7 @@ $(document).ready(async function () {
             newRow.find('.count').attr('data-foodid', foodId);
             tableBody.append(newRow);
         }
+        updateNutritionInfo();
     });
 
     $('#Breakfast').on('click', '.minusButton', function () {

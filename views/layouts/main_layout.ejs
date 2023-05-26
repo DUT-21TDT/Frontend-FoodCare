@@ -3,5 +3,60 @@
 
     <%- body %>
 
+        <script>
+            const signUp = document.querySelectorAll('.js-click-register')
+            const registerModal = document.querySelector('.js-userregister_modal')
+            const registerModalContainer = document.querySelector('.js-register-container')
 
+            const login = document.querySelectorAll('.js-click-login')
+            const loginModal = document.querySelector('.js-user_modal')
+            const modalContainer = document.querySelector('.js-login_container')
+
+            const modalClose = document.querySelectorAll('.js-modal-close')
+            function showModal() {
+                registerModal.classList.remove('open')
+                loginModal.classList.add('open')
+            }
+
+            function showRegisterModal() {
+                loginModal.classList.remove('open')
+                registerModal.classList.add('open')
+            }
+
+            function hideModal() {
+                loginModal.classList.remove('open')
+                registerModal.classList.remove('open')
+            }
+
+            for (const loginBtn of login) {
+                loginBtn.addEventListener('click', showModal);
+            }
+
+            for (const signupBtn of signUp) {
+                signupBtn.addEventListener('click', showRegisterModal)
+            }
+
+            for (const closeBtn of modalClose) {
+                closeBtn.addEventListener('click', hideModal)
+            }
+
+            loginModal.addEventListener('click', hideModal)
+            registerModal.addEventListener('click', hideModal)
+
+            modalContainer.addEventListener('click', function (event) {
+                event.stopPropagation()
+            })
+
+            registerModalContainer.addEventListener('click', function (event) {
+                event.stopPropagation()
+            })
+        </script>
+
+        <script src="../assets/js/getData.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('.paginationjs-page').addClass('btn btn btn-primary');
+            })
+        </script>
         <%- include("../partials/foot") %>
