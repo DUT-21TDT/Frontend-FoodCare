@@ -5,9 +5,11 @@ const instance = axios.create({ baseURL: `${process.env.API_URL}/` });
 
 const renderProfileView = async (req, res, next) => {
 
-    const userId = req.session.user.userId;
+    const userId = req.session.userId;
 
     const userInfo = await getUserInfoByUserId(userId, req.session.token);
+
+    console.log(userInfo);
 
     res.render("pages/MyProfile", {
         layout: './layouts/main_layout.ejs',
@@ -27,15 +29,13 @@ const getUserInfoByUserId = async (userId, token) => {
         return null;
     });
 
-
-
     return userInfo;
 }
 
 const renderEditProfileView = async (req, res, next) => {
     const notification = req.query.notification;
 
-    const userId = req.session.user.userId;
+    const userId = req.session.userId;
 
     const userInfo = await getUserInfoByUserId(userId, req.session.token);
 
@@ -209,6 +209,46 @@ const getMyMenuData = async (req, res, next) => {
 }
 
 
+const updateAvatar = async (imgUrl, token) => {
+    const respponse = await instance.put("/profile/upload-avatar", {
+        avatarImage : imgUrl
+    }, {
+        headers: {
+            Cookie: `token=${token}`,
+        },
+    })
+        .then((data) => {
+            return data.data;
+        })
+        .catch((err) => {
+            return null;
+        });
+    
+    
+}
+
+const getUserInfo = async (req, res, next) => {
+    const userId = req.session.userId;
+    const userInfo = await getUserInfoByUserId(userId, req.session.token);
+
+    if(userInfo.success){
+        res.send({
+            success: true,
+            userInfo:{
+                name: userInfo.data.name,
+                avatarImage: userInfo.data.avatar
+            }
+        });
+    } else {
+        res.send({
+            success: true,
+            userInfo: null
+        });
+    }
+
+
+}
+
 
 module.exports = {
     renderProfileView,
@@ -222,4 +262,7 @@ module.exports = {
     updateBMI,
     reactMenu,
     getMyMenuData,
+    updateAvatar,
+    // GET
+    getUserInfo,
 };

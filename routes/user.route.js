@@ -15,11 +15,12 @@ const {
     updateBMI,
     reactMenu,
     getMyMenuData,
+    getUserInfo
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
 
-// router.put("/upload", auth, uploadFile);
+router.put("/upload", auth, uploadFile);
 
 
 router.get("/profile", auth, renderProfileView);
@@ -35,5 +36,6 @@ router.post("/menu=:menudid", auth, reactMenu);
 router.get("/getMyMenu", auth, getMyMenuData);
 
 
+router.get("/getUserInfo", auth, getUserInfo);
 
 module.exports = router;
