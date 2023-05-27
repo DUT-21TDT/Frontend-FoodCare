@@ -73,7 +73,8 @@ const getBMIwithProfile = async (req, res, next) => {
     }).catch((err) => {
         return null;
     });
-    if (BMIs) {
+    if (BMIs.data.count) {
+        
         res.json({
             success: true,
             message: "get BMI successfuly.",

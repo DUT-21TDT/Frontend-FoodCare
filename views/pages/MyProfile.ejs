@@ -28,7 +28,14 @@
             <div class="profile-info__item">
                 <span class="profile-info__item--measurement age-measurement">
                     <script>
-                        var birthDate = new Date("<%= userInfo.dateofbirth %>");
+                        // Assuming the date format is dd/mm/yyyy
+                        var birthDateParts = "<%= userInfo.dateofbirth %>".split("/");
+                        var birthDate = new Date(
+                            parseInt(birthDateParts[2]),
+                            parseInt(birthDateParts[1]) - 1,
+                            parseInt(birthDateParts[0])
+                        );
+
                         var ageDate = new Date(Date.now() - birthDate.getTime());
                         var calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
                         document.write(calculatedAge);
