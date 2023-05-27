@@ -31,12 +31,7 @@ router.post("/", async (req, res, next) => {
 
     if (data.success) {
       req.session.token = data.token;
-      req.session.user = {
-        "username": data.data.username,
-        "avatarImg": data.data.avatar,
-        "userId": data.data.userid,
-      }
-      
+      req.session.userId = data.data.userid;
 
       res.redirect(`/`);
 

@@ -4,7 +4,7 @@
             <h1 class="profile-header__label">Profile</h1>
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
-                    <img src="<%= user.avatarImg %>" alt="" id="avatar_img">
+                    <img src="<%= userInfo.avatar %>" alt="" id="avatar_img">
                 </div>
                 <div class="divAddAvatar" id="changeAvaImg">
                     <a href="#" class="iconAddAvatar">
@@ -13,7 +13,7 @@
                 </div>
             </a>
             <h4 class="profile-header__name">
-                <%= user.username %>
+                <%= userInfo.name %>
             </h4>
         </div>
         <div class="profile-info">
@@ -120,7 +120,7 @@
 <script>
 
     $("#changeAvaImg").on("click", function (e) {
-        var fileDialog = $('<input type="file" name="avaImage" accept=".png,.jpg,.jpeg">');
+        var fileDialog = $('<input type="file" name="avatarImage" accept=".png,.jpg,.jpeg">');
         fileDialog.click();
         fileDialog.on("change", onFileSelected);
         return false;
@@ -129,17 +129,20 @@
     var onFileSelected = async function (e) {
 
         var formData = new FormData();
-        formData.append('avaImage', $(this)[0].files[0]);
+        formData.append('avatarImage', $(this)[0].files[0]);
         await $.ajax({
-            url: `/user/profile/upload`,
+            url: `/user/upload`,
             type: "PUT", // <- Change here
             data: formData,
             contentType: false,
             processData: false,
             success: (response) => {
+                console.log(response);
                 if (response.success) {
                     document.getElementById("avatar_img").src = response.data.link;
                 }
+
+                window.location = "";
             },
             error: function (err) {
                 console.log(err);
