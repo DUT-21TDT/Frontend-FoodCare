@@ -11,6 +11,8 @@ const renderProfileView = async (req, res, next) => {
 
     console.log(userInfo);
 
+    
+
     res.render("pages/MyProfile", {
         layout: './layouts/main_layout.ejs',
         title: "My profile",
@@ -99,7 +101,7 @@ const getBMICurrent = async (req, res, next) => {
     }).catch((err) => {
         return null;
     });
-    if (BMIs) {
+    if (BMIs.data) {
         res.json({
             success: true,
             message: "get BMI successfuly.",
