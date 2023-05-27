@@ -14,21 +14,85 @@ async function getBMI() {
 }
 
 
+
 $(document).ready(async () => {
   const data = await getBMI();
-  console.log(data);
+  data.reverse();
+  // console.log(data);
 
   let dataChart = {
     labels: [],
     weights: [],
     heights: [],
   }
+  console.log(dataChart);
+  // data.forEach(e => {
+  //   dataChart.labels.push(e.updateTime);
+  //   dataChart.weights.push(e.weight);
+  //   dataChart.heights.push(e.height);
+  // });
+  
+const weeksInMonth = 4;
+// const dataDayOfWeak = Array.from({ length: weeksInMonth }, () => ({weight: null, height: null,updateTime: null }));
 
-  data.forEach(e => {
+/**
+ * 
+ * const result = {
+ *  month:
+ * id:1,
+ * dataOfWeaks:
+ * { 
+ *  weak  
+ * }
+ * }
+ */
+
+let result = {};
+
+data.forEach(obj => {
+  const dateParts = obj.updateTime.split(',')[0].split('/');
+  const month = parseInt(dateParts[1]);
+  const date = parseInt(dateParts[0]);
+  const year = parseInt(dateParts[2]);
+  let resultTime = dateParts[0] + "/" + dateParts[1] + "/" + dateParts[2];
+  const weekNumber = Math.ceil(date / 7);
+
+  const key = `${weekNumber}/${month}/${year}`;
+      result[key] = {
+        weight: obj.weight,
+        height:obj.height,
+        updateTime: resultTime,
+      }
+});
+
+for(var k in result){
+    // console.log(k, result[k]);
+    const e = result[k];
     dataChart.labels.push(e.updateTime);
     dataChart.weights.push(e.weight);
     dataChart.heights.push(e.height);
-  });
+}
+// console.log(result);
+// result.forEach(e => {
+//   console.log(e);
+//   if(e.updateTime != null && e.height != null && e.weight != null)
+//   {
+//     dataChart.labels.push(e.updateTime);
+//     dataChart.weights.push(e.weight);
+//     dataChart.heights.push(e.height);
+//   }
+// })
+
+
+
+
+
+
+
+
+
+
+
 
   var ctx = document.getElementById('canvas').getContext('2d');
   var chart = new Chart(ctx, {
