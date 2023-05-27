@@ -76,7 +76,7 @@
     </div>
 
     <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-      <% if (user) { %>
+      <% if (userId) { %>
         <a href="/user/profile" class="cal_btn info_btn text-center">
           <% } else { %>
             <a class="cal_btn info_btn js-click-login text-center">
@@ -152,7 +152,7 @@
           </div>
           <h2 class="pt-4 pb-4">???</h2>
         </div>
-        <% if (user) { %>
+        <% if (userId) { %>
           <button class="rand-btn random_js-btn">
             <% } else { %>
               <button class="rand-btn js-click-login">
@@ -216,59 +216,3 @@
   )
 </script>
 
-<script>
-  const signUp = document.querySelectorAll('.js-click-register')
-  const registerModal = document.querySelector('.js-userregister_modal')
-  const registerModalContainer = document.querySelector('.js-register-container')
-
-  const login = document.querySelectorAll('.js-click-login')
-  const loginModal = document.querySelector('.js-user_modal')
-  const modalContainer = document.querySelector('.js-login_container')
-
-  const modalClose = document.querySelectorAll('.js-modal-close')
-  function showModal() {
-    registerModal.classList.remove('open')
-    loginModal.classList.add('open')
-  }
-
-  function showRegisterModal() {
-    loginModal.classList.remove('open')
-    registerModal.classList.add('open')
-  }
-
-  function hideModal() {
-    loginModal.classList.remove('open')
-    registerModal.classList.remove('open')
-  }
-
-  for (const loginBtn of login) {
-    loginBtn.addEventListener('click', showModal);
-  }
-
-  for (const signupBtn of signUp) {
-    signupBtn.addEventListener('click', showRegisterModal)
-  }
-
-  for (const closeBtn of modalClose) {
-    closeBtn.addEventListener('click', hideModal)
-  }
-
-  loginModal.addEventListener('click', hideModal)
-  registerModal.addEventListener('click', hideModal)
-
-  modalContainer.addEventListener('click', function (event) {
-    event.stopPropagation()
-  })
-
-  registerModalContainer.addEventListener('click', function (event) {
-    event.stopPropagation()
-  })
-</script>
-
-<script src="../assets/js/getData.js"></script>
-
-<script>
-  $(document).ready(function () {
-    $('.paginationjs-page').addClass('btn btn btn-primary');
-  })
-</script>

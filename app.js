@@ -7,13 +7,13 @@ const path = require('path');
 const pathConfig = require('./path');
 const session = require("express-session");
 const dotenv = require("dotenv");
+const morgan    = require('morgan')
 dotenv.config();
-let port = process.env.PORT || 8888;
-
 
 var app = express()
-var http = require('http').Server(app);
 app.use(express.json());
+
+app.use(morgan("dev"));
 
 
 global.__base = __dirname + '/';
@@ -42,7 +42,7 @@ app.use(session({
 
 app.use(function (req, res, next) {
   // res.locals.user = req.session.token;
-  res.locals.user = req.session.user;
+  res.locals.userId = req.session.userId;
   next();
 });
 
@@ -69,13 +69,10 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
+  console.log(err.message);
   res.sendFile(__path_views + "/static/500.html");
 });
 
 
+module.exports = app;
 
-
-// start the Express server
-http.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
-});

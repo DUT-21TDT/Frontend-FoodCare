@@ -11,12 +11,14 @@ const {
     renderMyMenuView,
     renderCreateNewMenu,
     userChangePassword,
-    updateProfileUser
+    updateProfileUser,
+    updateBMI,
+    getUserInfo
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
 
-// router.put("/upload", auth, uploadFile);
+router.put("/upload", auth, uploadFile);
 
 
 router.get("/profile", auth, renderProfileView);
@@ -25,8 +27,9 @@ router.get("/getBMICurrent", auth, getBMICurrent);
 router.get("/editprofile", auth, renderEditProfileView);
 router.get("/mymenu", auth, renderMyMenuView);
 router.get("/createMenu", auth, renderCreateNewMenu);
-router.put("/change-password",auth,userChangePassword);
-router.put("/update-profile",auth,updateProfileUser);
-
+router.put("/change-password", auth, userChangePassword);
+router.put("/update-profile", auth, updateProfileUser);
+router.post("/updateBMI", auth, updateBMI);
+router.get("/getUserInfo", auth, getUserInfo);
 
 module.exports = router;

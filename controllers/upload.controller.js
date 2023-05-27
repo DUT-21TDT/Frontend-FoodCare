@@ -52,27 +52,32 @@ const uploadFile = (req, res, next) => {
         }
         else {
 
-            // SUCCESS, image successfully uploaded
-            const imgurUpload = require("../controllers/imgur.controller");
-            let responseData = await imgurUpload(req.file.path);
+
+            // ImgBB
+            const imgbbUploader = require("./imgbb.controller");
+            let responseData = await imgbbUploader(req.file.path);
 
             try {
                 fs.unlinkSync(req.file.path);
             } catch (error) {
                 console.log(error);
             }
+            
 
             if (responseData.success) {
+
+                await require("./userController").updateAvatar(responseData.url, req.session.token);
+
                 res.json({
-                    "success": true,
+                    "success":true,
                     "notice": "Image uploaded",
                     "data": {
-                        "link": responseData.data.link
+                        "link":responseData.url
                     }
                 });
             } else {
                 res.json({
-                    "success": false,
+                    "success":false,
                     "notice": "Can't upload image file!",
                     "data": {},
                 });

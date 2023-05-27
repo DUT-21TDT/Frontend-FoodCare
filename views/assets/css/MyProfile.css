@@ -110,27 +110,39 @@
 
 .profile-notification {
     width: 300px;
-    height: 70px;
+    height: 130px;
     border-radius: 10px;
     margin-top: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-.profile-notification__title {
-    width: 100%;
-    height: 10px;
-    margin-left: 15px;
-    font-size: 1.25em;
-    font-weight: 600;
-
-}
-
-.profile-notification__body {
-    width: 100%;
-    height: 40px;
     display: flex;
-    justify-content: space-around;
+    justify-items: center;
     align-items: center;
+}
+
+.height_container,
+.weight_container {
+    margin: 10px 70px;
+}
+
+.profile-notification button:active {
+    background-color: #6c757d;
+}
+
+.height_container label {
+    padding-right: 4px;
+}
+
+label {
+    font-weight: 500;
+}
+
+#update_weight,
+#update_height {
+    width: 100px;
+}
+
+#toggle-btn {
+    margin: 0 111px;
 }
 
 .profile-notifcation__icon {
@@ -141,6 +153,7 @@
 .profile-notifcation__text {
     margin-left: -25px;
 }
+
 .profile-updateHeightAndWeight {
     width: 300px;
     height: 50px;
@@ -152,9 +165,9 @@
     font-weight: 500;
 }
 
-.profile-updateHeightAndWeight > a{
+.profile-updateHeightAndWeight>a {
     text-decoration: none;
-    color:#6d6265;
+    color: #6d6265;
 }
 
 

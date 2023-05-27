@@ -4,7 +4,7 @@
             <h1 class="profile-header__label">Profile</h1>
             <a href="" class="Profile-header__avatar">
                 <div class="avatar-img">
-                    <img src="<%= user.avatarImg %>" alt="" id="avatar_img">
+                    <img src="<%= userInfo.avatar %>" alt="" id="avatar_img">
                 </div>
                 <div class="divAddAvatar" id="changeAvaImg">
                     <a href="#" class="iconAddAvatar">
@@ -13,7 +13,7 @@
                 </div>
             </a>
             <h4 class="profile-header__name">
-                <%= user.username %>
+                <%= userInfo.name %>
             </h4>
         </div>
         <div class="profile-info">
@@ -39,23 +39,66 @@
         </div>
 
         <div class="profile-notification">
-            <span class="profile-notification__title">Notification</span>
-            <div class="profile-notification__body">
-                <i class="fa-regular fa-bell profile-notifcation__icon"></i>
-                <span class="profile-notifcation__text">Pop-up Notification</span>
-                <button id="toggle-btn" class="toggle-btn"></button>
-            </div>
+            <form action="/user/updateBMI" id="updateBMIForm" method="post">
+                <div class="height_container">
+                    <label for="height">Height</label>
+                    <input type="text" name="height" id="update_height">
+                </div>
+                <div class="weight_container">
+                    <label for="weight">Weight</label>
+                    <input type="text" name="weight" id="update_weight">
+                </div>
+                <button type="submit" class="btn btn-secondary" id="toggle-btn">Update</button>
+            </form>
+        </div>
+        <!-- <button id="toggle-btn" hidden class="toggle-btn"></button> -->
 
-        </div>
-        <div class="profile-updateHeightAndWeight">
-            <a href=""> Update height and weight</a>
-        </div>
-        <!-- <div class="container">
-            <canvas id="canvas"></canvas>
-        </div> -->
 
     </div>
+    <script>
+        // Get the form and input elements
+        var form = document.getElementById('updateBMIForm');
+        var heightInput = document.getElementById('update_height');
+        var weightInput = document.getElementById('update_weight');
+        var updateButton = document.getElementById('toggle-btn');
 
+
+        // Add an event listener to the form's submit event
+        form.addEventListener('submit', function (event) {
+            // Check if height and weight inputs are numeric
+            if (!isNumeric(heightInput.value) || !isNumeric(weightInput.value)) {
+                event.preventDefault(); // Prevent the form from being submitted
+                // Disable the update button
+                updateButton.disabled = true;
+                updateButton.style.cursor = "default";
+                alert('Height and weight must be numeric values.');
+            }
+        });
+
+        // Function to check if a value is numeric
+        function isNumeric(value) {
+            return value !== null && value !== "" && !isNaN(parseFloat(value)) && isFinite(value);
+        }
+
+        // Add event listeners to the height and weight inputs
+        heightInput.addEventListener('input', toggleButtonState);
+        weightInput.addEventListener('input', toggleButtonState);
+
+        // Function to toggle the state of the update button
+        function toggleButtonState() {
+            if (isNumeric(heightInput.value) && isNumeric(weightInput.value)) {
+                updateButton.disabled = false;
+                updateButton.style.cursor = "pointer";
+                updateButton.style.backgroundColor = "#6c757d";
+            } else {
+                updateButton.disabled = true;
+                updateButton.style.cursor = "default";
+                updateButton.style.backgroundColor = "#6c757d";
+            }
+        }
+
+
+    </script>
 
     <div class="container2">
 
@@ -77,7 +120,7 @@
 <script>
 
     $("#changeAvaImg").on("click", function (e) {
-        var fileDialog = $('<input type="file" name="avaImage" accept=".png,.jpg,.jpeg">');
+        var fileDialog = $('<input type="file" name="avatarImage" accept=".png,.jpg,.jpeg">');
         fileDialog.click();
         fileDialog.on("change", onFileSelected);
         return false;
@@ -86,17 +129,20 @@
     var onFileSelected = async function (e) {
 
         var formData = new FormData();
-        formData.append('avaImage', $(this)[0].files[0]);
+        formData.append('avatarImage', $(this)[0].files[0]);
         await $.ajax({
-            url: `/user/profile/upload`,
+            url: `/user/upload`,
             type: "PUT", // <- Change here
             data: formData,
             contentType: false,
             processData: false,
             success: (response) => {
+                console.log(response);
                 if (response.success) {
                     document.getElementById("avatar_img").src = response.data.link;
                 }
+
+                window.location = "";
             },
             error: function (err) {
                 console.log(err);
