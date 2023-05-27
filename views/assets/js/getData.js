@@ -1,5 +1,5 @@
 
-const pageSize = 4;
+var pageSize = 4;
 var url = `/get/foods`;
 var urlMenu = `/get/menus`;
 let foodData;
@@ -42,7 +42,6 @@ function loadPage(data, pageNumber) {
 }
 
 function loadMenu(data, pageNumber) {
-
     if (data.length === 0) {
         $('.menu_result-container').html('<p class="text-center">No results found for the search text.</p>');
     } else {

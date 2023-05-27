@@ -48,7 +48,6 @@ const renderEditProfileView = async (req, res, next) => {
 }
 
 const renderMyMenuView = async (req, res, next) => {
-    const userId = req.session.user.userId;
 
     res.render("pages/MyMenu", {
         layout: './layouts/main_layout.ejs',
@@ -57,7 +56,6 @@ const renderMyMenuView = async (req, res, next) => {
 }
 
 const renderCreateNewMenu = async (req, res, next) => {
-    const userId = req.session.user.userId;
 
     res.render("pages/CreateYourMenu", {
         layout: './layouts/main_layout.ejs',
@@ -186,6 +184,31 @@ const updateBMI = async (req, res, next) => {
     res.redirect("/user/profile");
 }
 
+const reactMenu = async (id) => {
+    try {
+        response = await instance.post(`/menus/menuid=${id}/rating/create`);
+        return response.data;
+    }
+    catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+const getMyMenuData = async (req, res, next) => {
+    const data = await instance.get(`/menus/mymenu`, {
+        headers: {
+            Cookie: `token=${req.session.token}`
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        console.log(err);
+        return null;
+    });
+}
+
+
 
 module.exports = {
     renderProfileView,
@@ -197,4 +220,6 @@ module.exports = {
     userChangePassword,
     updateProfileUser,
     updateBMI,
+    reactMenu,
+    getMyMenuData,
 };
