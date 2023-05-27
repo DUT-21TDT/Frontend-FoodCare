@@ -11,6 +11,8 @@ const renderProfileView = async (req, res, next) => {
 
     console.log(userInfo);
 
+    
+
     res.render("pages/MyProfile", {
         layout: './layouts/main_layout.ejs',
         title: "My profile",
