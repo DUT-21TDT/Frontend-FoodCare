@@ -25,15 +25,6 @@ $(document).ready(async () => {
     weights: [],
     heights: [],
   }
-  console.log(dataChart);
-
-  data.forEach(e => {
-    dataChart.labels.push(e.updateTime);
-    dataChart.weights.push(e.weight);
-    dataChart.heights.push(e.height);
-  });
-
-  const weeksInMonth = 4;
 
   let result = {};
 
