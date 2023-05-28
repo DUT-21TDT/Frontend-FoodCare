@@ -14,9 +14,11 @@ async function getBMI() {
 }
 
 
+
 $(document).ready(async () => {
   const data = await getBMI();
-  console.log(data);
+  data.reverse();
+
 
   let dataChart = {
     labels: [],
@@ -24,11 +26,30 @@ $(document).ready(async () => {
     heights: [],
   }
 
-  data.forEach(e => {
+  let result = {};
+
+  data.forEach(obj => {
+    const dateParts = obj.updateTime.split(',')[0].split('/');
+    const month = parseInt(dateParts[1]);
+    const date = parseInt(dateParts[0]);
+    const year = parseInt(dateParts[2]);
+    let resultTime = dateParts[0] + "/" + dateParts[1] + "/" + dateParts[2];
+    const weekNumber = Math.ceil(date / 7);
+
+    const key = `${weekNumber}/${month}/${year}`;
+    result[key] = {
+      weight: obj.weight,
+      height: obj.height,
+      updateTime: resultTime,
+    }
+  });
+
+  for (var k in result) {
+    const e = result[k];
     dataChart.labels.push(e.updateTime);
     dataChart.weights.push(e.weight);
     dataChart.heights.push(e.height);
-  });
+  }
 
   var ctx = document.getElementById('canvas').getContext('2d');
   var chart = new Chart(ctx, {
@@ -69,7 +90,6 @@ $(document).ready(async () => {
           font: {
             size: 20
           }
-
         }
       },
       scales: {
@@ -86,7 +106,4 @@ $(document).ready(async () => {
       }
     }
   });
-
-})
-
-
+});

@@ -11,6 +11,8 @@ const renderProfileView = async (req, res, next) => {
 
     console.log(userInfo);
 
+    
+
     res.render("pages/MyProfile", {
         layout: './layouts/main_layout.ejs',
         title: "My profile",
@@ -48,6 +50,7 @@ const renderEditProfileView = async (req, res, next) => {
 }
 
 const renderMyMenuView = async (req, res, next) => {
+
     res.render("pages/MyMenu", {
         layout: './layouts/main_layout.ejs',
         title: "My menu",
@@ -55,6 +58,7 @@ const renderMyMenuView = async (req, res, next) => {
 }
 
 const renderCreateNewMenu = async (req, res, next) => {
+
     res.render("pages/CreateYourMenu", {
         layout: './layouts/main_layout.ejs',
         title: "New menu",
@@ -71,7 +75,8 @@ const getBMIwithProfile = async (req, res, next) => {
     }).catch((err) => {
         return null;
     });
-    if (BMIs) {
+    if (BMIs.data.count) {
+        
         res.json({
             success: true,
             message: "get BMI successfuly.",
@@ -96,7 +101,7 @@ const getBMICurrent = async (req, res, next) => {
     }).catch((err) => {
         return null;
     });
-    if (BMIs) {
+    if (BMIs.data) {
         res.json({
             success: true,
             message: "get BMI successfuly.",
@@ -182,6 +187,31 @@ const updateBMI = async (req, res, next) => {
     res.redirect("/user/profile");
 }
 
+const reactMenu = async (id) => {
+    try {
+        response = await instance.post(`/menus/menuid=${id}/rating/create`);
+        return response.data;
+    }
+    catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+const getMyMenuData = async (req, res, next) => {
+    const data = await instance.get(`/menus/mymenu`, {
+        headers: {
+            Cookie: `token=${req.session.token}`
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        console.log(err);
+        return null;
+    });
+}
+
+
 const updateAvatar = async (imgUrl, token) => {
     const respponse = await instance.put("/profile/upload-avatar", {
         avatarImage : imgUrl
@@ -233,6 +263,8 @@ module.exports = {
     userChangePassword,
     updateProfileUser,
     updateBMI,
+    reactMenu,
+    getMyMenuData,
     updateAvatar,
     // GET
     getUserInfo,

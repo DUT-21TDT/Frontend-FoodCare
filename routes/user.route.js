@@ -13,6 +13,8 @@ const {
     userChangePassword,
     updateProfileUser,
     updateBMI,
+    reactMenu,
+    getMyMenuData,
     getUserInfo
 } = require("../controllers/userController");
 
@@ -30,6 +32,10 @@ router.get("/createMenu", auth, renderCreateNewMenu);
 router.put("/change-password", auth, userChangePassword);
 router.put("/update-profile", auth, updateProfileUser);
 router.post("/updateBMI", auth, updateBMI);
+router.post("/menu=:menudid", auth, reactMenu);
+router.get("/getMyMenu", auth, getMyMenuData);
+
+
 router.get("/getUserInfo", auth, getUserInfo);
 
 module.exports = router;
