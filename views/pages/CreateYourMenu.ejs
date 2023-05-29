@@ -52,7 +52,7 @@
                 </tr>
               </thead>
               <tbody id="Breakfast">
-
+                  
               </tbody>
             </table>
           </div>
@@ -96,6 +96,65 @@
 
 <link rel="stylesheet" href="../assets/css/Create Your Menu.css">
 <script src="../assets/js/getSearchCreateMenu.js"></script>
+
+<script>
+  
+    $(document).ready(function()
+    {
+      $(".bntSave").click(function(){
+        let menuName = $("#CYM_body__left-top--nameMenu").val();
+        var rows = $('#Breakfast tr');
+        var foodObjects = [];
+        rows.each(function() {
+        var row = $(this);
+        var name = row.find('td:eq(0)').text();
+        var countElement = row.find('.count');
+        var count = parseInt(countElement.text());
+        var foodId = parseInt(countElement.data('foodid'));
+        var foodObject = {
+            foodid: foodId,
+            amount: count
+        };
+        foodObjects.push(foodObject);
+        });
+        let creator = "<%= userInfo.name%>";
+        let menuImage = "../assets/images/menu_img/default-menu.jpg";
+
+        if(menuName === "")
+        {
+          alert("Please,Fill your menu name");
+        }
+        else{
+          try {
+            $.ajax({
+              url: '/user/menus/create', 
+              type: 'POST',
+              data: {
+                menuName: menuName,
+                creator: creator,
+                foodsList: foodObjects,
+                menuImage: menuImage,
+              },
+              success: function(response) {
+                console.log(response); 
+              },
+              error: function(error) {
+                console.error(error);
+              }
+            });
+            alert("Create Your Menu Successfully");
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+
+        
+        
+
+    })
+    })
+</script>
 
 <!-- <script>
 

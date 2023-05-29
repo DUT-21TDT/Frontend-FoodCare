@@ -58,10 +58,13 @@ const renderMyMenuView = async (req, res, next) => {
 }
 
 const renderCreateNewMenu = async (req, res, next) => {
+    const userId = req.session.userId;
 
+    const userInfo = await getUserInfoByUserId(userId, req.session.token);
     res.render("pages/CreateYourMenu", {
         layout: './layouts/main_layout.ejs',
         title: "New menu",
+        userInfo: userInfo.data,
     });
 };
 
@@ -278,6 +281,31 @@ const deleteMenuDetailById = async (req, res) => {
 
 };
 
+const userCreateMenu = async(req,res,next) =>{
+    let menuName = req.body.menuName;
+    let foodsList = req.body.foodsList;
+   let creator = req.body.creator;
+   let menuImage = req.body.menuImage;
+
+    const data = {
+        "menuName": menuName,
+        "foodsList": foodsList,
+        "creator":creator,
+        "menuImage":menuImage,
+    };
+    const response = await instance.post("/menus/create", data, {
+        headers: {
+            Cookie: `token=${req.session.token}`,
+        },
+    })
+        .then((data) => {
+            return data.data;
+        })
+        .catch((err) => {
+            return null;
+        });
+}
+
 
 
 
@@ -295,5 +323,6 @@ module.exports = {
     getMyMenuData,
     updateAvatar,
     getUserInfo,
-    deleteMenuDetailById
+    deleteMenuDetailById,
+    userCreateMenu,
 };
