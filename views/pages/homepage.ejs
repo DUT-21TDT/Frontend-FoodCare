@@ -61,15 +61,18 @@
       </div>
       <form action="" class="fill_info">
         <div class="bmi_input">
-          <input placeholder="Your weight is ... (kg)" type="text" class="weight_input">
+          <input placeholder="Your weight is ... (kg)" type="text" class="weight_input"
+            style="border:  1px solid black;">
           <i class="fa-solid fa-weight-scale fa-xl"></i>
         </div>
         <div class="bmi_input">
-          <input placeholder="Your height is ... (cm)" type="text" class="height_input">
+          <input placeholder="Your height is ... (cm)" type="text" class="height_input"
+            style="border:  1px solid black;">
           <i class="fa-solid fa-ruler-vertical fa-xl"></i>
         </div>
         <div class="bmi_input">
-          <input placeholder="Your BMI is ..." type="text" class="bmi_result" readonly>
+          <input placeholder="Your BMI is ..." type="text" class="bmi_result" readonly
+            style="border:  1px solid black;">
           <i class="fa-solid fa-calculator fa-xl"></i>
         </div>
       </form>
@@ -166,6 +169,8 @@
 
 </div>
 
+<script src="../assets/js/getData.js"></script>
+
 
 <script>
   $(".calculator-bmi-js").click(function (event) {
@@ -215,4 +220,3 @@
   }
   )
 </script>
-

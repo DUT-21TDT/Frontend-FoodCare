@@ -1,26 +1,40 @@
 <!-- login or not login -->
 <% if (!userId) { %>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="header">
-
-
         <div class="container">
             <div class="g-col-3" style="width: 100px;">
                 <a class="navbar-brand" href="/">
                     <img src="../assets/images/FooCA.png" alt="Logo" width="70" height="70"
-                        class="d-inline-block align-text-center"">
+                        class="d-inline-block align-text-center">
                 </a>
             </div>
-            <div class=" g-col-7">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav" ;>
-                        <li class="nav-item text-center"><a href="/">Home</a></li>
-                        <li class="nav-item text-center"><a href="/#food_information">Food
-                                Information</a></li>
-                        <li class="nav-item text-center"><a href="/#bmi_calculator">BMI</a></li>
-                        <li class="nav-item text-center"><a href="/#menu_nutrition">Menu Nutrition</a>
-                        </li>
-                        <li class="nav-item text-center"><a href="/#food_suggestion">Food
-                                Suggestion</a></li>
-                    </ul>
+            <div class="g-col-7">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav">
+                    <li class="nav-item text-center">
+                        <a href="/" class="nav-link">
+                            <span class="d-none d-sm-inline-block">Home</span>
+                            <span class="d-inline-block d-sm-none text-truncate">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a href="/#food_information" class="nav-link">
+                            <span class="d-none d-sm-inline-block">Food Information</span>
+                            <span class="d-inline-block d-sm-none text-truncate">Information</span>
+                        </a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a href="/#bmi_calculator" class="nav-link">BMI</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a href="/#menu_nutrition" class="nav-link">
+                            <span class="d-none d-sm-inline-block">Menu Nutrition</span>
+                            <span class="d-inline-block d-sm-none text-truncate">Menu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a href="/#food_suggestion" class="nav-link">Food Suggestion</a>
+                    </li>
+                </ul>
             </div>
             <div class="g-col-2">
 
@@ -57,6 +71,23 @@
 
 
     </nav>
+    <script>
+        $(document).ready(function () {
+            // Smooth scrolling for anchor links with fixed distance
+            $('a[href^="#"]').on('click', function (event) {
+                event.preventDefault();
+
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    var scrollDistance = 600; // Adjust this value to set the desired scroll distance in pixels
+                    var targetPosition = target.offset().top - scrollDistance;
+                    $('html, body').stop().animate({
+                        scrollTop: targetPosition
+                    }, 800);
+                }
+            });
+        });
+    </script>
 
     <div id="login_modal" class="user_modal js-user_modal">
         <div class="login_container js-login_container">
@@ -199,62 +230,8 @@
         }
     </script>
 
-    <!-- <script>
-        const signUp = document.querySelectorAll('.js-click-register')
-        const registerModal = document.querySelector('.js-userregister_modal')
-        const registerModalContainer = document.querySelector('.js-register-container')
 
-        const login = document.querySelectorAll('.js-click-login')
-        const loginModal = document.querySelector('.js-user_modal')
-        const modalContainer = document.querySelector('.js-login_container')
 
-        const modalClose = document.querySelectorAll('.js-modal-close')
-        function showModal() {
-            registerModal.classList.remove('open')
-            loginModal.classList.add('open')
-        }
-
-        function showRegisterModal() {
-            loginModal.classList.remove('open')
-            registerModal.classList.add('open')
-        }
-
-        function hideModal() {
-            loginModal.classList.remove('open')
-            registerModal.classList.remove('open')
-        }
-
-        for (const loginBtn of login) {
-            loginBtn.addEventListener('click', showModal);
-        }
-
-        for (const signupBtn of signUp) {
-            signupBtn.addEventListener('click', showRegisterModal)
-        }
-
-        for (const closeBtn of modalClose) {
-            closeBtn.addEventListener('click', hideModal)
-        }
-
-        loginModal.addEventListener('click', hideModal)
-        registerModal.addEventListener('click', hideModal)
-
-        modalContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-
-        registerModalContainer.addEventListener('click', function (event) {
-            event.stopPropagation()
-        })
-    </script>
-
-    <script src="../assets/js/getData.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('.paginationjs-page').addClass('btn btn btn-primary');
-        })
-    </script> -->
 
     <% } else { %>
 
@@ -284,18 +261,7 @@
                 <div class="g-col-2" style="position: relative;">
                     <!-- Mapping -->
                     <div class="nofi_avatar">
-                        <a href="" class="EditProfile__header-icon">
-                            <i class="fa-regular fa-bell EditProfile__header--Nofi"></i>
-                            <div class="notification_form">
-                                <div class="notification_form-header">
-                                    <h2 class="notification_form-header--title">Notification</h2>
-                                    <a href="">
-                                        <i class="fa-solid fa-bars notification_form-header--icon"></i>
-                                    </a>
-                                </div>
 
-                            </div>
-                        </a>
                         <a href="" class="EditProfile__header-avatar">
                             <div class="avatar-img">
                                 <img src="" alt="" id="avatar">
@@ -310,7 +276,7 @@
                                             </div>
                                         </a>
                                         <a class="list-ava__header--name" id="fullName">
-                                            
+
                                         </a>
                                     </div>
                                     <div class="line"></div>
@@ -338,97 +304,9 @@
                                 </div>
                             </div>
 
-                            <!-- EditProFile-form -->
-                            <!-- <form action="/Home/putEditProfile/:id" id="form-EditProfile" method="PUT">
-                                <div class="EditProfile container">
-                                    <div class="EditProfile__header">
-                                        <ul class="EditProfile__header-list">
-                                            <li class="EditProfile__header-item">
-                                                <h2 class=EditProfile__header--text>Edit Profile</h2>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="EditProfile__container">
-                                        <div class="EditProfile__form name">
-                                            <div class="EditProfile__form-name">
-                                                <span class="EditProfile__form-name label">Full Name</span>
-                                                <input type="" class="EditProfile__form--input firstname"
-                                                    placeholder="Họ và tên" name="fullname">
-                                            </div>
-                                        </div>
-                                        <div class="EditProfile__form">
-                                            <span class="EditProfile__form-email label">Email</span>
-                                            <br>
-                                            <input type="" class="EditProfile__form--input email"
-                                                placeholder="Nhập email" name="email">
-                                        </div>
-                                        <div class="EditProfile__form">
-                                            <span class="EditProfile__form-height label">Height</span>
-                                            <br>
-                                            <input type="" class="EditProfile__form--input height"
-                                                placeholder="Nhập cân nặng mới" name="height">
-                                        </div>
-                                        <div class="EditProfile__form">
-                                            <span class="EditProfile__form-weight label">Weight</span>
-                                            <br>
-                                            <input type="" class="EditProfile__form--input weight"
-                                                placeholder="Nhập chiều cao mới" name="weight">
-                                        </div>
-                                        <div class="EditProfile__form">
-                                            <span class="EditProfile__form-age label">Age</span>
-                                            <br>
-                                            <input type="" class="EditProfile__form--input age"
-                                                placeholder="Nhập tuổi mới" name="age">
-                                        </div>
-                                        <div class="EditProfile__form">
-                                            <span class="EditProfile__form-password label">Password</span>
-                                            <br>
-                                            <div class="EditProfile__form-password input" name="password">
-                                                <input type="" class="EditProfile__form--input password"
-                                                    placeholder="Mật khẩu">
-                                                <input type="checkbox" class="EditProfile__form-password--checkbox">
-                                            </div>
-                                          
 
 
-                                        </div>
-                                    </div>
-                                    <div class="EditProfile__Footer">
-                                        <button class="btn btn-cancel" type="button">Cancel</button>
-                                        <button class="btn btn-save" type="submit">Save</button>
-                                    </div>
-                                </div>
-                            </form> -->
 
-
-                            <!-- ChangePasswordForm -->
-                            <!-- <form action="" class="changepw-form container">
-                                <div class="ChangePassword">
-                                    <div class="ChangePassword_header">
-                                        <div>
-                                
-                                            <a href="" class="changePassword_xmark">
-                                                <i class="fa-solid fa-xmark" class="ChangePassword_header__icon"></i>
-                                            </a>
-                                        </div>
-                                        <span class="ChangePassword_header__name">Nguyễn Văn A</span>
-                                        <h2 class="ChangePassword_header__title">Đổi mật khẩu</h2>
-
-                                    </div>
-                                    <div class="ChangePassword_body">
-                                        <input type="text" class="ChangePassword_body__input"
-                                            placeholder="Mật khẩu hiện tại">
-                                        <input type="text" class="ChangePassword_body__input"
-                                            placeholder="Mật khẩu mới">
-                                        <input type="text" class="ChangePassword_body__input"
-                                            placeholder="Nhập lại mật khẩu mới">
-                                    </div>
-                                    <div class="ChangePassword_footer">
-                                        <button class="ChangePassword_footer__button">Đổi mật khẩu</button>
-                                    </div>
-                                </div>
-                            </form> -->
                             <form action="" id="forgetpw">
                                 <div class="ForgetPassword">
                                     <a href="" class="ForgetPassword__xmark"><i
@@ -449,17 +327,7 @@
                             </div>
                         </a>
                     </div>
-                    <!-- <div class="header-user">
-                  <button class="signUp_button js-click-register">
-                      Sign Up
-                      <i class="fa-solid fa-user-plus icon"></i>
-                  </button>
-        
-                  <button class="user-login js-click-login">
-                    Login
-                    <i class="fa-solid fa-right-to-bracket icon"></i>
-                  </button>
-                </div> -->
+
                 </div>
             </div>
 
@@ -471,7 +339,6 @@
         <link rel="stylesheet" href="../assets/css/ForgetPassword.css">
         <link rel="stylesheet" href="../assets/css/Notification-form.css">
         <link rel="stylesheet" href="../assets/css/ResetPassword.css">
-        <script src="../assets/js/avatar.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
         <script>
@@ -489,17 +356,7 @@
                 document.head.appendChild(script);
             }
             $(document).ready(function () {
-                $(".EditProfile__header-icon").click(function (event) {
-                    event.preventDefault();
-                    $(".notification_form").slideToggle(250);
-                    $("body").click(function () {
-                        $(".notification_form").slideUp(250);
-                    });
-                    $("img").click(function () {
-                        $(".notification_form").slideUp(250);
-                    });
-                    event.stopPropagation();
-                });
+
                 $(".EditProfile__header-avatar").click(function (event) {
                     event.preventDefault();
                     $(".list-ava").slideToggle();
@@ -511,41 +368,14 @@
                     });
                     event.stopPropagation();
                 });
-                // $(".editProfile").on({
-                //     click: function (event) {
-                //         event.preventDefault();
-                //         $(".EditProfile").fadeIn();
-                //         $(".list-ava").slideUp(250);
-                //         $("#container_w100").css("opacity", "0.5");
-                //         $("#content").css("opacity", "0.5");
-                //         event.stopPropagation();
-                //     }
-                // });
-                // $(".EditProfile__Footer .btn-cancel").click(function () {
-                //     $(".EditProfile").fadeOut();
-                //     $("#container_w100").css("opacity", "1");
-                //     $("#content").css("opacity", "1");
-                // });
 
-                // $(".changePassword").on({
-                //     click: function (event) {
-                //         event.preventDefault();
-                //         $(".ChangePassword").fadeIn();
-                //         $(".list-ava").slideUp(250);
-                //         $("#container_w100").css("opacity", "0.5");
-                //         $("#content").css("opacity", "0.5");
-                //         event.stopPropagation();
-                //     }
-                // })
                 $(".myProfile").on({
                     click: function (event) {
 
                         $(".list-ava").slideUp(250);
 
 
-                        // LoadCss("/MyProfile/MyProfile.css");
 
-                        // LoadScript("https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js");
 
 
                     }
@@ -576,5 +406,5 @@
 
             });
         </script>
-        <script src = "/assets/js/main/header.js"></script>
+        <script src="/assets/js/main/header.js"></script>
         <% } %>

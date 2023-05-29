@@ -1,22 +1,21 @@
 
 var size = 6;
-var urlMenu = `/user/getMyMenu`;
-let menu;
+var urlOwnMenu = `/user/getMyMenu`;
+let ownMenuData;
 
 function loadMyMenu(data, pageNumber) {
-    console.log(data);
-    if (data.length === 0) {
+    if (ownMenuData.length === 0) {
         $('.menu_row-data').html('<p class="text-center">No results found for the search text.</p>');
     } else {
         $('.menu_row-data').html('');
         let result = "";
 
-        for (let i = (pageNumber - 1) * size; i < (pageNumber - 1) *size + size; i++) {
+        for (let i = (pageNumber - 1) * size; i < (pageNumber - 1) * size + size; i++) {
             if (i < data.length) {
                 result += `
                 <div class="col">
                 <div class="home-product-item">
-                    <a href="#">
+                    <a href="/foodDetail/menuid=${data[i].menuid}" target="_blank">
                         <div class="home-product-item__img"
                             style="background-image: url(${data[i].menuimage});">
                         </div>
@@ -35,8 +34,8 @@ function loadMyMenu(data, pageNumber) {
                     <div class="home-product-item__action">
                         <button type="button"
                             class="home-product-item__action-btn btn btn-info">Sửa</button>
-                        <button type="button"
-                            class="home-product-item__action-btn btn btn-danger">Xóa</button>
+                        
+                            <button type="button" class="home-product-item__action-btn btn btn-danger" id = "/user/deleteMenu${data[i].menuid}">Xóa</button>
                     </div>
                     <div class="home-product-item__status">
                         <span class="home-product-item__private hide">
@@ -58,34 +57,73 @@ function loadMyMenu(data, pageNumber) {
     }
 
 }
+
 //Init data
 $(document).ready(async function () {
-    menu = await $.ajax({
+
+    ownMenuData = await $.ajax({
         dataType: 'json',
-        url: urlMenu,
+        url: urlOwnMenu,
         success: function (datas) {
-            return datas;
+            return datas.data;
         }
     });
 
+    if (ownMenuData.data != null) {
+        $('.home-filter__page').pagination({
+            dataSource: function (done) {
+                $.ajax({
+                    success: function () {
+                        done(ownMenuData.data.list);
+                    }
+                });
+            },
+            pageSize: size,
+            showPrevious: false,
+            showNext: false,
+            afterPageOnClick: function (event, pageNumber) {
+                loadMyMenu(ownMenuData.data.list, pageNumber);
+            },
+            beforeInit: function (event, pageNumber) {
+                loadMyMenu(ownMenuData.data.list, 1);
+            }
+        })
+    } else {
+        $('.menu_row-data').html('<p class="text-center">No menu was created.</p>');
+    }
 
-    $('.home-filter__page').pagination({
-        dataSource: function (done) {
-            $.ajax({
-                success: function () {
-                    done(menu.data.list);
-                }
-            });
+
+});
+
+
+$(document).on('click', '.home-product-item__action-btn.btn-danger', async function (event) {
+    var clickedButton = $(event.target);
+    var urldelete = clickedButton.attr('id');
+    console.log(urldelete);
+
+    var confirmed = confirm("Are you sure you want to delete?");
+    if (!confirmed) {
+        return; // Cancel the delete operation
+    }
+
+    const res = await $.ajax({
+        dataType: 'json',
+        url: urldelete,
+        type: 'DELETE',
+        success: function (data) {
+            console.log('Delete request successful');
         },
-        pageSize: size,
-        showPrevious: false,
-        showNext: false,
-        afterPageOnClick: function (event, pageNumber) {
-            loadMyMenu(menu.data.list, pageNumber);
-        },
-        beforeInit: function (event, pageNumber) {
-            loadMyMenu(menu.data.list, 1);
+        error: function (xhr, textStatus, errorThrown) {
+            // Handle the error response
+            console.error('Delete request error');
+            console.error(errorThrown);
         }
-    })
+    });
 
+    if (res != null) {
+        alert("The menu was deleted!")
+        window.location.href = "/user/myMenu"; // Replace "/success-page" with the actual URL of the success page
+    } else {
+        alert("Delete unsuccessfully")
+    }
 });

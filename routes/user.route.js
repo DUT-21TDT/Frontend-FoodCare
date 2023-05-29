@@ -15,7 +15,8 @@ const {
     updateBMI,
     reactMenu,
     getMyMenuData,
-    getUserInfo
+    getUserInfo,
+    deleteMenuDetailById
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
@@ -34,6 +35,7 @@ router.put("/update-profile", auth, updateProfileUser);
 router.post("/updateBMI", auth, updateBMI);
 router.post("/menu=:menudid", auth, reactMenu);
 router.get("/getMyMenu", auth, getMyMenuData);
+router.delete("/deleteMenu:id", auth, deleteMenuDetailById)
 
 
 router.get("/getUserInfo", auth, getUserInfo);

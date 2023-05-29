@@ -11,7 +11,7 @@ const renderProfileView = async (req, res, next) => {
 
     console.log(userInfo);
 
-    
+
 
     res.render("pages/MyProfile", {
         layout: './layouts/main_layout.ejs',
@@ -76,7 +76,7 @@ const getBMIwithProfile = async (req, res, next) => {
         return null;
     });
     if (BMIs.data.count) {
-        
+
         res.json({
             success: true,
             message: "get BMI successfuly.",
@@ -199,22 +199,31 @@ const reactMenu = async (id) => {
 }
 
 const getMyMenuData = async (req, res, next) => {
-    const data = await instance.get(`/menus/mymenu`, {
-        headers: {
-            Cookie: `token=${req.session.token}`
-        }
-    }).then((response) => {
-        return response.data;
-    }).catch((err) => {
-        console.log(err);
-        return null;
-    });
+    try {
+        let responseData = await instance.get(`/menus/mymenu`, {
+            headers: {
+                Cookie: `token=${req.session.token}`
+            }
+        }).then(response => {
+            return response.data;
+        }).catch((err) => {
+            console.log(err);
+            return null;
+        });
+
+        res.send(responseData);
+
+    } catch (error) {
+        console.log({ message: error })
+        res.status(500);
+    }
 }
+
 
 
 const updateAvatar = async (imgUrl, token) => {
     const respponse = await instance.put("/profile/upload-avatar", {
-        avatarImage : imgUrl
+        avatarImage: imgUrl
     }, {
         headers: {
             Cookie: `token=${token}`,
@@ -226,18 +235,18 @@ const updateAvatar = async (imgUrl, token) => {
         .catch((err) => {
             return null;
         });
-    
-    
+
+
 }
 
 const getUserInfo = async (req, res, next) => {
     const userId = req.session.userId;
     const userInfo = await getUserInfoByUserId(userId, req.session.token);
 
-    if(userInfo.success){
+    if (userInfo.success) {
         res.send({
             success: true,
-            userInfo:{
+            userInfo: {
                 name: userInfo.data.name,
                 avatarImage: userInfo.data.avatar
             }
@@ -251,6 +260,25 @@ const getUserInfo = async (req, res, next) => {
 
 
 }
+
+const deleteMenuDetailById = async (req, res) => {
+    try {
+        var id = req.params.id;
+        const response = await instance.delete(`/menus/menuid=${id}/delete`, {
+            headers: {
+                Cookie: `token=${req.session.token}`,
+            },
+        }).then(res => {
+            return res.data;
+        });
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+
+};
+
+
 
 
 module.exports = {
@@ -266,6 +294,6 @@ module.exports = {
     reactMenu,
     getMyMenuData,
     updateAvatar,
-    // GET
     getUserInfo,
+    deleteMenuDetailById
 };
