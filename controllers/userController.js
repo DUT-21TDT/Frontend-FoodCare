@@ -264,19 +264,61 @@ const getUserInfo = async (req, res, next) => {
 const deleteMenuDetailById = async (req, res) => {
     try {
         var id = req.params.id;
-        const response = await instance.delete(`/menus/menuid=${id}/delete`, {
-            headers: {
-                Cookie: `token=${req.session.token}`,
-            },
-        }).then(res => {
-            return res.data;
-        });
+        const response = await instance.delete(`/menus/menuid=${id}/delete`,
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
     } catch (err) {
         console.error(err);
         return null;
     }
 
 };
+
+const likeMenuById = async (req, res) => {
+    try {
+        var id = req.params.id;
+        const response = await instance.post(`/menus/menuid=${id}/ratings/create`,
+            {
+                favorite: 1,
+                comment: "ok nice",
+            }
+            ,
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const unLikeMenuById = async (req, res) => {
+    try {
+        var id = req.params.id;
+        const response = await instance.post(`/menus/menuid=${id}/ratings/delete`,
+            {},
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
 
 
 
@@ -295,5 +337,7 @@ module.exports = {
     getMyMenuData,
     updateAvatar,
     getUserInfo,
-    deleteMenuDetailById
+    deleteMenuDetailById,
+    likeMenuById,
+    unLikeMenuById
 };
