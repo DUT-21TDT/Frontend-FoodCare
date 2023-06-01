@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="../assets/css/Edit Your Menu.css">
+<div class="container" id="createMenu">
+    <div class="EYM_header">
+      <a href="/user/MyMenu" class="">
+        <i class="fa-solid fa-circle-arrow-left EYM_header__icon"></i>
+      </a>
+      <h2 class="EYM_header__title">Create Your Menu</h2>
+    </div>
+    <div class="EYM_body">
+      <div class="EYM_body__left">
+        <div class="EYM_body__left-top">
+          <input type="text" placeholder="Nhập tên thực đơn của bạn" id="EYM_body__left-top--nameMenu" value = "<%=data.menuname%>">
+          <h3 class="EYM_body__left--title">Nutritions</h3>
+          <div class="EYM_body__left-nutriinfor">
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Energy</div>
+              <span class="nutriinfor--item__text-energy">0 calories</span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Water</div>
+              <span class="nutriinfor--item__text-water">0 ml</span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Carbs</div>
+              <span class="nutriinfor--item__text-carbohydrate">0 gram</span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Protein</div>
+              <span class="nutriinfor--item__text-protein">0 gram</span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Lipid</div>
+              <span class="nutriinfor--item__text-lipid">0 gram</span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Vitamins</div>
+              <span class="nutriinfor--item__text-vitamins"></span>
+            </div>
+            <div class="EYM_body__left-nutriinfor--item">
+              <div class="nutriinfor--item__circle">Minerals</div>
+              <span class="nutriinfor--item__text-minerals"></span>
+            </div>
+          </div>
+          <div class="EYM_body__left-bottom">
+  
+            <div>
+              <table class="EYM_body__left-bottom--table">
+                <thead>
+                  <tr>
+                    <th>Name of food</th>
+                    <th>Count</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="Breakfast">
+                    
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      <div class="EYM_body__right">
+        <div class="EYM_body__right-top">
+          
+          <div class="divSearch">
+  
+            <div class="input-group create_search-input" style="width: 500px;">
+              <input type="search" class="form-control rounded search_box" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+            </div>
+          </div>
+  
+        </div>
+        <div class="EYM_body__right-bottom">
+          <ul class="create_result-container">
+  
+          </ul>
+         
+          <div class="btn-toolbar justify-content-md-center result_page create_page-btn" role="toolbar"
+            aria-label="Toolbar with button groups" style="padding: 50px 0">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="EYM_footer" style="padding-top: 110px;">
+      
+      <button class="EYM_footer__btn bntSave">
+        Save
+      </button>
+    </div>
+  </div>
+<script src="../assets/js/getSearchEditMenu.js"></script>
+<script>
+    
+</script>
+  
+  
+

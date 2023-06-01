@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+#createMenu {
+    padding: 40px 0;
+}
+
+.EYM_header {
+    width: 100%;
+    height: 40px;
+    margin-top: 80px;
+    /* background-color: red; */
+    position: relative;
+}
+
+.EYM_header a {
+    text-decoration: none;
+}
+
+.EYM_header__icon {
+    font-size: 40px;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    color: black;
+}
+
+.EYM_header__title {
+    right: 50%;
+    top: 15%;
+    font-size: 35px;
+    text-align: center;
+}
+
+.EYM_body {
+    width: 1100px;
+    height: 580px;
+    /* background-color: antiquewhite; */
+    margin: 20px 0px 0px 30px;
+    display: flex;
+
+}
+
+.EYM_body__left {
+    width: 550px;
+    height: 700px;
+
+}
+
+.EYM_body__right {
+    width: 60%;
+    height: 100%;
+    margin-left: -20px;
+    /* background-color:blue; */
+}
+
+.EYM_body__left-top {
+    width: 550px;
+    height: 250px;
+
+
+}
+
+#EYM_body__left-top--nameMenu {
+    display: block;
+    width: 270px;
+    height: 40px;
+    font-size: 0.95rem;
+    padding: 0px 15px;
+    border-radius: 15px;
+    margin: 3px 0px 0px 110px;
+}
+
+.EYM_body__left-bottom {
+    width: 550px;
+    height: 350px;
+    /* background-color: black; */
+}
+
+.EYM_body__left-nutriinfor {
+    width: 110%;
+    height: 120%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+
+}
+
+.EYM_body__left--title {
+    font-size: 25px;
+    margin-left: 45px;
+    /* margin-top:5px;    */
+    padding: 15px 0px;
+}
+
+.EYM_body__left-nutriinfor--item {
+    width: 225px;
+    height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.nutriinfor--item__circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #d6e68a;
+    text-align: center;
+    line-height: 70px;
+    font-weight: 600;
+}
+
+.nutriinfor--item__text {
+    margin-left: 30px;
+}
+
+.EYM_body__left-bottom>div {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 240px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #bdbdbd;
+    border-radius: 5px;
+}
+
+.EYM_body__left-bottom--button {
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.EYM_body__left-bottom--table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+
+}
+
+.EYM_body__left-bottom--table th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.EYM_body__left-bottom--table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.EYM_body__left-bottom--table th {
+    background-color: #ccc;
+}
+
+.EYM_body__left-bottom--table thead tr th {
+    font-size: 20px;
+}
+
+.EYM_body__left-bottom--table a {
+    text-decoration: none;
+}
+
+.EYM_body__left-bottom--table .table-icon {
+    font-size: 27px;
+    color: black;
+}
+
+.EYM_body__right-bottom {
+    position: relative;
+
+}
+
+.EYM_body__right-bottom ul li {
+    padding-bottom: 10px;
+    position: relative;
+    display: block;
+    width: 270px;
+    height: 274px;
+}
+
+.EYM_body__right-bottom ul li a {
+    text-decoration: none;
+}
+
+.divSearch {
+    width: 100%;
+    height: 50px;
+    margin-left: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.divSearch__input {
+    display: block;
+    width: 450px;
+    height: 50px;
+    font-size: 0.95rem;
+    padding: 0px 40px;
+    border-radius: 15px;
+    margin-left: 40px;
+
+
+}
+
+.divSearch__btn {
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.divSearch__icon {
+    position: absolute;
+    left: 10%;
+
+}
+
+.EYM_body__right-bottom {
+    width: 100%;
+    height: 80%;
+    margin-left: 10px;
+    /* margin-top:50px; */
+    /* background-color: green; */
+
+}
+
+.EYM_body__right-bottom>ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+    justify-content: space-evenly;
+    width: 700px;
+    height: 600px;
+}
+
+.EYM_body__right-bottom--img {
+    display: block;
+    overflow: hidden;
+    width: 300px;
+    height: 250px;
+    background-color: black;
+    margin: 45px 0px;
+    border: 0.5px solid #bdbdbd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    position: relative;
+}
+
+.EYM_body__right-bottom--img>img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.EYM_body__right-bottom__icon {
+    font-size: 50px;
+    color: black;
+    position: absolute;
+    right: -15%;
+    top: 65%;
+}
+
+.EYM_footer {
+    /* background-color: red; */
+    margin-top: 130px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.EYM_footer__btn {
+    width: 110px;
+    height: 40px;
+    border-radius: 15px;
+    margin: 0px 150px;
+    background-color: #d6e68a;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.NameOfFood {
+    position: absolute;
+    /* Định vị tuyệt đối cho dòng chữ */
+    left: 50%;
+    transform: translateX(-40%);
+    /* Đặt vị trí của dòng chữ ở phía trên cùng của khối chứa */
+    bottom: -20%;
+    /* Đặt vị trí của dòng chữ ở bên trái của khối chứa */
+    color: black;
+    /* Đặt màu sắc cho văn bản */
+    font-size: 20px;
+    /* Đặt kích thước chữ */
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.NameOfFood {
+    display: inline-block;
+    max-width: 300px;
+    /* Adjust the maximum width as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: max-width 0.3s ease;
+    /* Optional: Add a smooth transition */
+}
+
+.NameOfFood:hover {
+    max-width: none;
+}
+
+.EYM_body__right-bottom--icon.Detail {
+    position: absolute;
+    left: 20%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 60px;
+    color: #fff;
+    display: none;
+}
+
+.EYM_body__right-bottom--icon.Add {
+    position: absolute;
+    left: 60%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 60px;
+    color: #fff;
+    display: none;
+}

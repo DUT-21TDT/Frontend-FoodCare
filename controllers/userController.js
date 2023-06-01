@@ -305,6 +305,52 @@ const userCreateMenu = async(req,res,next) =>{
             return null;
         });
 }
+const userRatingMenu = async(req,res,next)=>{
+    let id = req.params.id;
+    let favorite = req.body.favorite;
+    let comment = req.body.comment;
+    let data = {
+        "favorite":favorite,
+        "comment":comment,
+    };
+    const response = await instance.post(`/menus/menuid=${id}/ratings/create`, data, {
+        headers: {
+            Cookie: `token=${req.session.token}`,
+        },
+    })
+        .then((data) => {
+            return data.data;
+        })
+        .catch((err) => {
+            return null;
+        });
+
+}
+
+const getDataEditMenuByMenuId = async (menuId,token)=>{
+    const dataByMenuId = await instance.get(`/menus/menuid=${menuId}`, {
+        headers: {
+            Cookie: `token=${token}`
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        return null;
+    });
+
+    return dataByMenuId;
+
+}
+
+const getViewEditMenu = async (req,res,next) =>{
+    var id = req.params.id;
+    const dataByMenuId = await getDataEditMenuByMenuId(id,req.session.token);
+    res.render("pages/EditYourMenu", {
+        layout: './layouts/main_layout.ejs',
+        title: "Edit Your Menu",
+        data: dataByMenuId.data,
+    });
+}
 
 
 
@@ -325,4 +371,6 @@ module.exports = {
     getUserInfo,
     deleteMenuDetailById,
     userCreateMenu,
+    userRatingMenu,
+    getViewEditMenu,
 };

@@ -18,6 +18,8 @@ const {
     getUserInfo,
     deleteMenuDetailById,
     userCreateMenu,
+    userRatingMenu,
+    getViewEditMenu,
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
@@ -39,7 +41,8 @@ router.get("/getMyMenu", auth, getMyMenuData);
 router.delete("/deleteMenu:id", auth, deleteMenuDetailById);
 
 router.post("/menus/create",auth,userCreateMenu);
-
+router.post("/menus/menu=:menuid/ratings/create",auth,userRatingMenu);
+router.get("/getViewEditMenu:id",auth,getViewEditMenu);
 
 router.get("/getUserInfo", auth, getUserInfo);
 

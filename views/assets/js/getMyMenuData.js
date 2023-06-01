@@ -33,7 +33,7 @@ function loadMyMenu(data, pageNumber) {
                     </div>
                     <div class="home-product-item__action">
                         <button type="button"
-                            class="home-product-item__action-btn btn btn-info">Sửa</button>
+                            class="home-product-item__action-btn btn btn-info"  id = "/user/getViewEditMenu${data[i].menuid}">Sửa</button>
                         
                             <button type="button" class="home-product-item__action-btn btn btn-danger" id = "/user/deleteMenu${data[i].menuid}">Xóa</button>
                     </div>
@@ -126,4 +126,12 @@ $(document).on('click', '.home-product-item__action-btn.btn-danger', async funct
     } else {
         alert("Delete unsuccessfully")
     }
+});
+
+
+$(document).on('click', '.home-product-item__action-btn.btn-info',function(event)
+{
+    var clickedButton = $(event.target);
+    var urlGetEditMenu = clickedButton.attr('id');
+    window.location.href = urlGetEditMenu;
 });
