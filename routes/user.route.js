@@ -18,7 +18,9 @@ const {
     getUserInfo,
     deleteMenuDetailById,
     likeMenuById,
-    unLikeMenuById
+    unLikeMenuById,
+    userCreateMenu,
+    renderOwnMenuDetailView,
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
@@ -41,6 +43,8 @@ router.delete("/deleteMenu:id", auth, deleteMenuDetailById);
 router.post("/likeMenu:id", auth, likeMenuById);
 router.post("/unLikeMenu:id", auth, unLikeMenuById);
 
+router.post("/menus/create",auth,userCreateMenu);
+router.get("/menuid=:menuid", auth, renderOwnMenuDetailView);
 
 router.get("/getUserInfo", auth, getUserInfo);
 
