@@ -15,7 +15,7 @@ function loadMyMenu(data, pageNumber) {
                 result += `
                 <div class="col">
                 <div class="home-product-item">
-                    <a href="/foodDetail/menuid=${data[i].menuid}" target="_blank">
+                    <a href="/user/menuid=${data[i].menuid}" target="_blank">
                         <div class="home-product-item__img"
                             style="background-image: url(${data[i].menuimage});">
                         </div>

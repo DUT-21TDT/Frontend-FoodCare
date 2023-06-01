@@ -267,13 +267,14 @@ const getUserInfo = async (req, res, next) => {
 const deleteMenuDetailById = async (req, res) => {
     try {
         var id = req.params.id;
-        const response = await instance.delete(`/menus/menuid=${id}/delete`, {
-            headers: {
-                Cookie: `token=${req.session.token}`,
-            },
-        }).then(res => {
-            return res.data;
-        });
+        const response = await instance.delete(`/menus/menuid=${id}/delete`,
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
     } catch (err) {
         console.error(err);
         return null;
@@ -281,17 +282,57 @@ const deleteMenuDetailById = async (req, res) => {
 
 };
 
-const userCreateMenu = async(req,res,next) =>{
+const likeMenuById = async (req, res) => {
+    try {
+        var id = req.params.id;
+        const response = await instance.post(`/menus/menuid=${id}/ratings/create`,
+            {
+                favorite: 1,
+                comment: "ok nice",
+            }
+            ,
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const unLikeMenuById = async (req, res) => {
+    try {
+        var id = req.params.id;
+        const response = await instance.post(`/menus/menuid=${id}/ratings/delete`,
+            {},
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const userCreateMenu = async (req, res, next) => {
     let menuName = req.body.menuName;
     let foodsList = req.body.foodsList;
-   let creator = req.body.creator;
-   let menuImage = req.body.menuImage;
+    let creator = req.body.creator;
+    let menuImage = req.body.menuImage;
 
     const data = {
         "menuName": menuName,
         "foodsList": foodsList,
-        "creator":creator,
-        "menuImage":menuImage,
+        "creator": creator,
+        "menuImage": menuImage,
     };
     const response = await instance.post("/menus/create", data, {
         headers: {
@@ -305,6 +346,174 @@ const userCreateMenu = async(req,res,next) =>{
             return null;
         });
 }
+
+const renderOwnMenuDetailView = async (req, res, next) => {
+    const ownMenuId = req.params.menuid;
+
+    const ownMenuInfo = await getOwnMenuDetailById(ownMenuId, req);
+
+    var nutrition = {
+        energy: 0,
+        carbs: 0,
+        lipid: 0,
+        protein: 0,
+        vitamins: "",
+        minerals: "",
+    };
+
+    var foodElements = [];
+    var index = 0;
+    await Promise.all(
+        ownMenuInfo.data.foods.list.map(async (food) => {
+            const foodInfo = await getFoodDetailById(food.foodid);
+            nutrition.energy += foodInfo.data.energy;
+            nutrition.carbs += foodInfo.data.carbohydrate;
+            nutrition.lipid += foodInfo.data.lipid;
+            nutrition.protein += foodInfo.data.protein;
+
+            if (foodInfo.data.vitamins) {
+                const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
+                vitamins.forEach((vitamin) => {
+                    if (!nutrition.vitamins.includes(vitamin)) {
+                        nutrition.vitamins += (nutrition.vitamins.length > 0 ? ", " : "") + vitamin;
+                    }
+                });
+            }
+
+            if (foodInfo.data.minerals) {
+                const minerals = foodInfo.data.minerals.split(',').map((mineral) => mineral.trim());
+                minerals.forEach((mineral) => {
+                    if (!nutrition.minerals.includes(mineral)) {
+                        nutrition.minerals += (nutrition.minerals.length > 0 ? ", " : "") + mineral;
+                    }
+                });
+            }
+
+            // Add foodName and foodImage to foodElements
+            foodElements[index] = {
+                foodName: foodInfo.data.foodname,
+                foodAmount: food.amount,
+                foodId: foodInfo.data.foodid,
+            };
+
+            index++;
+        })
+    );
+
+    console.log(foodElements);
+
+    res.render("pages/detailMenu", {
+        layout: './layouts/main_layout.ejs',
+        title: "Detail menu",
+        data: ownMenuInfo.data,
+        nutrition: nutrition,
+        foodElements: foodElements,
+    });
+};
+
+
+
+
+const getOwnMenuDetailById = async (id, req) => {
+    try {
+        const response = await instance.get(`/menus/menuid=${id}`, {
+            headers: {
+                Cookie: `token=${req.session.token}`
+            }
+        });
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+
+const getFoodDetailById = async (id) => {
+    try {
+        const response = await instance.get(`/public/foods/${id}`);
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+};
+const getViewEditMenu = async (req,res,next) =>{
+    var id = req.params.id;
+    const ownMenuInfo = await getOwnMenuDetailById(id, req);
+
+    var nutrition = {
+        energy: 0,
+        carbs: 0,
+        lipid: 0,
+        protein: 0,
+        vitamins: "",
+        minerals: "",
+    };
+
+    var foodElements = [];
+    var index = 0;
+    await Promise.all(
+        ownMenuInfo.data.foods.list.map(async (food) => {
+            const foodInfo = await getFoodDetailById(food.foodid);
+            nutrition.energy += foodInfo.data.energy;
+            nutrition.carbs += foodInfo.data.carbohydrate;
+            nutrition.lipid += foodInfo.data.lipid;
+            nutrition.protein += foodInfo.data.protein;
+
+            if (foodInfo.data.vitamins) {
+                const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
+                vitamins.forEach((vitamin) => {
+                    if (!nutrition.vitamins.includes(vitamin)) {
+                        nutrition.vitamins += (nutrition.vitamins.length > 0 ? ", " : "") + vitamin;
+                    }
+                });
+            }
+
+            if (foodInfo.data.minerals) {
+                const minerals = foodInfo.data.minerals.split(',').map((mineral) => mineral.trim());
+                minerals.forEach((mineral) => {
+                    if (!nutrition.minerals.includes(mineral)) {
+                        nutrition.minerals += (nutrition.minerals.length > 0 ? ", " : "") + mineral;
+                    }
+                });
+            }
+
+            // Add foodName and foodImage to foodElements
+            foodElements[index] = {
+                foodName: foodInfo.data.foodname,
+                foodAmount: food.amount,
+                foodId: foodInfo.data.foodid,
+            };
+
+            index++;
+        })
+    );
+
+    console.log(foodElements);
+
+
+    res.render("pages/EditYourMenu", {
+        layout: './layouts/main_layout.ejs',
+        title: "Edit Your Menu",
+        data: ownMenuInfo.data,
+        nutrition: nutrition,
+        foodElements: foodElements,
+    });
+}
+// const getDataEditMenuByMenuId = async (menuId,token)=>{
+//     const dataByMenuId = await instance.get(`/menus/menuid=${menuId}`, {
+//         headers: {
+//             Cookie: `token=${token}`
+//         }
+//     }).then((response) => {
+//         return response.data;
+//     }).catch((err) => {
+//         return null;
+//     });
+
+//     return dataByMenuId;
+
+// }
 const userRatingMenu = async(req,res,next)=>{
     let id = req.params.id;
     let favorite = req.body.favorite;
@@ -324,34 +533,31 @@ const userRatingMenu = async(req,res,next)=>{
         .catch((err) => {
             return null;
         });
-
 }
-
-const getDataEditMenuByMenuId = async (menuId,token)=>{
-    const dataByMenuId = await instance.get(`/menus/menuid=${menuId}`, {
+const updateMenu = async (req,res,next) => {
+    let menuid = req.params.id;
+    let menuName = req.body.menuName;
+    let foodsList = req.body.foodsList;
+    let menuImage = req.body.menuImage;
+    
+    let data = {
+        "menuid":menuid,
+        "menuName":menuName,
+        "foodsList":foodsList,
+        "menuImage":menuImage,
+    }
+    const response = await instance.put(`/menus/menuid=${menuid}/update`, data, {
         headers: {
-            Cookie: `token=${token}`
-        }
-    }).then((response) => {
-        return response.data;
-    }).catch((err) => {
-        return null;
-    });
-
-    return dataByMenuId;
-
+            Cookie: `token=${req.session.token}`,
+        },
+    })
+        .then((data) => {
+            return data.data;
+        })
+        .catch((err) => {
+            return null;
+        });
 }
-
-const getViewEditMenu = async (req,res,next) =>{
-    var id = req.params.id;
-    const dataByMenuId = await getDataEditMenuByMenuId(id,req.session.token);
-    res.render("pages/EditYourMenu", {
-        layout: './layouts/main_layout.ejs',
-        title: "Edit Your Menu",
-        data: dataByMenuId.data,
-    });
-}
-
 
 
 
@@ -370,7 +576,11 @@ module.exports = {
     updateAvatar,
     getUserInfo,
     deleteMenuDetailById,
+    likeMenuById,
+    unLikeMenuById,
     userCreateMenu,
     userRatingMenu,
     getViewEditMenu,
+    renderOwnMenuDetailView,
+    updateMenu,
 };
