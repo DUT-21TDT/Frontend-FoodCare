@@ -93,9 +93,102 @@
       </div>
     </div>
   </div>
+  <div class="CommentView">
+    <div class="CommentViewHeader">
+        <h2 class="CommentViewHeader__title">Thực đơn của <%= userInfo.name %></h2>
+        <a href=""><i class="fa-solid fa-xmark CommentViewHeader__xmark"></i></a>
+    </div>
+    <div class="CommentViewBody">
+        <div class="CommentViewBody__Menu">
+                <img src="<%= data.menuImage %>" alt="" class="CommentViewBody__Menu--picture">
+        </div>
+        <div class="CommentViewBody__CountLikeAndComment">
+            <div class="CommentViewBody__CountLikeAndComment--item">
+                <i class="fa-regular fa-thumbs-up CommentViewBody__iconLike"></i>
+              <% let count = 0; %>
+              <% for (var i = 0; i < dataRating.list.length; i++) { %>
+                <% if (dataRating.list[i].favorite === 1) { %>
+                  <% count++; %>
+                <% } %>
+              <% } %>
+              <span class = "CommentViewBody__CountLikeAndComment--text"><%= count %> Lượt Thích</span>
+            </div>
+            <span class = "CommentViewBody__countComment"><%=dataRating.count%> Bình Luận</span>
+        </div>
+        <!-- <div class="CommentViewBody__btnLikeAndComment">
+            <div class="CommentViewBody__btnLikeAndComment--item">
+                <a href="" id = "TheaLike"><i class="fa-regular fa-thumbs-up CommentViewBody__btnLike"></i></a>
+                <span>Like</span>
+            </div>
+            <div class="CommentViewBody__btnLikeAndComment--item">
+                <a href="" id = "TheaComment"><i class="fa-solid fa-message CommentViewBody__btnComment"></i></a>
+                <span>Comment</span>
+            </div>    
+        </div> -->
+        <div id = "DivComment">
+          <% for (var i = 0; i < dataRating.list.length; i++) { %>
+            <div class  = "divCommentCreated" style="display: flex; margin-top: 5px;">
+              <a href="" class="Comment__avatar">
+                <div class="avatar-img">
+                    <img src="<%= ArrayUserInfo[i].data.avatar%>" alt="">
+                </div>
+            </a>
+            <div class = "CommentByUser">
+                <h4 class = "CommentByUser__name"><%= ArrayUserInfo[i].data.name%></h4>
+                <span class = "CommentByUser__text"><%= dataRating.list[i].comment %>
+                </span>
+            </div> 
+             </div>
+          <% } %>
+            
+                
+           
+        </div>
+        
+    </div>
+    <div class = "CommentViewFooter">
+        <form action="">
+            <input type="text" class = "textComment" id = "inputComment" placeholder="Viết Bình Luận ...." name = "comment">
+            <a href="#" id = "commentMessage" class = "<%=data.menuid%>">
+                <i class="fa-solid fa-paper-plane CommentViewFooter__iconSend" ></i>
+            </a>
+
+            <input type="text" hidden value = "<%= userInfo.name%>" id = "nameUserComment">
+            <input type="text" hidden value = "<%= userInfo.avatar%>" id = "imageUserComment">
+            
+            
+            
+        </form>
+    </div>
+  
+    <!-- <div class="CommentViewResponse">
+        <a href="" class="Comment__avatarResponse">
+                <div class="avatar-img">
+                    <img src="../EditProfile/assets/img/coffee_noel_final_3_2.jpg" alt="">
+                </div>
+            </a>
+        <form action="">
+            
+            <input type="text" class = "textCommentResponse" id = "inputCommentResponse" placeholder="Viết Bình Luận ....">
+            <a href="#" id = "commentMessageResponse">
+                <i class="fa-solid fa-paper-plane CommentViewFooter__iconSendResponse" ></i>
+            </a>
+        </form>
+    </div> -->
+  </div>
 </div>
+
+
+
+
+
+
 
 <link rel="stylesheet" href="../assets/css/Create Your Menu.css">
 <link rel="stylesheet" href="../assets/css/Homepage.css">
 <link rel="stylesheet" href="../assets/css/FID_New_V2.css">
+<link rel="stylesheet" href="../assets/css/CommentView.css">
 <script src="../assets/js/reactMenu.js"></script>
+<script src = "../assets/js/CommentView.js"></script>
+
+

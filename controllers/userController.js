@@ -346,6 +346,19 @@ const userCreateMenu = async (req, res, next) => {
             return null;
         });
 }
+const getAllRatingsByMenuId = async (token,id) =>{
+    try {
+        const response = await instance.get(`/ratings/menuid=${id}/all`, {
+            headers: {
+                Cookie: `token=${token}`
+            }
+        });
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
 
 const renderOwnMenuDetailView = async (req, res, next) => {
     const ownMenuId = req.params.menuid;
@@ -401,6 +414,17 @@ const renderOwnMenuDetailView = async (req, res, next) => {
     );
 
     console.log(foodElements);
+    const userId = req.session.userId;
+    const userInfo = await getUserInfoByUserId(userId, req.session.token);
+    const dataRating = await getAllRatingsByMenuId(req.session.token,ownMenuId);
+
+    var ArrayUserInfo = [];
+    var dataRatingTmp = dataRating.data;
+    for(var i =0; i < dataRatingTmp.list.length; i++)
+    {
+        const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid,req.session.token);
+        ArrayUserInfo.push(userInfoTmp);
+    }
 
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
@@ -408,6 +432,9 @@ const renderOwnMenuDetailView = async (req, res, next) => {
         data: ownMenuInfo.data,
         nutrition: nutrition,
         foodElements: foodElements,
+        userInfo : userInfo.data,
+        dataRating: dataRating.data,
+        ArrayUserInfo:ArrayUserInfo,
     });
 };
 
@@ -514,15 +541,15 @@ const getViewEditMenu = async (req,res,next) =>{
 //     return dataByMenuId;
 
 // }
-const userRatingMenu = async(req,res,next)=>{
+const userRatingMenu = async (req,res,next)=>{
     let id = req.params.id;
     let favorite = req.body.favorite;
     let comment = req.body.comment;
-    let data = {
-        "favorite":favorite,
-        "comment":comment,
+    var data = {
+        favorite:0,
+        comment: comment,
     };
-    const response = await instance.post(`/menus/menuid=${id}/ratings/create`, data, {
+    const response = await instance.post(`/ratings/menuid=${id}/create`, data, {
         headers: {
             Cookie: `token=${req.session.token}`,
         },
