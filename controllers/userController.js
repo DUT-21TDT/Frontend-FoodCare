@@ -420,11 +420,14 @@ const renderOwnMenuDetailView = async (req, res, next) => {
 
     var ArrayUserInfo = [];
     var dataRatingTmp = dataRating.data;
-    for(var i =0; i < dataRatingTmp.list.length; i++)
-    {
-        const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid,req.session.token);
-        ArrayUserInfo.push(userInfoTmp);
+    if(dataRatingTmp != null){
+        for(var i = 0; i < dataRatingTmp.list.length; i++)
+        {
+            const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid,req.session.token);
+            ArrayUserInfo.push(userInfoTmp);
+        }
     }
+   
 
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
