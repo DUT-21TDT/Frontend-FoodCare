@@ -215,6 +215,7 @@ $(`.create_search-input`).change(async () => {
             loadPage(filteredData, 1);
         }
     })
+
 });
 
 function truncateText(text, maxLength) {

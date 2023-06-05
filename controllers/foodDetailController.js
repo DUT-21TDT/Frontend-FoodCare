@@ -80,12 +80,17 @@ const renderMenuDetailView = async (req, res, next) => {
 
     console.log(foodElements);
 
+    const dataRating = {
+        list: []
+    }
+        
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
         title: "Detail menu",
         data: menuInfo.data,
         nutrition: nutrition,
         foodElements: foodElements,
+        dataRating: dataRating,
     });
 };
 

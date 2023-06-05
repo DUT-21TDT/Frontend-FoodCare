@@ -28,7 +28,7 @@ function loadPage(data, pageNumber) {
                 result += `
                     <div class="search_result food_result">
                         <a href="#">
-                            <div class="search_img" style="width: 200px;"></div> 
+                            <div class="" style="width: 200px;"></div> 
                             <p class="text-center"></p>
                         </a>
                     </div>
@@ -63,7 +63,7 @@ function loadMenu(data, pageNumber) {
                 result += `
                     <div class="search_result menu_result">
                         <a href="#">
-                            <div class="search_img" style="width: 200px;"></div> 
+                            <div class="" style="width: 200px;"></div> 
                             <p class="text-center"></p>
                         </a>
                     </div>

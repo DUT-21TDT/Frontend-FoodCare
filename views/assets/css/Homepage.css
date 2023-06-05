@@ -121,6 +121,63 @@
     height: 900px;
 }
 
+#foodcare .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#foodcare .navbar-brand {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#foodcare .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#foodcare .nav-item {
+    margin: 0 10px;
+}
+
+#foodcare .user-signUp,
+#foodcare .user-login {
+    margin: 0 5px;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 767px) {
+    #foodcare .navbar {
+        flex-direction: column;
+    }
+
+    #foodcare .g-col-3,
+    #foodcare .g-col-7,
+    #foodcare .g-col-2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    #foodcare .nav-item {
+        margin: 10px 0;
+    }
+
+    #foodcare .user-signUp,
+    #foodcare .user-login {
+        margin: 10px 0;
+    }
+}
+
+#foodcare input {
+    border: 1px solid black;
+}
+
 
 
 #content .food_in4 {
@@ -164,6 +221,11 @@
     font-weight: 500;
     font-size: 20px;
     padding-top: 10px;
+}
+
+.rand_img,
+.search_img {
+    border: 2px solid black;
 }
 
 .form-check-label {
