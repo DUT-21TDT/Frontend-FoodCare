@@ -284,17 +284,14 @@ const deleteMenuDetailById = async (req, res) => {
 
 const likeMenuById = async (req, res) => {
     try {
-        var id = req.params.id;
-        const response = await instance.post(`/menus/menuid=${id}/ratings/create`,
-            {
-                favorite: 1,
-                comment: "ok nice",
-            }
-            ,
-            {
-                headers: {
-                    Cookie: `token=${req.session.token}`,
-                },
+        let id = req.params.id;
+        const response = await instance.post(`/ratings/menuid=${id}/create`, {
+            favorite: 1,
+            comment: null,
+        }, {
+            headers: {
+                Cookie: `token=${req.session.token}`,
+            },
             }).then(res => {
                 return res.data;
             });
@@ -307,8 +304,7 @@ const likeMenuById = async (req, res) => {
 const unLikeMenuById = async (req, res) => {
     try {
         var id = req.params.id;
-        const response = await instance.post(`/menus/menuid=${id}/ratings/delete`,
-            {},
+        const response = await instance.post(`/ratings/menuid=${id}/delete`,
             {
                 headers: {
                     Cookie: `token=${req.session.token}`,
@@ -346,7 +342,7 @@ const userCreateMenu = async (req, res, next) => {
             return null;
         });
 }
-const getAllRatingsByMenuId = async (token,id) =>{
+const getAllRatingsByMenuId = async (token, id) => {
     try {
         const response = await instance.get(`/ratings/menuid=${id}/all`, {
             headers: {
@@ -416,18 +412,17 @@ const renderOwnMenuDetailView = async (req, res, next) => {
     console.log(foodElements);
     const userId = req.session.userId;
     const userInfo = await getUserInfoByUserId(userId, req.session.token);
-    const dataRating = await getAllRatingsByMenuId(req.session.token,ownMenuId);
+    const dataRating = await getAllRatingsByMenuId(req.session.token, ownMenuId);
 
     var ArrayUserInfo = [];
     var dataRatingTmp = dataRating.data;
-    if(dataRatingTmp != null){
-        for(var i = 0; i < dataRatingTmp.list.length; i++)
-        {
-            const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid,req.session.token);
+    if (dataRatingTmp != null) {
+        for (var i = 0; i < dataRatingTmp.list.length; i++) {
+            const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid, req.session.token);
             ArrayUserInfo.push(userInfoTmp);
         }
     }
-   
+
 
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
@@ -435,9 +430,9 @@ const renderOwnMenuDetailView = async (req, res, next) => {
         data: ownMenuInfo.data,
         nutrition: nutrition,
         foodElements: foodElements,
-        userInfo : userInfo.data,
+        userInfo: userInfo.data,
         dataRating: dataRating.data,
-        ArrayUserInfo:ArrayUserInfo,
+        ArrayUserInfo: ArrayUserInfo,
     });
 };
 
@@ -467,7 +462,7 @@ const getFoodDetailById = async (id) => {
         return null;
     }
 };
-const getViewEditMenu = async (req,res,next) =>{
+const getViewEditMenu = async (req, res, next) => {
     var id = req.params.id;
     const ownMenuInfo = await getOwnMenuDetailById(id, req);
 
@@ -544,12 +539,12 @@ const getViewEditMenu = async (req,res,next) =>{
 //     return dataByMenuId;
 
 // }
-const userRatingMenu = async (req,res,next)=>{
+const userRatingMenu = async (req, res, next) => {
     let id = req.params.id;
     let favorite = req.body.favorite;
     let comment = req.body.comment;
     var data = {
-        favorite:0,
+        favorite: 0,
         comment: comment,
     };
     const response = await instance.post(`/ratings/menuid=${id}/create`, data, {
@@ -564,17 +559,17 @@ const userRatingMenu = async (req,res,next)=>{
             return null;
         });
 }
-const updateMenu = async (req,res,next) => {
+const updateMenu = async (req, res, next) => {
     let menuid = req.params.id;
     let menuName = req.body.menuName;
     let foodsList = req.body.foodsList;
     let menuImage = req.body.menuImage;
-    
+
     let data = {
-        "menuid":menuid,
-        "menuName":menuName,
-        "foodsList":foodsList,
-        "menuImage":menuImage,
+        "menuid": menuid,
+        "menuName": menuName,
+        "foodsList": foodsList,
+        "menuImage": menuImage,
     }
     const response = await instance.put(`/menus/menuid=${menuid}/update`, data, {
         headers: {
