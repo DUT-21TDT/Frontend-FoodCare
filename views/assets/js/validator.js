@@ -68,6 +68,37 @@ $(document).ready(function () {
         },
         "Please enter a valid email address."
     );
+    $('#change-password-form').validate({
+        rules: {
+          oldPassword: {
+            required: true,
+          },
+          newPassword: {
+            required: true,
+            minlength: 8,
+          },
+          confirmPassword: {
+            required: true,
+            equalTo: "#newPassword",
+          },
+        },
+        messages: {
+          oldPassword: {
+            required: "Please enter your current password.",
+          },
+          newPassword: {
+            required: "Please enter your new password..",
+            minlength: "New password must be at least 8 characters.",
+          },
+          confirmPassword: {
+            required: "Please re-enter the new password.",
+            equalTo: "Confirmation password does not match.",
+          },
+        },
+       
+      });
+   
+   
 });
 
 
