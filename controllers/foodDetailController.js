@@ -79,18 +79,31 @@ const renderMenuDetailView = async (req, res, next) => {
     );
 
     console.log(foodElements);
-    const dataRating = await getAllRatingsByMenuId(req.session.token, menuId);
-    const userId = req.session.userId;
-    const userInfo = await getUserInfoByUserId(userId, req.session.token);
+    let userId;
+    let userInfo = {
+        list: []
+    };
+    var dataRatingTmp;
+    let dataRating = {
+        list: []
+    };
 
     var ArrayUserInfo = [];
-    var dataRatingTmp = dataRating.data;
-    if (dataRatingTmp != null) {
-        for (var i = 0; i < dataRatingTmp.list.length; i++) {
-            const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid, req.session.token);
-            ArrayUserInfo.push(userInfoTmp);
+
+    if (req.session.token != null) {
+        userId = req.session.userId;
+        userInfo = await getUserInfoByUserId(userId, req.session.token);
+        dataRating = await getAllRatingsByMenuId(req.session.token, menuId);
+        dataRatingTmp = dataRating.data;
+        if (dataRatingTmp != null) {
+            for (var i = 0; i < dataRatingTmp.list.length; i++) {
+                var userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid, req.session.token);
+                ArrayUserInfo.push(userInfoTmp);
+            }
         }
     }
+
+
 
 
     res.render("pages/detailMenu", {
