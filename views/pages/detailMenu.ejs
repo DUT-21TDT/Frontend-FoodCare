@@ -153,6 +153,14 @@
 
       </div>
 
+            <% if (userInfo != null) { %>
+              <input type="text" hidden value="<%= userInfo.name %>" id="nameUserComment">
+              <input type="text" hidden value="<%= userInfo.avatar %>" id="imageUserComment">
+            <% } %>
+            
+            
+            
+        </form>
     </div>
     <div class="CommentViewFooter">
       <input type="text" hidden value="<%# userInfo.name%>" id="nameUserComment">
