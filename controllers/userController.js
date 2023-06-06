@@ -287,7 +287,7 @@ const likeMenuById = async (req, res) => {
         let id = req.params.id;
         const response = await instance.post(`/ratings/menuid=${id}/create`, {
             favorite: 1,
-            comment: null,
+            comment: "Nice",
         }, {
             headers: {
                 Cookie: `token=${req.session.token}`,
