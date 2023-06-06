@@ -79,6 +79,18 @@ const renderMenuDetailView = async (req, res, next) => {
     );
 
     console.log(foodElements);
+    const userId = req.session.userId;
+    const userInfo = await getUserInfoByUserId(userId, req.session.token);
+    const dataRating = await getAllRatingsByMenuId(req.session.token,ownMenuId);
+    var ArrayUserInfo = [];
+    var dataRatingTmp = dataRating.data;
+    if(dataRatingTmp != null){
+        for(var i = 0; i < dataRatingTmp.list.length; i++)
+        {
+            const userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid,req.session.token);
+            ArrayUserInfo.push(userInfoTmp);
+        }
+    }
 
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
@@ -86,6 +98,9 @@ const renderMenuDetailView = async (req, res, next) => {
         data: menuInfo.data,
         nutrition: nutrition,
         foodElements: foodElements,
+        dataRating:dataRating.data,
+        ArrayUserInfo:ArrayUserInfo,
+        userInfo:userInfo.data,
     });
 };
 
