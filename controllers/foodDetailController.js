@@ -79,7 +79,9 @@ const renderMenuDetailView = async (req, res, next) => {
     );
 
     console.log(foodElements);
-    const userId = req.session.userId;
+
+    
+     const userId = req.session.userId;
     const userInfo = await getUserInfoByUserId(userId, req.session.token);
     const dataRating = await getAllRatingsByMenuId(req.session.token,ownMenuId);
     var ArrayUserInfo = [];
