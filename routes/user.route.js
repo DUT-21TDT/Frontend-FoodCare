@@ -24,11 +24,13 @@ const {
     getViewEditMenu,
     renderOwnMenuDetailView,
     updateMenu,
+    updateImageProfile,
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
 
 router.put("/upload", auth, uploadFile);
+router.put("/updateImageProfile", auth, updateImageProfile)
 
 
 router.get("/profile", auth, renderProfileView);
