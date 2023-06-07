@@ -136,10 +136,23 @@ const userChangePassword = async (req, res, next) => {
         }).catch(error => {
             console.log({ message: error.message });
             return {
-                "sucess": false,
+                "success": false,
             }
         });
-        return responseData;
+        if(responseData.data){
+            res.json({
+                success: true,
+                message: "Change Password Successfully!",
+                data: responseData.data
+            });
+        }
+        else {
+            res.json({
+                success: false,
+                message: "Incorrect current password!",
+                data: null,
+            });
+        }
     }
 
 }
@@ -165,6 +178,20 @@ const updateProfileUser = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
+        if(response.data){
+            res.json({
+                success: true,
+                message: "Update Profile Successfully!",
+                data: response.data
+            });
+        }
+        else {
+            res.json({
+                success: false,
+                message: "Update Profile Failed!",
+                data: null,
+            });
+        }
 }
 
 const updateBMI = async (req, res, next) => {
@@ -341,6 +368,22 @@ const userCreateMenu = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
+        if(response.data){
+            res.json({
+                success: true,
+                message: "Create Your Menu Successfully!",
+                data: response.data
+            });
+        }
+        else {
+            res.json({
+                success: false,
+                message: "Create Your Menu Failed!",
+                data: null,
+            });
+        }
+
+    
 }
 const getAllRatingsByMenuId = async (token, id) => {
     try {
@@ -582,6 +625,20 @@ const updateMenu = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
+        if(response){
+            res.json({
+                success: true,
+                message: "Update Your Menu Successfully!",
+            });
+        }
+        else {
+            res.json({
+                success: false,
+                message: "Update Your Menu Failed!",
+            });
+        }
+
+    
 }
 
 
