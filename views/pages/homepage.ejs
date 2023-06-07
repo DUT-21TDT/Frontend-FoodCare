@@ -50,7 +50,7 @@
     </div>
   </div>
   <!-- BMI CALCULATOR -->
-  <div class="container bmi_cal" id="bmi_calculator">
+  <div class="container-fluid bmi_cal" id="bmi_calculator">
     <div class="row text-center pt-4">
       <h1>Fill your information</h1>
       <p style="font-size: 25px;">To calculate your BMI and know the suitable menu</p>
@@ -117,7 +117,7 @@
   </div>
 
   <!-- Food Suggestion -->
-  <div class="container food_suggest" id="food_suggestion">
+  <div class="container-fluid food_suggest" id="food_suggestion">
     <div class="row text-center pt-4 ">
       <h1>Food Suggestion</h1>
       <p style="font-size: 25px;">Help you to decide what to eat immediately...</p>
@@ -213,9 +213,9 @@
 
     var pElements = $('.bmi_input:last').siblings('p:first');
     if (pElements.length > 0) {
-      pElements.text('BMI cho rằng sức khoẻ của bạn là ' + status);
+      pElements.text('Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status);
     } else {
-      $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
+      $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500 word-wrap: break-word; max-width: 380px;">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
     }
   }
   )

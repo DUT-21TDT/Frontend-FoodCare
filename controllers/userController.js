@@ -292,9 +292,9 @@ const likeMenuById = async (req, res) => {
             headers: {
                 Cookie: `token=${req.session.token}`,
             },
-            }).then(res => {
-                return res.data;
-            });
+        }).then(res => {
+            return res.data;
+        });
     } catch (err) {
         console.error(err);
         return null;
@@ -375,10 +375,11 @@ const renderOwnMenuDetailView = async (req, res, next) => {
     await Promise.all(
         ownMenuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            nutrition.energy += foodInfo.data.energy;
-            nutrition.carbs += foodInfo.data.carbohydrate;
-            nutrition.lipid += foodInfo.data.lipid;
-            nutrition.protein += foodInfo.data.protein;
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2))
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
@@ -480,10 +481,11 @@ const getViewEditMenu = async (req, res, next) => {
     await Promise.all(
         ownMenuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            nutrition.energy += foodInfo.data.energy;
-            nutrition.carbs += foodInfo.data.carbohydrate;
-            nutrition.lipid += foodInfo.data.lipid;
-            nutrition.protein += foodInfo.data.protein;
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2))
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());

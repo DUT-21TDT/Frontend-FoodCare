@@ -20,7 +20,7 @@ function loadPage(data, pageNumber) {
                         <a href="/foodDetail/${data[i].foodid}" target="_blank">
                             <p id="foodID" hidden>${data[i].foodid}</p>
                             <img class="search_img" src="${data[i].foodimage} " alt="">
-                            <p class="text-center">${data[i].foodname}</p>
+                            <p class="text-center ellipsis">${data[i].foodname}</p>
                         </a>
                     </div>
                 `;
@@ -29,7 +29,7 @@ function loadPage(data, pageNumber) {
                     <div class="search_result food_result">
                         <a href="#">
                             <div class="" style="width: 200px;"></div> 
-                            <p class="text-center"></p>
+                            <p class="text-center "></p>
                         </a>
                     </div>
                 `;
@@ -55,7 +55,7 @@ function loadMenu(data, pageNumber) {
                         <a href="/foodDetail/menuid=${data[i].menuid}" target="_blank">
                             <p id="menuID" hidden>${data[i].menuid}</p>
                             <img class="search_img" src="${data[i].menuimage}" alt="">
-                            <p class="text-center">${data[i].menuname}</p>
+                            <p class="text-center ellipsis">${data[i].menuname}</p>
                         </a>
                     </div>
                 `;
