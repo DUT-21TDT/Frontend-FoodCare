@@ -79,22 +79,72 @@ const renderMenuDetailView = async (req, res, next) => {
     );
 
     console.log(foodElements);
-
-    const dataRating = {
+    let userId;
+    let userInfo = {
         list: []
+    };
+    var dataRatingTmp;
+    let dataRating = {
+        list: []
+    };
+
+    var ArrayUserInfo = [];
+
+    if (req.session.token != null) {
+        userId = req.session.userId;
+        userInfo = await getUserInfoByUserId(userId, req.session.token);
+        dataRating = await getAllRatingsByMenuId(req.session.token, menuId);
+        dataRatingTmp = dataRating.data;
+        if (dataRatingTmp != null) {
+            for (var i = 0; i < dataRatingTmp.list.length; i++) {
+                var userInfoTmp = await getUserInfoByUserId(dataRatingTmp.list[i].userid, req.session.token);
+                ArrayUserInfo.push(userInfoTmp);
+            }
+        }
     }
-        
+
+
+
+
     res.render("pages/detailMenu", {
         layout: './layouts/main_layout.ejs',
         title: "Detail menu",
         data: menuInfo.data,
         nutrition: nutrition,
         foodElements: foodElements,
-        dataRating: dataRating,
+        userInfo: userInfo.data,
+        dataRating: dataRating.data,
+        ArrayUserInfo: ArrayUserInfo,
     });
 };
 
+const getUserInfoByUserId = async (userId, token) => {
+    const userInfo = await instance.get(`/profile/userid=${userId}`, {
+        headers: {
+            Cookie: `token=${token}`
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        return null;
+    });
 
+    return userInfo;
+}
+
+const getAllRatingsByMenuId = async (token, id) => {
+    try {
+        const response = await instance.get(`/ratings/menuid=${id}/all`, {
+            headers: {
+                Cookie: `token=${token}`
+            }
+        });
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
 
 
 const getMenuDetailById = async (id) => {

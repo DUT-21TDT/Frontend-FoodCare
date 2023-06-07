@@ -10,6 +10,7 @@
       <div class="EYM_body__left">
         <div class="EYM_body__left-top">
           <input type="text" placeholder="Nhập tên thực đơn của bạn" id="EYM_body__left-top--nameMenu" value = "<%= data.menuname %>">
+          <!-- <button id = "btnEditMenuImage">Edit Your Menu Image</button> -->
           <h3 class="EYM_body__left--title">Nutritions</h3>
           <div class="EYM_body__left-nutriinfor">
             <div class="EYM_body__left-nutriinfor--item">
@@ -105,8 +106,26 @@
   </div>
 <script src="../assets/js/getSearchEditMenu.js"></script>
 <script>
+  var fileUrl;
+  
    $(document).ready(function()
     {
+     
+      // $(document).on('click','#btnEditMenuImage',function(){
+      //       var fileDialog = $('<input type="file" name="ImageMenu" accept=".png,.jpg,.jpeg">');
+      //       fileDialog.change(function() {
+      //       var file = this.files[0]; // Lấy tệp đầu tiên trong danh sách các tệp đã chọn
+      //       fileUrl = URL.createObjectURL(file); // Tạo URL đến tệp đã chọn
+      //       var fileExtension = "." + file.type.split("/")[1];
+      //       var imgurUrl = "https://i.imgur.com/";
+      //       var finalUrl = imgurUrl + fileUrl.substring(fileUrl.lastIndexOf('/') + 1) + ;
+      //       fileUrl = finalUrl;
+      //       // Sử dụng đường dẫn i.imgur ở đây (finalUrl)
+      //       console.log(finalUrl);
+      //       });
+            
+      //       fileDialog.click();
+      //     });
       $(document).on('click','.EYM_footer__btn.bntSave',  function(event){
         let menuName = $("#EYM_body__left-top--nameMenu").val();
         var rows = $('#Breakfast tr');
@@ -124,6 +143,10 @@
         foodObjects.push(foodObject);
         });
         
+        
+
+        
+        
 
         if(menuName === "")
         {
@@ -135,6 +158,7 @@
             var urlUpdate = clickedButton.attr('id');
             var menuid = "<%=data.menuid%>";
             var ImageDefault = "../assets/images/menu_img/default-menu.jpg";
+            // var ImageDefault = fileUrl;
              $.ajax({
               url: urlUpdate, 
               type: 'PUT',
@@ -145,27 +169,20 @@
                 foodsList: foodObjects,
               },
               success: function(response) {
-                console.log(response);
+                alert(response.message);
+                window.location.href="/user/myMenu";
+
               },
               error: function(error) {
                 console.error(error);
               }
             });
-            alert("Update your menu successfully!");
-            window.location.href="/user/myMenu";
           } catch (error) {
             console.error(error);
           }
         }
-          
-            
-            
-
-
-        
-        
-
     })
+    
     })
 </script>
   
