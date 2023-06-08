@@ -10,6 +10,7 @@
       <div class="EYM_body__left">
         <div class="EYM_body__left-top">
           <input type="text" placeholder="Nhập tên thực đơn của bạn" id="EYM_body__left-top--nameMenu" value = "<%= data.menuname %>">
+          <button id = "btnEditMenuImage">Edit Your Menu Image</button>
           <h3 class="EYM_body__left--title">Nutritions</h3>
           <div class="EYM_body__left-nutriinfor">
             <div class="EYM_body__left-nutriinfor--item">
@@ -105,25 +106,56 @@
   </div>
 <script src="../assets/js/getSearchEditMenu.js"></script>
 <script>
+  var menuImg = "../assets/images/menu_img/default-menu.jpg";
+
    $(document).ready(function()
     {
-      $(document).on('click','.EYM_footer__btn.bntSave',  function(event){
-        let menuName = $("#EYM_body__left-top--nameMenu").val();
-        var rows = $('#Breakfast tr');
-        var foodObjects = [];
-        rows.each(function() {
-        var row = $(this);
-        var name = row.find('td:eq(0)').text();
-        var countElement = row.find('.count');
-        var count = parseInt(countElement.text());
-        var foodId = parseInt(countElement.data('foodid'));
-        var foodObject = {
-            foodid: foodId,
-            amount: count
-        };
-        foodObjects.push(foodObject);
-        });
-        
+      $("#btnEditMenuImage").on("click", function (e) {
+        var fileDialog = $('<input type="file" name="Image" accept=".png,.jpg,.jpeg">');
+        fileDialog.click();
+        fileDialog.on("change", onFileSelected);
+        return false;
+     });
+
+     var onFileSelected = async function (e) {
+
+      var formData = new FormData();
+      formData.append('Image', $(this)[0].files[0]);
+      var imgUrl = await $.ajax({
+          url: `/user/upload`,
+          type: "PUT", // <- Change here
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: (response) => {
+              console.log(response);
+          },
+          error: function (err) {
+              console.log(err);
+          }
+      });
+      imgUrl = imgUrl.data.link;
+      menuImg = imgUrl;
+      document.getElementById("btnEditMenuImage").style.color = "green";
+    };
+    
+    $(document).on('click','.EYM_footer__btn.bntSave',  function(event){
+      let menuName = $("#EYM_body__left-top--nameMenu").val();
+      var rows = $('#Breakfast tr');
+      var foodObjects = [];
+      rows.each(function() {
+      var row = $(this);
+      var name = row.find('td:eq(0)').text();
+      var countElement = row.find('.count');
+      var count = parseInt(countElement.text());
+      var foodId = parseInt(countElement.data('foodid'));
+      var foodObject = {
+          foodid: foodId,
+          amount: count
+      };
+      foodObjects.push(foodObject);
+      });
+      
 
         if(menuName === "")
         {
@@ -134,38 +166,31 @@
             var clickedButton = $(event.target);
             var urlUpdate = clickedButton.attr('id');
             var menuid = "<%=data.menuid%>";
-            var ImageDefault = "../assets/images/menu_img/default-menu.jpg";
+            // var ImageDefault = fileUrl;
              $.ajax({
               url: urlUpdate, 
               type: 'PUT',
               data: {
                 menuid:menuid,
-                menuImage:ImageDefault,
+                menuImage:menuImg,
                 menuName: menuName,
                 foodsList: foodObjects,
               },
               success: function(response) {
-                console.log(response);
+                alert(response.message);
+                window.location.href="/user/myMenu";
+
               },
               error: function(error) {
                 console.error(error);
               }
             });
-            alert("Update your menu successfully!");
-            window.location.href="/user/myMenu";
           } catch (error) {
             console.error(error);
           }
         }
-          
-            
-            
-
-
-        
-        
-
     })
+    
     })
 </script>
   

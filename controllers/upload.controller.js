@@ -15,7 +15,7 @@ var storage = multer.diskStorage({
 
 // Define the maximum size for uploading
 // picture i.e. 1 MB. it is optional
-const maxSize = 1 * 1000 * 1000;
+const maxSize = 2 * 1000 * 1000;
 
 var upload = multer({
     storage: storage,
@@ -38,7 +38,7 @@ var upload = multer({
     }
 
     // mypic is the name of file attribute
-}).single("avatarImage");
+}).single("Image");
 
 const uploadFile = (req, res, next) => {
     upload(req, res, async function (err) {
@@ -66,8 +66,6 @@ const uploadFile = (req, res, next) => {
 
             if (responseData.success) {
 
-                await require("./userController").updateAvatar(responseData.url, req.session.token);
-
                 res.json({
                     "success":true,
                     "notice": "Image uploaded",
@@ -86,6 +84,8 @@ const uploadFile = (req, res, next) => {
         }
     })
 };
+
+// await require("./userController").updateAvatar(responseData.url, req.session.token);
 
 module.exports = {
     uploadFile,

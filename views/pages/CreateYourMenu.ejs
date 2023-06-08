@@ -136,14 +136,15 @@
                 menuImage: menuImage,
               },
               success: function(response) {
-                console.log(response); 
+                alert(response.message);
+                window.location.href="/user/myMenu";
               },
               error: function(error) {
                 console.error(error);
               }
             });
-            alert("Create Your Menu Successfully");
-            window.location.href="/user/myMenu";
+            
+           
           } catch (error) {
             console.error(error);
           }

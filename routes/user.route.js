@@ -24,11 +24,13 @@ const {
     getViewEditMenu,
     renderOwnMenuDetailView,
     updateMenu,
+    updateImageProfile,
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
 
 router.put("/upload", auth, uploadFile);
+router.put("/updateImageProfile", auth, updateImageProfile)
 
 
 router.get("/profile", auth, renderProfileView);
@@ -46,10 +48,10 @@ router.delete("/deleteMenu:id", auth, deleteMenuDetailById);
 router.post("/likeMenu:id", auth, likeMenuById);
 router.post("/unLikeMenu:id", auth, unLikeMenuById);
 
-router.post("/menus/create",auth,userCreateMenu);
-router.post("/userComment:id",auth,userRatingMenu);
-router.get("/getViewEditMenu:id",auth,getViewEditMenu);
-router.put("/menus/menuid=:id/update",auth,updateMenu);
+router.post("/menus/create", auth, userCreateMenu);
+router.post("/userComment:id", auth, userRatingMenu);
+router.get("/getViewEditMenu:id", auth, getViewEditMenu);
+router.put("/menus/menuid=:id/update", auth, updateMenu);
 router.get("/menuid=:menuid", auth, renderOwnMenuDetailView);
 
 router.get("/getUserInfo", auth, getUserInfo);

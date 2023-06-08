@@ -20,13 +20,18 @@
                   <h2 class="ChangePassword_header__title">Đổi mật khẩu</h2>
           
               </div>
-              <div class="ChangePassword_body">
+              <form action="" id = "change-password-form">
+                <div class="ChangePassword_body">
                   <input type="password" class="ChangePassword_body__input"
                       placeholder="Mật khẩu hiện tại" id = "oldPassword" name = "oldPassword">
                   <input type="password" class="ChangePassword_body__input"
                       placeholder="Mật khẩu mới" id = "newPassword" name = "newPassword">
                   <input type="password" class="ChangePassword_body__input"
                       placeholder="Nhập lại mật khẩu mới" id="confirmPassword" name="confirmPassword">
+              </form>
+             
+                
+                  
               </div>
               <div class="ChangePassword_footer">
                   <button class="ChangePassword_footer__button" type = "button" id = "btnChangePassword">Đổi mật khẩu</button>
@@ -90,6 +95,7 @@
           
         </div>
 </div>
+<script src="../assets/js/validator.js"></script>
 <script>
     $(document).ready(function (){
       $("#btnChangePass").on({
@@ -147,9 +153,28 @@
         let newPassword = $("#newPassword").val();
         let confirmPassword = $("#confirmPassword").val();
 
-        if (newPassword === confirmPassword) {
+        if (oldPassword === "") {
+        alert("Mật khẩu hiện tại không được để trống!");
+        return false;
+        }
+        else if (newPassword === "") {
+          alert("Mật khẩu mới không được để trống!");
+          return false;
+        }
+        else if (confirmPassword === "") {
+          alert("Nhập lại mật khẩu mới không được để trống!");
+          return false;
+        }
+
+        // Kiểm tra sự khớp nhau của mật khẩu mới và nhập lại mật khẩu mới
+        else if (newPassword !== confirmPassword) {
+          alert("Mật khẩu mới và nhập lại mật khẩu mới không khớp nhau!");
+          return false;
+      }
+
+        else if (newPassword === confirmPassword) {
           try {
-            $.ajax({
+             $.ajax({
               url: '/user/change-password', 
               type: 'PUT',
               data: {
@@ -158,13 +183,15 @@
                 newpasswordAgain: confirmPassword
               },
               success: function(response) {
-                console.log(response); 
+                  alert(response.message);
               },
               error: function(error) {
-                console.error(error);
+                console.log(error);
               }
             });
-            alert("Change password successfully");
+           
+            
+            
           } catch (error) {
             console.error(error);
           }
@@ -179,7 +206,12 @@
           let Name =  $("#fullname").val();
           let Dateofbirth = $("#date-input").val();
           let Gender = $("#gender-select").val();
-        try {
+          if(Name == "")
+          {
+            alert("Please enter your fullname");
+          }
+          else {
+            try {
             $.ajax({
               url: '/user/update-profile', 
               type: 'PUT',
@@ -189,18 +221,21 @@
                 gender: Gender
               },
               success: function(response) {
-                console.log(response); 
+                alert(response.message);
               },
               error: function(error) {
                 console.error(error);
               }
             });
-            alert("Update profile successfully");
+            
           } catch (error) {
             console.error(error);
           }
+          }
+        
        
       })
+      
 
     })
 </script>
