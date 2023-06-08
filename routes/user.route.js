@@ -25,6 +25,9 @@ const {
     renderOwnMenuDetailView,
     updateMenu,
     updateImageProfile,
+    getMenus,
+    publishMenu,
+
 } = require("../controllers/userController");
 
 const { uploadFile } = require(`../controllers/upload.controller`);
@@ -32,7 +35,7 @@ const { uploadFile } = require(`../controllers/upload.controller`);
 router.put("/upload", auth, uploadFile);
 router.put("/updateImageProfile", auth, updateImageProfile)
 
-
+router.get("/menus", auth, getMenus)
 router.get("/profile", auth, renderProfileView);
 router.get("/getBMI", auth, getBMIwithProfile);
 router.get("/getBMICurrent", auth, getBMICurrent);
@@ -53,7 +56,7 @@ router.post("/userComment:id", auth, userRatingMenu);
 router.get("/getViewEditMenu:id", auth, getViewEditMenu);
 router.put("/menus/menuid=:id/update", auth, updateMenu);
 router.get("/menuid=:menuid", auth, renderOwnMenuDetailView);
-
+router.put("/proposeMenu=:menuid", auth, publishMenu);
 router.get("/getUserInfo", auth, getUserInfo);
 
 module.exports = router;

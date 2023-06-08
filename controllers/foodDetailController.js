@@ -48,7 +48,10 @@ const renderMenuDetailView = async (req, res, next) => {
             if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
             if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
             if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
-            nutrition.carbs = Number((nutrition.carbs).toFixed(2))
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2));
+            nutrition.energy = Number((nutrition.energy).toFixed(2));
+            nutrition.lipid = Number((nutrition.lipid).toFixed(2));
+            nutrition.protein = Number((nutrition.protein).toFixed(2));
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());

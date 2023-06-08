@@ -1,7 +1,11 @@
 
-var size = 6;
+var size = 12;
 var urlOwnMenu = `/user/getMyMenu`;
-let ownMenuData;
+var ownMenuData;
+var sortOrder = 0;
+var sortedData;
+var isNewestActive = false;
+var isFamousActive = false;
 
 function loadMyMenu(data, pageNumber) {
     if (ownMenuData.length === 0) {
@@ -12,12 +16,15 @@ function loadMyMenu(data, pageNumber) {
 
         for (let i = (pageNumber - 1) * size; i < (pageNumber - 1) * size + size; i++) {
             if (i < data.length) {
+                var emptyImg = 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg';
+                var img = (/(?:\.jpe?g|\.png)/i.test(data[i].menuimage)) ? data[i].menuimage : emptyImg;
+                var style = 'background-image: url(\'' + img + '\');';
                 result += `
                 <div class="col">
                 <div class="home-product-item">
                     <a href="/user/menuid=${data[i].menuid}" target="_blank">
                         <div class="home-product-item__img"
-                            style="background-image: url(${data[i].menuimage});">
+                            style="${style}">
                         </div>
                         <h5 class="home-product-item__name">${data[i].menuname}</h5>
                     </a>
@@ -37,14 +44,18 @@ function loadMyMenu(data, pageNumber) {
                         
                             <button type="button" class="home-product-item__action-btn btn btn-danger" id = "/user/deleteMenu${data[i].menuid}">Xóa</button>
                     </div>
-                    <div class="home-product-item__status">
-                        <span class="home-product-item__private hide">
-                            <i class="fa-solid fa-lock"></i>
-                        </span>
-                        <span class="home-product-item__public">
+                    <div class="home-product-item__status"> `
+
+                if (data[i].privacy == 2) result +=
+                    ` <span class="home-product-item__public">
                             <i class="fa-solid fa-unlock"></i>
-                        </span>
-                    </div>
+                        </span> `;
+                else result += ` <span class="home-product-item__private" id="/user/proposeMenu=${data[i].menuid}">
+                    <i class="fa-solid fa-lock"></i>
+                </span> `
+
+                result +=
+                    ` </div>
                 </div>
             </div>
                 `;
@@ -68,6 +79,8 @@ $(document).ready(async function () {
             return datas.data;
         }
     });
+
+
 
     if (ownMenuData.data != null) {
         $('.home-filter__page').pagination({
@@ -93,7 +106,51 @@ $(document).ready(async function () {
     }
 
 
+
+
 });
+
+$(document).on('change', '.select-input__combo-box', function () {
+    var selectedOption = $(this).val();
+    if (selectedOption === 'az') sortOrder = 1;
+    else if (selectedOption === 'za') sortOrder = -1;
+    else sortOrder = 0;
+    console.log(sortOrder)
+
+    loadSort();
+});
+
+$(document).on('click', '.home-filter__btn', function () {
+    $(this).toggleClass('active');
+
+    isFamousActive = $('.home-filter__btn:eq(0)').hasClass('active');
+    console.log(isFamousActive + " " + isNewestActive);
+
+    loadSort();
+});
+
+function loadSort() {
+
+    sortedData = ownMenuData.data.list.sort(function (a, b) {
+
+
+        if (isFamousActive) {
+            if (a.favoriteCount !== b.favoriteCount) {
+                return b.favoriteCount - a.favoriteCount;
+            }
+        }
+
+
+        if (a.menuname.localeCompare(b.menuname) !== 0) {
+            if (sortOrder !== 0)
+                return a.menuname.localeCompare(b.menuname) * sortOrder;
+        }
+
+        return a.menuid - b.menuid;
+    });
+
+    loadMyMenu(sortedData, 1);
+}
 
 
 $(document).on('click', '.home-product-item__action-btn.btn-danger', async function (event) {
@@ -129,9 +186,34 @@ $(document).on('click', '.home-product-item__action-btn.btn-danger', async funct
 });
 
 
-$(document).on('click', '.home-product-item__action-btn.btn-info',function(event)
-{
+$(document).on('click', '.home-product-item__action-btn.btn-info', function (event) {
     var clickedButton = $(event.target);
     var urlGetEditMenu = clickedButton.attr('id');
     window.location.href = urlGetEditMenu;
+});
+
+$(document).on('click', '.home-product-item__private', async function (event) {
+    var clickedButton = $(this);
+    var urlPublish = clickedButton.attr('id');
+
+    console.log(urlPublish);
+
+    var confirmed = confirm("Are you sure you want to public this menu?");
+    if (!confirmed) {
+        return; // Cancel the delete operation
+    }
+
+    const res = await $.ajax({
+        dataType: 'json',
+        url: urlPublish,
+        type: 'PUT',
+        success: function (data) {
+            console.log('Delete request successful');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // Handle the error response
+            console.error('Delete request error');
+            console.error(errorThrown);
+        }
+    });
 });

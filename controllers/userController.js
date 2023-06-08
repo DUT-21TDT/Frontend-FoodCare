@@ -139,7 +139,7 @@ const userChangePassword = async (req, res, next) => {
                 "success": false,
             }
         });
-        if(responseData.data){
+        if (responseData.data) {
             res.json({
                 success: true,
                 message: "Change Password Successfully!",
@@ -178,20 +178,20 @@ const updateProfileUser = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
-        if(response.data){
-            res.json({
-                success: true,
-                message: "Update Profile Successfully!",
-                data: response.data
-            });
-        }
-        else {
-            res.json({
-                success: false,
-                message: "Update Profile Failed!",
-                data: null,
-            });
-        }
+    if (response.data) {
+        res.json({
+            success: true,
+            message: "Update Profile Successfully!",
+            data: response.data
+        });
+    }
+    else {
+        res.json({
+            success: false,
+            message: "Update Profile Failed!",
+            data: null,
+        });
+    }
 }
 
 const updateBMI = async (req, res, next) => {
@@ -306,7 +306,6 @@ const deleteMenuDetailById = async (req, res) => {
         console.error(err);
         return null;
     }
-
 };
 
 const likeMenuById = async (req, res) => {
@@ -368,22 +367,22 @@ const userCreateMenu = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
-        if(response.data){
-            res.json({
-                success: true,
-                message: "Create Your Menu Successfully!",
-                data: response.data
-            });
-        }
-        else {
-            res.json({
-                success: false,
-                message: "Create Your Menu Failed!",
-                data: null,
-            });
-        }
+    if (response.data) {
+        res.json({
+            success: true,
+            message: "Create Your Menu Successfully!",
+            data: response.data
+        });
+    }
+    else {
+        res.json({
+            success: false,
+            message: "Create Your Menu Failed!",
+            data: null,
+        });
+    }
 
-    
+
 }
 const getAllRatingsByMenuId = async (token, id) => {
     try {
@@ -422,7 +421,10 @@ const renderOwnMenuDetailView = async (req, res, next) => {
             if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
             if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
             if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
-            nutrition.carbs = Number((nutrition.carbs).toFixed(2))
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2));
+            nutrition.energy = Number((nutrition.energy).toFixed(2));
+            nutrition.lipid = Number((nutrition.lipid).toFixed(2));
+            nutrition.protein = Number((nutrition.protein).toFixed(2));
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
@@ -528,7 +530,10 @@ const getViewEditMenu = async (req, res, next) => {
             if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
             if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
             if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
-            nutrition.carbs = Number((nutrition.carbs).toFixed(2))
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2));
+            nutrition.energy = Number((nutrition.energy).toFixed(2));
+            nutrition.lipid = Number((nutrition.lipid).toFixed(2));
+            nutrition.protein = Number((nutrition.protein).toFixed(2));
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
@@ -627,20 +632,20 @@ const updateMenu = async (req, res, next) => {
         .catch((err) => {
             return null;
         });
-        if(response){
-            res.json({
-                success: true,
-                message: "Update Your Menu Successfully!",
-            });
-        }
-        else {
-            res.json({
-                success: false,
-                message: "Update Your Menu Failed!",
-            });
-        }
+    if (response) {
+        res.json({
+            success: true,
+            message: "Update Your Menu Successfully!",
+        });
+    }
+    else {
+        res.json({
+            success: false,
+            message: "Update Your Menu Failed!",
+        });
+    }
 
-    
+
 }
 
 //=======
@@ -658,6 +663,47 @@ var updateImageProfile = async (req, res, next) => {
             success: false,
             message: error.message
         });
+    }
+}
+
+const getMenus = async (req, res) => {
+    try {
+        let responseData = await instance.get("/menus", {
+            headers: {
+                Cookie: `token=${req.session.token}`,
+            },
+        }).then(response => {
+            return response.data;
+        }).catch((err) => {
+            console.log({ message: err });
+            throw err;
+        });
+        res.send(responseData);
+    } catch (error) {
+        console.log({ message: error })
+        res.status(500);
+    }
+}
+
+const publishMenu = async (req, res) => {
+    try {
+        var id = req.params.menuid;
+
+        console.log(req.session.token);
+
+        const response = await instance.put(`/menus/menuid=${id}/propose`,
+            {}
+            ,
+            {
+                headers: {
+                    Cookie: `token=${req.session.token}`,
+                },
+            }).then(res => {
+                return res.data;
+            });
+    } catch (err) {
+        console.error(err);
+        return null;
     }
 }
 
@@ -685,4 +731,6 @@ module.exports = {
     renderOwnMenuDetailView,
     updateMenu,
     updateImageProfile,
+    getMenus,
+    publishMenu,
 };

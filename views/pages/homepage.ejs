@@ -51,43 +51,46 @@
   </div>
   <!-- BMI CALCULATOR -->
   <div class="container-fluid bmi_cal" id="bmi_calculator">
-    <div class="row text-center pt-4">
-      <h1>Fill your information</h1>
-      <p style="font-size: 25px;">To calculate your BMI and know the suitable menu</p>
-    </div>
-    <div class="g-col-9 pt-5 d-flex justify-content-between bmi_container">
-      <div class="bmi_img">
-        <img src="../assets/images/bmi_pic.jpg" style="height: 400px; width: 400px;" alt="">
+    <div class="container bmi_cal">
+      <div class="row text-center pt-4">
+        <h1>Fill your information</h1>
+        <p style="font-size: 25px;">To calculate your BMI and know the suitable menu</p>
       </div>
-      <form action="" class="fill_info">
-        <div class="bmi_input">
-          <input placeholder="Your weight is ... (kg)" type="text" class="weight_input"
-            style="border:  1px solid black;">
-          <i class="fa-solid fa-weight-scale fa-xl"></i>
+      <div class="g-col-9 pt-5 d-flex justify-content-between bmi_container">
+        <div class="bmi_img">
+          <img src="../assets/images/bmi_pic.jpg" style="height: 400px; width: 400px;" alt="">
         </div>
-        <div class="bmi_input">
-          <input placeholder="Your height is ... (cm)" type="text" class="height_input"
-            style="border:  1px solid black;">
-          <i class="fa-solid fa-ruler-vertical fa-xl"></i>
-        </div>
-        <div class="bmi_input">
-          <input placeholder="Your BMI is ..." type="text" class="bmi_result" readonly
-            style="border:  1px solid black;">
-          <i class="fa-solid fa-calculator fa-xl"></i>
-        </div>
-      </form>
+        <form action="" class="fill_info">
+          <div class="bmi_input">
+            <input placeholder="Your weight is ... (kg)" type="text" class="weight_input"
+              style="border:  1px solid black;">
+            <i class="fa-solid fa-weight-scale fa-xl"></i>
+          </div>
+          <div class="bmi_input">
+            <input placeholder="Your height is ... (cm)" type="text" class="height_input"
+              style="border:  1px solid black;">
+            <i class="fa-solid fa-ruler-vertical fa-xl"></i>
+          </div>
+          <div class="bmi_input">
+            <input placeholder="Your BMI is ..." type="text" class="bmi_result" readonly
+              style="border:  1px solid black;">
+            <i class="fa-solid fa-calculator fa-xl"></i>
+          </div>
+        </form>
+      </div>
+
+      <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
+        <% if (userId) { %>
+          <a href="/user/profile" class="cal_btn info_btn text-center">
+            <% } else { %>
+              <a class="cal_btn info_btn js-click-login text-center">
+                <% } %>
+                  More information
+              </a>
+              <button type="button" class="cal_btn calculator-bmi-js">Calculate</button>
+      </div>
     </div>
 
-    <div class="g-col-5 d-flex justify-content-center pt-5 bmi_btn">
-      <% if (userId) { %>
-        <a href="/user/profile" class="cal_btn info_btn text-center">
-          <% } else { %>
-            <a class="cal_btn info_btn js-click-login text-center">
-              <% } %>
-                More information
-            </a>
-            <button type="button" class="cal_btn calculator-bmi-js">Calculate</button>
-    </div>
   </div>
 
   <!-- Menu nutrition -->
@@ -168,55 +171,58 @@
   </div>
 
 </div>
-
 <script src="../assets/js/getData.js"></script>
+<% if (!userId) { %>
+  <script src="../assets/js/getGuestData.js"></script>
+  <% } else { %>
+    <script src="../assets/js/getUserData.js"></script>
+    <% } %>
+
+      <script>
+        $(".calculator-bmi-js").click(function (event) {
+          event.preventDefault();
+          var h = $(".height_input").val();
+          var w = $(".weight_input").val();
+          var height = parseFloat(h / 100);
+          var weight = parseFloat(w);
+          if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+            // Nếu không hợp lệ, hiển thị kết quả là "Không hợp lệ"
+            $('.bmi_result').val('Vui lòng nhập thông tin hợp lệ');
+          } else {
+            // Nếu hợp lệ, tính chỉ số BMI và hiển thị kết quả
+            var bmi = weight / (height * height);
+            $('.bmi_result').val("Your BMI is " + bmi.toFixed(2));
+            var status;
+            if (bmi < 16) {
+              status = 'Gầy độ III';
+            } else if (bmi >= 16 && bmi < 17) {
+              status = 'Gầy độ II';
+            } else if (bmi >= 17 && bmi < 18.5) {
+              status = 'Gầy độ I';
+            } else if (bmi >= 18.5 && bmi < 25) {
+              status = 'Bình thường';
+            }
+            else if (bmi >= 25 && bmi < 30) {
+              status = 'Thừa cân';
+            }
+            else if (bmi >= 30 && bmi < 35) {
+              status = 'Béo phì độ I';
+            }
+            else if (bmi >= 35 && bmi < 40) {
+              status = 'Béo phì độ II';
+            }
+            else if (bmi >= 40) {
+              status = 'Béo phì độ III';
+            }
+          }
 
 
-<script>
-  $(".calculator-bmi-js").click(function (event) {
-    event.preventDefault();
-    var h = $(".height_input").val();
-    var w = $(".weight_input").val();
-    var height = parseFloat(h / 100);
-    var weight = parseFloat(w);
-    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-      // Nếu không hợp lệ, hiển thị kết quả là "Không hợp lệ"
-      $('.bmi_result').val('Vui lòng nhập thông tin hợp lệ');
-    } else {
-      // Nếu hợp lệ, tính chỉ số BMI và hiển thị kết quả
-      var bmi = weight / (height * height);
-      $('.bmi_result').val("Your BMI is " + bmi.toFixed(2));
-      var status;
-      if (bmi < 16) {
-        status = 'Gầy độ III';
-      } else if (bmi >= 16 && bmi < 17) {
-        status = 'Gầy độ II';
-      } else if (bmi >= 17 && bmi < 18.5) {
-        status = 'Gầy độ I';
-      } else if (bmi >= 18.5 && bmi < 25) {
-        status = 'Bình thường';
-      }
-      else if (bmi >= 25 && bmi < 30) {
-        status = 'Thừa cân';
-      }
-      else if (bmi >= 30 && bmi < 35) {
-        status = 'Béo phì độ I';
-      }
-      else if (bmi >= 35 && bmi < 40) {
-        status = 'Béo phì độ II';
-      }
-      else if (bmi >= 40) {
-        status = 'Béo phì độ III';
-      }
-    }
-
-
-    var pElements = $('.bmi_input:last').siblings('p:first');
-    if (pElements.length > 0) {
-      pElements.text('Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status);
-    } else {
-      $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500 word-wrap: break-word; max-width: 380px;">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
-    }
-  }
-  )
-</script>
+          var pElements = $('.bmi_input:last').siblings('p:first');
+          if (pElements.length > 0) {
+            pElements.text('Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status);
+          } else {
+            $('.bmi_input:last').after('<p style = "color : var(--secondary); font-size:1.1rem; font-weight: 500 word-wrap: break-word; max-width: 380px;">' + 'Chỉ số BMI cho thấy rằng sức khoẻ của bạn là ' + status + '</p>');
+          }
+        }
+        )
+      </script>

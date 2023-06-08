@@ -69,41 +69,41 @@ $(document).ready(function () {
         "Please enter a valid email address."
     );
 
-    $("#btnChangePassword").click(function() {
-        $('#change-password-form').validate({
-            rules: {
-              oldPassword: {
+
+    $('#change-password-form').validate({
+        rules: {
+            oldPassword: {
                 required: true,
-              },
-              newPassword: {
+            },
+            newPassword: {
                 required: true,
                 minlength: 8,
-              },
-              confirmPassword: {
+            },
+            confirmPassword: {
                 required: true,
                 equalTo: "#newPassword",
-              },
             },
-            messages: {
-              oldPassword: {
+        },
+        messages: {
+            oldPassword: {
                 required: "Please enter your current password.",
-              },
-              newPassword: {
+            },
+            newPassword: {
                 required: "Please enter your new password..",
                 minlength: "New password must be at least 8 characters.",
-              },
-              confirmPassword: {
+            },
+            confirmPassword: {
                 required: "Please re-enter the new password.",
                 equalTo: "Confirmation password does not match.",
-              },
             },
-           
-          });
-      });
-      
-   
-   
-   
+        },
+
+    });
+
+
+
+
+
 });
 
 

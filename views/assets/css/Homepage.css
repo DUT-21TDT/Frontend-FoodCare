@@ -79,6 +79,7 @@
     border-radius: 50px;
     line-height: 32px;
     display: inline-block;
+    border: 1px var(--black-color) solid;
 }
 
 .user-signUp,
@@ -424,8 +425,10 @@
 }
 
 .error {
+    color: #ff0000;
+    font-weight: 500;
     display: inline-block;
-    width: 234px;
+    width: 260px;
 }
 
 .user_modal {
@@ -657,6 +660,8 @@
     background-color: var(--secondary);
     color: white;
     border-radius: 2px;
+    width: 72px;
+    height: 28px;
 }
 
 @keyframes modalFadeIn {
