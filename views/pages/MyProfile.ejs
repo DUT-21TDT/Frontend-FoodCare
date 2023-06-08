@@ -127,17 +127,32 @@
 <script>
 
     $("#changeAvaImg").on("click", function (e) {
-        var fileDialog = $('<input type="file" name="avatarImage" accept=".png,.jpg,.jpeg">');
+        var fileDialog = $('<input type="file" name="Image" accept=".png,.jpg,.jpeg">');
         fileDialog.click();
         fileDialog.on("change", onFileSelected);
         return false;
     });
 
+    var updateImageProfile =  async (imgUrl) => {
+        await $.ajax({
+            url: `/user/updateImageProfile`,
+            type: "PUT", // <- Change here
+            data: {imgUrl: imgUrl},
+            success: (response) => {
+                document.getElementById("avatar_img").src = imgUrl;
+                window.location = "";
+            },
+            error: (err) => {
+                alert(err);
+            }
+        });
+    }
+
     var onFileSelected = async function (e) {
 
         var formData = new FormData();
-        formData.append('avatarImage', $(this)[0].files[0]);
-        await $.ajax({
+        formData.append('Image', $(this)[0].files[0]);
+        var imgUrl = await $.ajax({
             url: `/user/upload`,
             type: "PUT", // <- Change here
             data: formData,
@@ -145,16 +160,13 @@
             processData: false,
             success: (response) => {
                 console.log(response);
-                if (response.success) {
-                    document.getElementById("avatar_img").src = response.data.link;
-                }
-
-                window.location = "";
             },
             error: function (err) {
                 console.log(err);
             }
         });
+        imgUrl = imgUrl.data.link;
+        await updateImageProfile(imgUrl);
     };
 
 </script>

@@ -643,6 +643,23 @@ const updateMenu = async (req, res, next) => {
     
 }
 
+//=======
+var updateImageProfile = async (req, res, next) => {
+    try {
+        const imgUrl = req.body.imgUrl;
+        console.log(imgUrl);
+        await updateAvatar(imgUrl, req.session.token);
+        res.json({
+            success: true,
+            message: "update Image Profile successfully."
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+}
 
 
 module.exports = {
@@ -667,4 +684,5 @@ module.exports = {
     getViewEditMenu,
     renderOwnMenuDetailView,
     updateMenu,
+    updateImageProfile,
 };
