@@ -60,6 +60,7 @@
 .EYM_body__left-top {
     width: 550px;
     height: 250px;
+    position:relative;
 
 
 }
@@ -352,4 +353,11 @@
     font-size: 60px;
     color: #fff;
     display: none;
+}
+#btnEditMenuImage{
+    position:absolute;
+    right:-5%;
+    top:2%;
+    height:35px;
+    border-radius: 5px;
 }
