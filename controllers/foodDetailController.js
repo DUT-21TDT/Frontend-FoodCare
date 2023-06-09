@@ -25,6 +25,27 @@ const getFoodDetailById = async (id) => {
     }
 };
 
+const getFoodInfoById = async (req, res) => {
+    const id = req.query.id;
+    try {
+        let responseData = await instance.get(`/public/foods/${id}`
+        ).then(response => {
+            return response.data;
+        }).catch((err) => {
+            console.log({ message: err });
+            throw err;
+        });
+
+
+
+        res.send(responseData);
+
+    } catch (error) {
+        console.log({ message: error })
+        res.status(500);
+    }
+};
+
 const renderMenuDetailView = async (req, res, next) => {
     const menuId = req.params.menuid;
 
@@ -166,4 +187,5 @@ const getMenuDetailById = async (id) => {
 module.exports = {
     renderFoodDetailView,
     renderMenuDetailView,
+    getFoodInfoById,
 };

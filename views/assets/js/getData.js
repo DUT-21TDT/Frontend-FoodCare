@@ -47,8 +47,6 @@ function loadPage(data, pageNumber) {
 //Init data
 $(document).ready(async function () {
 
-
-
     foodData = await $.ajax({
         dataType: 'json',
         url: url,
@@ -56,6 +54,27 @@ $(document).ready(async function () {
             return datas.data;
         }
     });
+
+
+    var getAllTags = await $.ajax({
+        dataType: 'json',
+        url: `/get/tags`,
+        success: function (datas) {
+            return datas.data;
+        }
+    })
+
+
+    var res = ``;
+
+    getAllTags.data.forEach(element => {
+        res += `<div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="fatCheckbox" value="${element.tagid}">
+        <label class="form-check-label" for="fatCheckbox" style="font-size: 20px;">${element.tagname}</label>
+      </div>`;
+    });
+
+    $('.tags_data').append(res);
 
 
     $('.food_page-btn').pagination({
@@ -119,22 +138,58 @@ $('.random_js-btn').on("click", async function () {
         selectedLabels.push($(this).val());
     });
 
-    var filteredFoodData = foodData.data.list.filter(function (food) {
-        var foodTags = food.foodTags;
-        return selectedLabels.every(function (label) {
-            return foodTags.includes(label);
-        });
-    });
 
-    if (filteredFoodData.length > 0) {
-        var randomIndex = Math.floor(Math.random() * filteredFoodData.length);
-        var randomFood = filteredFoodData[randomIndex];
-        var img = ((/(?:\.jpe?g|\.png)/i.test(randomFood.foodimage)) || (/^https:\/\//i.test(randomFood.foodimage))) ? randomFood.foodimage : emptyImg;
+
+    //var filteredFoodData = foodData.data.list;
+
+    var foodsIdByTags = foodData.data.list;
+
+
+    if (selectedLabels.length != 0) {
+        await $.ajax({
+            contentType: "application/json",
+            url: "/get/foods/tags",
+            method: "GET",
+            data: {
+                tagids: selectedLabels
+            },
+            success: function (datas) {
+                foodsIdByTags = (datas.data !== null) ? datas.data : null;
+            },
+            error: function (error) {
+                console.log("An error occurred:", error);
+            }
+        });
+    }
+
+
+
+
+    if (foodsIdByTags !== null) {
+        var randomIndex = Math.floor(Math.random() * foodsIdByTags.length);
+        var randomFoodiD = foodsIdByTags[randomIndex].foodid;
+        var randomFood = await $.ajax({
+            contentType: "application/json",
+            url: "/foodDetail",
+            method: "GET",
+            data: {
+                id: randomFoodiD
+            },
+            success: function (datas) {
+                return datas.data;
+            },
+            error: function (error) {
+                console.log("An error occurred:", error);
+            }
+        });
+
+        console.log(randomFood);
+        var img = ((/(?:\.jpe?g|\.png)/i.test(randomFood.data.foodimage)) || (/^https:\/\//i.test(randomFood.data.foodimage))) ? randomFood.data.foodimage : emptyImg;
         var result = `
         <div class="ran_img_container">
-          <img src="${randomFood.foodimage}" class="rand_img" alt="">
+          <img src="${img}" class="rand_img" alt="">
         </div>
-        <h2 class="pt-4 pb-4">${randomFood.foodname}</h2>
+        <h2 class="pt-4 pb-4">${randomFood.data.foodname}</h2>
       `;
 
         $('.random_result').html(result);

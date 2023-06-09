@@ -1,13 +1,16 @@
 let express = require('express');
 let router = express.Router();
 
-const auth = require("../middlewares/auth");
 
-const { getFoods, getMenus } = require("../controllers/getData.controller");
+const { getFoods, getMenus, getTags, getFoodsByTags } = require("../controllers/getData.controller");
 
 router.get("/foods", getFoods);
 
 router.get("/menus", getMenus);
+
+router.get("/tags", getTags);
+
+router.get("/foods/tags", getFoodsByTags);
 
 
 module.exports = router;
