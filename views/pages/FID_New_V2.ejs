@@ -58,7 +58,11 @@
     </div>
     <div class="col">
       <div class="FID_body__right">
-        <img src="<%= data.foodimage %>" class="">
+        <% if (data.foodimage && (data.foodimage.includes("https") || /\.(jpg|jpeg|png)$/.test(data.foodimage))) { %>
+          <img src="<%= data.foodimage %>" class="">
+          <% } else { %>
+            <img src="../assets/images/errorImg.jpg" class="">
+            <% } %>
       </div>
     </div>
 

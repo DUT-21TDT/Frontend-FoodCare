@@ -54,22 +54,6 @@
                         Login
                         <i class="fa-solid fa-right-to-bracket icon"></i>
                     </button>
-                    <form action="" id="forgetpw">
-                        <div class="ForgetPassword" style="display: none;">
-                            <a href="" class="ForgetPassword__xmark"><i
-                                    class="fa-solid fa-xmark ForgetPassword__iconback"></i></a>
-                            <h1 class="ForgetPassword__title">Forgot Password</h1>
-                            <p class="ForgetPassword__text">No Problem! Enter your email or username below and we will
-                                send you an
-                                email with instruction to reset your password.</p>
-                            <input type="text" class="ForgetPassword__input" placeholder="Email or Username">
-                            <i class="fa-solid fa-check ForgetPassword__checkEmail"></i>
-                            <button class="ForgetPassword__button">Send Reset Link</button>
-                            <p class="ForgetPassword__text">Back to
-                                <a href="" class="ForgetPassword__returnLogin">Login</a>
-                            </p>
-                        </div>
-                    </form>
                 </div>
 
             </div>
@@ -77,23 +61,6 @@
 
 
     </nav>
-    <script>
-        $(document).ready(function () {
-            // Smooth scrolling for anchor links with fixed distance
-            $('a[href^="#"]').on('click', function (event) {
-                event.preventDefault();
-
-                var target = $(this.getAttribute('href'));
-                if (target.length) {
-                    var scrollDistance = 600; // Adjust this value to set the desired scroll distance in pixels
-                    var targetPosition = target.offset().top - scrollDistance;
-                    $('html, body').stop().animate({
-                        scrollTop: targetPosition
-                    }, 800);
-                }
-            });
-        });
-    </script>
 
     <div id="login_modal" class="user_modal js-user_modal">
         <div class="login_container js-login_container">
