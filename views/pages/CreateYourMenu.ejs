@@ -126,7 +126,11 @@
         }
         else{
           try {
-            $.ajax({
+            if(foodObjects.length == 0){
+              alert("Unable to create empty menu!");
+            }
+            else {
+              $.ajax({
               url: '/user/menus/create', 
               type: 'POST',
               data: {
@@ -143,8 +147,7 @@
                 console.error(error);
               }
             });
-            
-           
+            }
           } catch (error) {
             console.error(error);
           }

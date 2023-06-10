@@ -119,36 +119,38 @@
                             <%= count %> Lượt Thích
                           </span>
         </div>
-
+        <% let countCmt=0; %> <% if (dataRating !=null) { %> <% for (var i=0; i
+        < dataRating.list.length; i++) { %> <% if (dataRating.list[i].comment!==
+        null) { %> <% countCmt++; %> <% } %> <% } %> <% } %>
         <span class="CommentViewBody__countComment">
-          <% if (dataRating !=null) { %>
-            <%=dataRating.count%> Bình Luận
-              <% } else { %>
-                0 Bình Luận
-                <% } %>
+           <% if (dataRating !=null) { %> <%= countCmt %> Bình Luận <% } else {
+          %> 0 Bình Luận <% } %>
         </span>
       </div>
 
       <div id="DivComment">
-        <% if (dataRating !=null) { %>
-          <% for (var i=0; i < dataRating.list.length; i++) { %>
-            <div class="divCommentCreated" style="display: flex; margin-top: 5px;">
-              <a href="" class="Comment__avatar">
-                <div class="avatar-img">
-                  <img src="<%= ArrayUserInfo[i].data.avatar %>" alt="">
-                </div>
-              </a>
-              <div class="CommentByUser">
-                <h4 class="CommentByUser__name">
-                  <%= ArrayUserInfo[i].data.name %>
-                </h4>
-                <span class="CommentByUser__text">
-                  <%= dataRating.list[i].comment %>
-                </span>
-              </div>
+       <% if (dataRating !=null) { %> <% for (var i = 0; i <
+        dataRating.list.length; i++) { if (dataRating.list[i].comment !== null) {
+        %>
+        <div
+          class="divCommentCreated"
+          style="display: flex; margin-top: 10px; margin-bottom: 5px"
+        >
+          <a href="" class="Comment__avatar">
+            <div class="avatar-img">
+              <img src="<%= ArrayUserInfo[i].data.avatar %>" alt="" />
             </div>
-            <% } %>
-              <% } %>
+          </a>
+          <div class="CommentByUser">
+            <h4 class="CommentByUser__name">
+              <%= ArrayUserInfo[i].data.name %>
+            </h4>
+            <span class="CommentByUser__text">
+              <%= dataRating.list[i].comment %>
+            </span>
+          </div>
+        </div>
+        <% } } %> <% } %>
 
 
 
