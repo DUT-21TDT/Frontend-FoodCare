@@ -2,7 +2,7 @@
 var pageSize = 4;
 var url = `/get/foods`;
 let foodData;
-var emptyImg = 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg';
+var emptyImg = 'https://pbl3.hungdev.us:8080/img/default/no-image-food.png';
 
 
 function loadPage(data, pageNumber) {

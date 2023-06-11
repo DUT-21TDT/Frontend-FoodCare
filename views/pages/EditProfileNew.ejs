@@ -154,21 +154,21 @@
         let confirmPassword = $("#confirmPassword").val();
 
         if (oldPassword === "") {
-        alert("Mật khẩu hiện tại không được để trống!");
+        alert("Please enter your current password!");
         return false;
         }
         else if (newPassword === "") {
-          alert("Mật khẩu mới không được để trống!");
+          alert("Please enter your new password!");
           return false;
         }
         else if (confirmPassword === "") {
-          alert("Nhập lại mật khẩu mới không được để trống!");
+          alert("Please re-enter your new password!");
           return false;
         }
 
         // Kiểm tra sự khớp nhau của mật khẩu mới và nhập lại mật khẩu mới
         else if (newPassword !== confirmPassword) {
-          alert("Mật khẩu mới và nhập lại mật khẩu mới không khớp nhau!");
+          alert("New password and re-enter new password do not match!");
           return false;
       }
 

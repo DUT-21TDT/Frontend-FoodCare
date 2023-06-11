@@ -1,6 +1,7 @@
 const pageSize = 4;
-var url = `http://localhost:3001/api/v1/public/foods`;
+var url = `/get/foods`;
 let foodData;
+var emptyImg = 'https://pbl3.hungdev.us:8080/img/default/no-image-food.png';
 
 function loadPage(data, pageNumber) {
 
@@ -12,7 +13,8 @@ function loadPage(data, pageNumber) {
 
         for (let i = (pageNumber - 1) * pageSize; i < (pageNumber - 1) * pageSize + pageSize; i++) {
             if (i < data.length) {
-                console.log(data[i].energy);
+                var img = (/(?:\.jpe?g|\.png)/i.test(data[i].foodimage)) ? data[i].foodimage : emptyImg;
+
                 result += `
                 <li data-foodid="${data[i].foodid}"
                     data-energy="${data[i].energy}"
@@ -24,7 +26,7 @@ function loadPage(data, pageNumber) {
                     data-minerals="${data[i].minerals}">
                     <p id="foodID" hidden>${data[i].foodid}</p>
                   <div class="CYM_body__right-bottom--img">
-                    <img src="${data[i].foodimage}" alt="" id="foodImageId${data[i].foodid}">
+                    <img src="${img}" alt="" id="foodImageId${data[i].foodid}">
                     <i class="fa-solid fa-circle-plus CYM_body__right-bottom--icon Add"></i>
                   </div>
                   <a href="/foodDetail/${data[i].foodid}" class="NameOfFood" data-foodname="${data[i].foodname}">${data[i].foodname}</a>
