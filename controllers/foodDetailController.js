@@ -25,6 +25,27 @@ const getFoodDetailById = async (id) => {
     }
 };
 
+const getFoodInfoById = async (req, res) => {
+    const id = req.query.id;
+    try {
+        let responseData = await instance.get(`/public/foods/${id}`
+        ).then(response => {
+            return response.data;
+        }).catch((err) => {
+            console.log({ message: err });
+            throw err;
+        });
+
+
+
+        res.send(responseData);
+
+    } catch (error) {
+        console.log({ message: error })
+        res.status(500);
+    }
+};
+
 const renderMenuDetailView = async (req, res, next) => {
     const menuId = req.params.menuid;
 
@@ -44,10 +65,14 @@ const renderMenuDetailView = async (req, res, next) => {
     await Promise.all(
         menuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            nutrition.energy += foodInfo.data.energy;
-            nutrition.carbs += foodInfo.data.carbohydrate;
-            nutrition.lipid += foodInfo.data.lipid;
-            nutrition.protein += foodInfo.data.protein;
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            nutrition.carbs = Number((nutrition.carbs).toFixed(2));
+            nutrition.energy = Number((nutrition.energy).toFixed(2));
+            nutrition.lipid = Number((nutrition.lipid).toFixed(2));
+            nutrition.protein = Number((nutrition.protein).toFixed(2));
 
             if (foodInfo.data.vitamins) {
                 const vitamins = foodInfo.data.vitamins.split(',').map((vitamin) => vitamin.trim());
@@ -162,4 +187,5 @@ const getMenuDetailById = async (id) => {
 module.exports = {
     renderFoodDetailView,
     renderMenuDetailView,
+    getFoodInfoById,
 };

@@ -60,6 +60,7 @@
 .EYM_body__left-top {
     width: 550px;
     height: 250px;
+    position: relative;
 
 
 }
@@ -86,8 +87,9 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
-
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 4px;
 }
 
 .EYM_body__left--title {
@@ -116,10 +118,12 @@
     text-align: center;
     line-height: 70px;
     font-weight: 600;
+    margin-right: 12px;
 }
 
 .nutriinfor--item__text {
     margin-left: 30px;
+    font-weight: 400;
 }
 
 .EYM_body__left-bottom>div {
@@ -352,4 +356,12 @@
     font-size: 60px;
     color: #fff;
     display: none;
+}
+
+#btnEditMenuImage {
+    position: absolute;
+    right: 11%;
+    top: -0.1%;
+
+    border-radius: 5px;
 }
