@@ -34,6 +34,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
+  name: 'user_cookie',
   resave: true,
   saveUninitialized: true,
   secret: 'somesecret',
