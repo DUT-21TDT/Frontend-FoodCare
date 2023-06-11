@@ -302,6 +302,8 @@ const deleteMenuDetailById = async (req, res) => {
             }).then(res => {
                 return res.data;
             });
+
+        res.send(response);
     } catch (err) {
         console.error(err);
         return null;
@@ -313,7 +315,7 @@ const likeMenuById = async (req, res) => {
         let id = req.params.id;
         const response = await instance.post(`/ratings/menuid=${id}/create`, {
             favorite: 1,
-            comment: "Nice",
+            comment: null,
         }, {
             headers: {
                 Cookie: `token=${req.session.token}`,
@@ -417,10 +419,10 @@ const renderOwnMenuDetailView = async (req, res, next) => {
     await Promise.all(
         ownMenuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
-            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
-            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
-            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2)) * food.amount;
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2)) * food.amount;
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2)) * food.amount;
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2)) * food.amount;
             nutrition.carbs = Number((nutrition.carbs).toFixed(2));
             nutrition.energy = Number((nutrition.energy).toFixed(2));
             nutrition.lipid = Number((nutrition.lipid).toFixed(2));
@@ -526,10 +528,10 @@ const getViewEditMenu = async (req, res, next) => {
     await Promise.all(
         ownMenuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
-            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
-            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
-            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2)) * food.amount;
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2)) * food.amount;
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2)) * food.amount;
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2)) * food.amount;
             nutrition.carbs = Number((nutrition.carbs).toFixed(2));
             nutrition.energy = Number((nutrition.energy).toFixed(2));
             nutrition.lipid = Number((nutrition.lipid).toFixed(2));
@@ -591,7 +593,6 @@ const getViewEditMenu = async (req, res, next) => {
 // }
 const userRatingMenu = async (req, res, next) => {
     let id = req.params.id;
-    let favorite = req.body.favorite;
     let comment = req.body.comment;
     var data = {
         favorite: 0,
@@ -699,11 +700,16 @@ const publishMenu = async (req, res) => {
                     Cookie: `token=${req.session.token}`,
                 },
             }).then(res => {
+                if (res.status === 403) {
+                    return null;
+                }
                 return res.data;
             });
+
+        res.send(response);
     } catch (err) {
         console.error(err);
-        return null;
+        res.status(403).send('In queue');
     }
 }
 

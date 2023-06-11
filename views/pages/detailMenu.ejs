@@ -80,7 +80,11 @@
       </div>
       <div class="col-5">
         <div class="ran_img_container detailMenuImage_container">
-          <img src="<%= data.menuImage %>" class="rand_img detailMenuImage" alt="" style="max-width: 100%;">
+          <% if (data.menuImage && (data.menuImage.includes("https") || /\.(jpg|jpeg|png)$/.test(data.menuImage))) { %>
+            <img src="<%= data.menuImage %>" class="rand_img detailMenuImage" alt="" style="max-width: 100%;">
+            <% } else { %>
+              <img src="../assets/images/errorImg.jpg" class="rand_img detailMenuImage" alt="" style="max-width: 100%;">
+              <% } %>
         </div>
       </div>
     </div>
@@ -119,36 +123,42 @@
                             <%= count %> Lượt Thích
                           </span>
         </div>
-
-        <span class="CommentViewBody__countComment">
+        <% let countCmt=0; %>
           <% if (dataRating !=null) { %>
-            <%=dataRating.count%> Bình Luận
-              <% } else { %>
-                0 Bình Luận
-                <% } %>
-        </span>
+            <% for (var i=0; i < dataRating.list.length; i++) { %>
+              <% if (dataRating.list[i].comment!==null) { %>
+                <% countCmt++; %>
+                  <% } %>
+                    <% } %>
+                      <% } %>
+                        <span class="CommentViewBody__countComment">
+                          <% if (dataRating !=null) { %>
+                            <%= countCmt %> Bình Luận <% } else { %> 0 Bình Luận <% } %>
+                        </span>
       </div>
 
       <div id="DivComment">
         <% if (dataRating !=null) { %>
           <% for (var i=0; i < dataRating.list.length; i++) { %>
-            <div class="divCommentCreated" style="display: flex; margin-top: 5px;">
-              <a href="" class="Comment__avatar">
-                <div class="avatar-img">
-                  <img src="<%= ArrayUserInfo[i].data.avatar %>" alt="">
+            <% if (dataRating.list[i].comment !=null) { %>
+              <div class="divCommentCreated" style="display: flex; margin-top: 5px;">
+                <a href="" class="Comment__avatar">
+                  <div class="avatar-img">
+                    <img src="<%= ArrayUserInfo[i].data.avatar %>" alt="">
+                  </div>
+                </a>
+                <div class="CommentByUser">
+                  <h4 class="CommentByUser__name">
+                    <%= ArrayUserInfo[i].data.name %>
+                  </h4>
+                  <span class="CommentByUser__text">
+                    <%= dataRating.list[i].comment %>
+                  </span>
                 </div>
-              </a>
-              <div class="CommentByUser">
-                <h4 class="CommentByUser__name">
-                  <%= ArrayUserInfo[i].data.name %>
-                </h4>
-                <span class="CommentByUser__text">
-                  <%= dataRating.list[i].comment %>
-                </span>
               </div>
-            </div>
-            <% } %>
               <% } %>
+                <% } %>
+                  <% } %>
 
 
 

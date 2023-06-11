@@ -60,15 +60,17 @@ const renderMenuDetailView = async (req, res, next) => {
         minerals: "",
     };
 
+    console.log(menuInfo);
+
     var foodElements = [];
     var index = 0;
     await Promise.all(
         menuInfo.data.foods.list.map(async (food) => {
             const foodInfo = await getFoodDetailById(food.foodid);
-            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2));
-            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2));
-            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2));
-            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2));
+            if (foodInfo.data.energy != null) nutrition.energy += Number((foodInfo.data.energy).toFixed(2)) * food.amount;
+            if (foodInfo.data.carbohydrate != null) nutrition.carbs += Number((foodInfo.data.carbohydrate).toFixed(2)) * food.amount;
+            if (foodInfo.data.lipid != null) nutrition.lipid += Number((foodInfo.data.lipid).toFixed(2)) * food.amount;
+            if (foodInfo.data.protein != null) nutrition.protein += Number((foodInfo.data.protein).toFixed(2)) * food.amount;
             nutrition.carbs = Number((nutrition.carbs).toFixed(2));
             nutrition.energy = Number((nutrition.energy).toFixed(2));
             nutrition.lipid = Number((nutrition.lipid).toFixed(2));
