@@ -1,7 +1,7 @@
 var pageSize = 4;
 var urlMenu = `/get/menus`;
 let menuData;
-var emptyImg = 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg';
+var emptyImg = 'https://pbl3.hungdev.us:8080/img/default/no-image-food.png';
 
 function loadMenu(data, pageNumber) {
     if (data.length === 0) {
@@ -12,7 +12,6 @@ function loadMenu(data, pageNumber) {
 
         for (let i = (pageNumber - 1) * pageSize; i < (pageNumber - 1) * pageSize + pageSize; i++) {
             if (i < data.length) {
-                var emptyImg = 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg';
                 var img = (/(?:\.jpe?g|\.png)/i.test(data[i].menuimage)) ? data[i].menuimage : emptyImg;
                 result += `
                     <div class="search_result menu_result">

@@ -4,7 +4,7 @@
     <a href="/user/MyMenu" class="">
       <i class="fa-solid fa-circle-arrow-left EYM_header__icon"></i>
     </a>
-    <h2 class="EYM_header__title">Create Your Menu</h2>
+    <h2 class="EYM_header__title">Edit Your Menu</h2>
   </div>
   <div class="EYM_body">
     <div class="EYM_body__left">
@@ -106,7 +106,7 @@
         </ul>
 
         <div class="btn-toolbar justify-content-md-center result_page create_page-btn" role="toolbar"
-          aria-label="Toolbar with button groups" style="padding: 50px 0">
+          aria-label="Toolbar with button groups" style="padding-top: 50px 0">
         </div>
       </div>
     </div>
@@ -179,7 +179,11 @@
           var urlUpdate = clickedButton.attr('id');
           var menuid = "<%=data.menuid%>";
           // var ImageDefault = fileUrl;
-          $.ajax({
+          if(foodObjects.length == 0){
+            alert("Unable to edit menu to empty menu!");
+          }
+          else {
+            $.ajax({
             url: urlUpdate,
             type: 'PUT',
             data: {
@@ -197,6 +201,8 @@
               console.error(error);
             }
           });
+          }
+          
         } catch (error) {
           console.error(error);
         }
