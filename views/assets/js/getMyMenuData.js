@@ -168,21 +168,14 @@ $(document).on('click', '.home-product-item__action-btn.btn-danger', async funct
         url: urldelete,
         type: 'DELETE',
         success: function (data) {
-            console.log('Delete request successful');
+            alert("Đã xóa thành công");
+            window.location.href = '/user/mymenu';
         },
         error: function (xhr, textStatus, errorThrown) {
-            // Handle the error response
             console.error('Delete request error');
             console.error(errorThrown);
         }
     });
-
-    if (res != null) {
-        alert("The menu was deleted!")
-        window.location.href = "/user/myMenu"; // Replace "/success-page" with the actual URL of the success page
-    } else {
-        alert("Delete unsuccessfully")
-    }
 });
 
 
@@ -208,12 +201,10 @@ $(document).on('click', '.home-product-item__private', async function (event) {
         url: urlPublish,
         type: 'PUT',
         success: function (data) {
-            console.log('Delete request successful');
+            alert('Wating for the administrator release your menu');
         },
         error: function (xhr, textStatus, errorThrown) {
-            // Handle the error response
-            console.error('Delete request error');
-            console.error(errorThrown);
+            alert('Your menu stills in queue');
         }
     });
 });

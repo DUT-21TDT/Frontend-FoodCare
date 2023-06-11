@@ -16,7 +16,7 @@ function loadMenu(data, pageNumber) {
                 var img = (/(?:\.jpe?g|\.png)/i.test(data[i].menuimage)) ? data[i].menuimage : emptyImg;
                 result += `
                     <div class="search_result menu_result">
-                        <a href="/foodDetail/menuid=${data[i].menuid}" target="_blank">
+                        <a href="/user/menuid=${data[i].menuid}" target="_blank">
                             <p id="menuID" hidden>${data[i].menuid}</p>
                             <img class="search_img" src="${img}" alt="">
                             <p class="text-center ellipsis">${data[i].menuname}</p>

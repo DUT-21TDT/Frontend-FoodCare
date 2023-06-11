@@ -11,6 +11,8 @@
     box-shadow: 0 0 0 0.25rem var(--third);
 }
 
+
+
 #foodcare #header {
     position: fixed;
     z-index: 1;
@@ -153,7 +155,7 @@
 }
 
 /* Media query for screens smaller than 768px */
-@media (max-width: 767px) {
+@media (max-width: 1400px) {
     #foodcare .navbar {
         flex-direction: column;
     }
@@ -178,6 +180,7 @@
 #foodcare input {
     border: 1px solid black;
 }
+
 
 
 
