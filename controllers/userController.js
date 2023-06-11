@@ -332,7 +332,11 @@ const likeMenuById = async (req, res) => {
 const unLikeMenuById = async (req, res) => {
     try {
         var id = req.params.id;
-        const response = await instance.post(`/ratings/menuid=${id}/delete`,
+        var ratingId = req.body.data;
+        console.log(ratingId);
+        const response = await instance.post(`/ratings/menuid=${id}/delete`, {
+
+        },
             {
                 headers: {
                     Cookie: `token=${req.session.token}`,
