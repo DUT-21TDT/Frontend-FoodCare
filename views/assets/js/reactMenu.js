@@ -3,7 +3,6 @@ $(document).on('click', '#likeBtn', async function () {
     var menuId = likeBtn.siblings('p').attr('id');
     var likeUrl = `/user/like` + menuId;
     var unlikeUrl = `/user/unLike` + menuId;
-    var data;
 
     if (likeBtn.css('color') === 'rgb(255, 0, 0)') {
         likeBtn.css('color', 'initial');
